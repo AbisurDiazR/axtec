@@ -1,0 +1,78 @@
+<div class="home-container">
+    <section class="home-banner">
+        <img class="home-banner-background" src="assets/banners/laptop.webp" alt="Laptop con teclado retroiluminado">
+        <div class="home-banner-text-overlay">
+            <div class="home-banner-text">
+                <h5>best deals</h5>
+                <h2>Big Sale Up To 30% Off</h2>
+                <p class="text">Don’t miss a chance to get gadgets
+                    by pleasant price</p>
+                <a href="/collections/accessories" class="btn btn_lg">shop now</a>
+            </div>
+        </div>
+    </section>
+    <div class="home-cards-container">
+        <div class="home-cards-card" *ngFor="let discount of discounts" [ngClass]="discount.className">
+            <div class="home-cards-left">
+                <p class="home-cards-title">{{discount.title}}</p>
+                <p class="home-cards-content">{{discount.content}}</p>
+            </div>
+            <div class="home-cards-right">
+                <img class="home-cards-image" src="{{discount.imagePath}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-categories-container">
+        <div class="home-categories-sections">
+            <div class="home-categories-left">
+                <div class="home-categories-category" (mouseenter)="changeIcon(true, i)"
+                    (mouseleave)="changeIcon(false, i)" *ngFor="let category of categories; let i = index;">
+                    <mat-icon *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
+                        class="home-categories-icon"></mat-icon>
+                    <mat-icon *ngIf="category.hover" svgIcon="{{category.iconLight}}"
+                        class="home-categories-icon"></mat-icon>
+                    <p class="home-categories-text">{{category.categoryName}}</p>
+                </div>
+            </div>
+            <div class="home-categories-right">
+                <div class="home-categories-text">
+                    <p>13-INCH MODEL</p>
+                    <p>Macbook Pro</p>
+                    <p>SHOP NOW</p>
+                </div>
+                <img class="home-categories-images" src="assets/banners/macbook-pro.webp" alt="Macbook proo">
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-products-container">
+        <div class="home-products-sections">
+            <div class="home-products-header">
+                <h2 class="home-products-header-left">Nuestros Productos</h2>
+                <div class="home-products-header-right">
+                    <p class="home-products-header-right-text">Recién llegados</p>
+                    <p class="home-products-header-right-text">Más vendidos</p>
+                    <p class="home-products-header-right-text">Colaboración</p>
+                </div>
+            </div>
+            <owl-carousel-o [options]="options">
+                <ng-container *ngFor="let product of products">
+                    <ng-template class="slide" carouselSlide>
+                        <mat-card class="product-card">
+                            <img class="product-card-image" mat-card-image src="{{product.imagen}}" alt="{{product.titulo}}">
+                            <mat-card-content class="product-card-content">
+                                <h3 class="product-card-title">{{ product.titulo }}</h3>
+                                <p>{{ product.precio }}</p>
+                                <!--<span *ngIf="product.nuevo" class="badge nuevo">Nuevo</span>
+                                <span *ngIf="product.rebajado" class="badge rebajado">Rebajado</span>
+                                <span *ngIf="product.precioOriginal" class="precio-original visible">{{
+                                    product.precioOriginal }}</span>-->
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>
