@@ -60,7 +60,8 @@
                 <ng-container *ngFor="let product of products">
                     <ng-template class="slide" carouselSlide>
                         <mat-card class="product-card">
-                            <img class="product-card-image" mat-card-image src="{{product.imagen}}" alt="{{product.titulo}}">
+                            <img class="product-card-image" mat-card-image src="{{product.imagen}}"
+                                alt="{{product.titulo}}">
                             <mat-card-content class="product-card-content">
                                 <h3 class="product-card-title">{{ product.titulo }}</h3>
                                 <p>{{ product.precio }}</p>
@@ -75,4 +76,81 @@
             </owl-carousel-o>
         </div>
     </div>
+    <div class="home-ads"></div>
+    <div class="home-discounts-container">
+        <div class="home-discounts-sections">
+            <div class="home-discounts-card">
+                <img class="home-discounts-image" src="assets/discounts/1.webp" alt="">
+                <div class="home-discounts-text">
+                    <p>20% en Gaming</p>
+                    <button mat-flat-button color="primary">Comprar ahora</button>
+                </div>
+            </div>
+            <div class="home-discounts-card">
+                <img class="home-discounts-image" src="assets/discounts/2.webp" alt="">
+                <div class="home-discounts-text">
+                    <p>20% en Laptops</p>
+                    <button mat-flat-button color="primary">Comprar ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-catalogs-container">
+        <div class="home-catalogs-sections">
+            <div class="home-catalogs-left">
+                <img class="home-catalogs-image" src="assets/banners/banner_center.webp" alt="">
+                <div class="home-catalogs-text">
+                    <p class="home-catalogs-title">27-inch model</p>
+                    <h3 class="home-catalogs-subtitle">New iMac</h3>
+                    <button mat-flat-button color="primary">Comprar ahora</button>
+                </div>
+            </div>
+            <div class="home-catalogs-right">
+                <h3>Más vendidos</h3>
+                <mat-card class="home-catalogs-card" *ngFor="let item of bestSellers">
+                    <mat-card-header class="home-catalogs-header">
+                        <mat-card-title-group class="home-catalogs-title-group">
+                            <img mat-card-sm-image src="{{item.imagen}}">
+                            <div class="home-catalogs-titles">
+                                <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio}}</p>
+                            </div>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+            <div class="home-catalogs-right">
+                <h3>En venta</h3>
+                <mat-card class="home-catalogs-card" *ngFor="let item of onSale">
+                    <mat-card-header class="home-catalogs-header">
+                        <mat-card-title-group class="home-catalogs-title-group">
+                            <img mat-card-sm-image src="{{item.imagen}}">
+                            <div class="home-catalogs-titles">
+                                <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio}}</p>
+                            </div>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-blogs-container">
+        <div class="home-blogs-articles">
+            <mat-card class="home-blogs-card" *ngFor="let article of articles">
+                <img class="home-blogs-card" mat-card-image src="{{article.imagen}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>{{article.fecha}}</p>
+                    <p>{{article.titulo}}</p>
+                    <p>{{article.extracto}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button color="primary">Leer más</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div class="home-ads"></div>
 </div>

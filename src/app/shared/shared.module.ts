@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     MatTabsModule,
     CarouselModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   exports: [
     HeaderComponent,
@@ -25,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     MatTabsModule,
     CarouselModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class SharedModule { }

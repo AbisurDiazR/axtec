@@ -58,6 +58,88 @@ export class HomePageComponent {
     }
   ];
 
+  bestSellers: any = [
+    {
+      nombre: "Apple Power Mac G5 Desktop",
+      precio: "$20.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_power_mac_g5_desktop_1_780x825_crop_center.png?v=1396975059"
+    },
+    {
+      nombre: "Apple MacBook Pro (13'' 2.7GHz i7)",
+      precio: "$80.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_macbook_pro_13_2-7ghz_i7_1_780x825_crop_center.png?v=1396975049"
+    },
+    {
+      nombre: "Apple iPad 2 (16GB Wi-Fi, Black)",
+      precio: "$150.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_ipad_2_16gb_wi-fi_black_1_780x825_crop_center.png?v=1396975044"
+    }
+  ];
+
+  mostWanted: any = [
+    {
+      nombre: "Apple Power Mac G5 Desktop",
+      precio: "$20.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_power_mac_g5_desktop_1_780x825_crop_center.png?v=1396975059"
+    },
+    {
+      nombre: "Apple MacBook Pro (13'' 2.7GHz i7)",
+      precio: "$80.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_macbook_pro_13_2-7ghz_i7_1_780x825_crop_center.png?v=1396975049"
+    },
+    {
+      nombre: "Apple iPad 2 (16GB Wi-Fi, Black)",
+      precio: "$150.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_ipad_2_16gb_wi-fi_black_1_780x825_crop_center.png?v=1396975044"
+    }
+  ];
+
+  onSale: any = [
+    {
+      nombre: "Apple Time Capsule - 1 TB",
+      precio: "$60.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_time_capsule_-_1_tb_1_100x100_crop_center.png?v=1396975064",
+      nuevo: true,
+      rebajado: false
+    },
+    {
+      nombre: "Apple TV",
+      precio: "$78.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_tv_1_100x100_crop_center.png?v=1396975069",
+      nuevo: true,
+      rebajado: true,
+      precioOriginal: "$100.00"
+    },
+    {
+      nombre: "Apple TV 3.0 con Blu-ray y HD tuner",
+      precio: "$399.00",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/img_08_100x100_crop_center.png?v=1663333027",
+      nuevo: false,
+      rebajado: false
+    }
+  ]
+
+  articles: any = [
+    {
+      titulo: "Repellendus consequuntur aut",
+      fecha: "08 de abril de 2014",
+      extracto: "Ullam consequatur, dolorem necessitatibus, perspiciatis, magni, voluptatem, doloribus, voluptas, iure, distinctio. Quaerat, facilis, voluptatum.",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/articles/post-1_370x275_crop_top.jpg?v=1604580029"
+    },
+    {
+      titulo: "Harum, at sequi impedit",
+      fecha: "08 de abril de 2014",
+      extracto: "Doloribus, voluptatem, doloribus, voluptas, iure, distinctio. Quaerat, facilis, voluptatum.",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/articles/post-2_370x275_crop_top.jpg?v=1604580046"
+    },
+    {
+      titulo: "Tempora quae dolor cumque nemo",
+      fecha: "08 de abril de 2014",
+      extracto: "Quaerat, facilis, voluptatum. Suscipit, dolorem, sit, amet, consectetur, adipiscing, elit. Suspendisse potenti.",
+      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/articles/post-3_370x275_crop_top.jpg?v=1604580081"
+    }
+  ];
+
   options: OwlOptions = CustomOptios;
 
   discounts: Discount[] = [
