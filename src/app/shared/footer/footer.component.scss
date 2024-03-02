@@ -1,0 +1,118 @@
+.footer-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #DFE9F5;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-around;
+        gap: 2rem;
+
+        .footer-customer-service {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .footer-customer-account {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .footer-main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .footer-newsletter {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+    }
+
+    @media (min-width: 1230px) {
+        .footer-content {
+            flex-direction: row;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .footer-content {
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .footer-content {
+            flex-direction: column;
+
+        }
+    }
+
+    @media (max-width: 576px) {
+        .footer-content {
+            flex-direction: column;
+            margin: 0 10px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .footer-content {
+            flex-direction: column;
+            margin: 0 10px;
+        }
+    }
+
+    /* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+    @media (max-width: 320px) {
+        .footer-content {
+            flex-direction: column;
+            margin: 0 10px;
+        }
+    }
+}
+
+.footer-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+
+    .footer-itme-title {
+        position: relative;
+        padding-right: 0;
+        font-weight: 600;
+        font-size: calc(14px + 4*((100vw - 420px) / 980));
+        text-align: left;
+        letter-spacing: .02em;
+        text-transform: capitalize;
+    }
+
+    .footer-item-text {
+        font-size: calc(12px + 4*((100vw - 420px) / 980));
+        color: #7d7f83;
+        font-weight: 400;
+        font-style: normal;
+    }
+}
+@media (max-width: 576px) {
+    .footer-item {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer-item {
+        flex-direction: column;
+    }
+}
+
+/* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+@media (max-width: 320px) {
+    .footer-item {
+        flex-direction: column;
+    }
+}

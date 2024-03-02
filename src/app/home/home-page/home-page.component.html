@@ -3,21 +3,22 @@
         <img class="home-banner-background" src="assets/banners/laptop.webp" alt="Laptop con teclado retroiluminado">
         <div class="home-banner-text-overlay">
             <div class="home-banner-text">
-                <h5>best deals</h5>
-                <h2>Big Sale Up To 30% Off</h2>
-                <p class="text">Don’t miss a chance to get gadgets
-                    by pleasant price</p>
-                <a href="/collections/accessories" class="btn btn_lg">shop now</a>
+                <h5 class="home-banner-deals">Mejores tratos</h5>
+                <h2 class="home-banner-discounts">Gran venta 30% de descuento</h2>
+                <p class="home-banner-cto">No pierdas la oportunidad de conseguir gadgets a buen precio.</p>
+                <button class="home-banner-button" mat-flat-button color="primary">Comprar ahora</button>
+                <!--<a href="/collections/accessories" class="btn btn_lg">Comprar ahora</a>-->
             </div>
         </div>
     </section>
     <div class="home-cards-container">
         <div class="home-cards-card" *ngFor="let discount of discounts" [ngClass]="discount.className">
-            <div class="home-cards-left">
+            <div class="home-cards-text">
                 <p class="home-cards-title">{{discount.title}}</p>
-                <p class="home-cards-content">{{discount.content}}</p>
-            </div>
-            <div class="home-cards-right">
+                <p class="home-cards-content">{{discount.content}}</p>                
+            </div>            
+            <button class="home-cards-button" mat-flat-button color="primary">Comprar ahora</button>
+            <div class="home-cards-image-container">
                 <img class="home-cards-image" src="{{discount.imagePath}}" alt="">
             </div>
         </div>
@@ -28,18 +29,18 @@
             <div class="home-categories-left">
                 <div class="home-categories-category" (mouseenter)="changeIcon(true, i)"
                     (mouseleave)="changeIcon(false, i)" *ngFor="let category of categories; let i = index;">
-                    <mat-icon *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
+                    <mat-icon class="home-categories-icon" *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
                         class="home-categories-icon"></mat-icon>
-                    <mat-icon *ngIf="category.hover" svgIcon="{{category.iconLight}}"
+                    <mat-icon class="home-categories-icon" *ngIf="category.hover" svgIcon="{{category.iconLight}}"
                         class="home-categories-icon"></mat-icon>
                     <p class="home-categories-text">{{category.categoryName}}</p>
                 </div>
             </div>
             <div class="home-categories-right">
                 <div class="home-categories-text">
-                    <p>13-INCH MODEL</p>
-                    <p>Macbook Pro</p>
-                    <p>SHOP NOW</p>
+                    <p class="home-categories-title">13-INCH MODEL</p>
+                    <h3 class="home-categories-subtitle">Macbook Pro</h3>
+                    <button mat-flat-button color="primary">Comprar ahora</button>
                 </div>
                 <img class="home-categories-images" src="assets/banners/macbook-pro.webp" alt="Macbook proo">
             </div>
@@ -51,9 +52,9 @@
             <div class="home-products-header">
                 <h2 class="home-products-header-left">Nuestros Productos</h2>
                 <div class="home-products-header-right">
-                    <p class="home-products-header-right-text">Recién llegados</p>
-                    <p class="home-products-header-right-text">Más vendidos</p>
-                    <p class="home-products-header-right-text">Colaboración</p>
+                    <span class="home-products-header-right-text underline-hover">Recién llegados</span>
+                    <span class="home-products-header-right-text underline-hover">Más vendidos</span>
+                    <span class="home-products-header-right-text underline-hover">Colaboración</span>
                 </div>
             </div>
             <owl-carousel-o [options]="options">
@@ -107,11 +108,11 @@
                 </div>
             </div>
             <div class="home-catalogs-right">
-                <h3>Más vendidos</h3>
+                <p class="home-catalogs-title">Más vendidos</p>
                 <mat-card class="home-catalogs-card" *ngFor="let item of bestSellers">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
-                            <img mat-card-sm-image src="{{item.imagen}}">
+                            <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
                             <div class="home-catalogs-titles">
                                 <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
                                 <p class="home-catalogs-title-precio">{{item.precio}}</p>
@@ -121,11 +122,11 @@
                 </mat-card>
             </div>
             <div class="home-catalogs-right">
-                <h3>En venta</h3>
+                <p class="home-catalogs-title">En venta</p>
                 <mat-card class="home-catalogs-card" *ngFor="let item of onSale">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
-                            <img mat-card-sm-image src="{{item.imagen}}">
+                            <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
                             <div class="home-catalogs-titles">
                                 <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
                                 <p class="home-catalogs-title-precio">{{item.precio}}</p>
@@ -141,10 +142,10 @@
         <div class="home-blogs-articles">
             <mat-card class="home-blogs-card" *ngFor="let article of articles">
                 <img class="home-blogs-card" mat-card-image src="{{article.imagen}}" alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                    <p>{{article.fecha}}</p>
-                    <p>{{article.titulo}}</p>
-                    <p>{{article.extracto}}</p>
+                <mat-card-content class="home-blogs-content">
+                    <p class="home-blogs-date">{{article.fecha}}</p>
+                    <p class="home-blogs-title">{{article.titulo}}</p>
+                    <p class="home-blogs-extact">{{article.extracto}}</p>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-button color="primary">Leer más</button>
@@ -153,4 +154,27 @@
         </div>
     </div>
     <div class="home-ads"></div>
+    <div class="home-features-container">
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-free-shipment"></mat-icon>
+            <p class="home-feature-title">Envio gratis</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">Disfruta de envios gratis en todas las compras mayores a $50</p>
+            </div>
+        </div>
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-return-money"></mat-icon>
+            <p class="home-feature-title">Reembolso</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">Garantía de 30 días y reembolso</p>
+            </div>
+        </div>
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-secure-payment"></mat-icon>
+            <p class="home-feature-title">Pagos seguros</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">Pagos 100% seguros</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -144,28 +144,28 @@ export class HomePageComponent {
 
   discounts: Discount[] = [
     {
-      imagePath: 'assets/banners/mac.webp',
+      imagePath: 'assets/banners/pc.webp',
       className: 'home-card-blue',
-      title: 'Card 1',
-      content: 'Contenido de la Card 1',
+      title: 'Computadoras',
+      content: '¡Obtén 20% de descuento!',
+    },
+    {
+      imagePath: 'assets/banners/mac.webp',
+      className: 'home-card-gray',
+      title: 'Laptops',
+      content: '¡Obtén 50% de descuento!',
+    },
+    {
+      imagePath: 'assets/banners/tablet.webp',
+      className: 'home-card-blue',
+      title: 'Tablets',
+      content: '¡Obtén 50% de descuento!',
     },
     {
       imagePath: 'assets/banners/monitor.webp',
       className: 'home-card-gray',
-      title: 'Card 2',
-      content: 'Contenido de la Card 2',
-    },
-    {
-      imagePath: 'assets/banners/pc.webp',
-      className: 'home-card-blue',
-      title: 'Card 3',
-      content: 'Contenido de la Card 3',
-    },
-    {
-      imagePath: 'assets/banners/tablet.webp',
-      className: 'home-card-gray',
-      title: 'Card 4',
-      content: 'Contenido de la Card 4',
+      title: 'Monitores',
+      content: '¡Obtén 10% de descuento!',
     },
   ];
 

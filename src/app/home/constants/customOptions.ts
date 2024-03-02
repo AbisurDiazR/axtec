@@ -11,10 +11,22 @@ export const CustomOptios = {
         0: {
             items: 1
         },
-        600: {
+        320: {
+            items: 1
+        },
+        450: {
+            items: 1
+        },
+        576: {
             items: 3
         },
-        1000: {
+        900: {
+            items: 3
+        },
+        1024: {
+            items: 4
+        },
+        1230: {
             items: 4
         }
     },

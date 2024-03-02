@@ -24,6 +24,9 @@ export class AppComponent {
     .addSvgIcon('ic-hardware', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/pastilla.svg'))
     .addSvgIcon('ic-hardware-light', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/pastilla-light.svg'))
     .addSvgIcon('ic-smartphone', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/telefono-inteligente.svg'))
-    .addSvgIcon('ic-smartphone-light', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/telefono-inteligente-light.svg'));
+    .addSvgIcon('ic-smartphone-light', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/telefono-inteligente-light.svg'))
+    .addSvgIcon('ic-free-shipment', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/entrega-gratis.svg'))
+    .addSvgIcon('ic-secure-payment', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/tarjeta-de-credito.svg'))
+    .addSvgIcon('ic-return-money', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/reembolso.svg'));
   }
 }
