@@ -1,15 +1,18 @@
 <div class="header-container">
-    <!-- Elemento de imagen -->
-    <img src="assets/logos/logo.png" alt="Axtec">
-    <!-- Iconos -->
-    <div class="header-icons-container">
-        <div class="header-icons-item">
-            <mat-icon>account_circle</mat-icon>
+    <div class="header-topbar">
+        <div class="header-account">
+            <img src="assets/logos/logo.png" alt="Axtec">
+            <!-- Iconos -->
+            <div class="header-icons-container">
+                <div class="header-icons-item">
+                    <mat-icon>account_circle</mat-icon>
+                </div>
+                <div class="header-icons-divider"></div>
+                <div class="header-icons-item">
+                    <mat-icon>shopping_cart</mat-icon>
+                </div>
+            </div>
         </div>
-        <div class="header-icons-divider"></div>
-        <div class="header-icons-item">
-            <mat-icon>shopping_cart</mat-icon>
-        </div>
+        <app-search-bar></app-search-bar>
     </div>
-
 </div>

@@ -1,0 +1,31 @@
+<div class="search-bar">
+    <div class="search-bar-options">
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.home' | translate}}</p>
+        </div>
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.collection' | translate}}</p>
+        </div>
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.blog' | translate}}</p>
+        </div>
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.catalog' | translate}}</p>
+        </div>
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.about-us' | translate}}</p>
+        </div>
+        <div class="search-bar-option">
+            <p class="search-bar-option-text">{{'HEADER.contact-us' | translate}}</p>
+        </div>
+    </div>
+    <div class="search-bar-menu-container">
+        <mat-icon (click)="toggle()" class="search-bar-menu" svgIcon="ic-menu"></mat-icon>
+    </div>
+    <div class="search-bar-input-container">
+        <mat-form-field class="search-bar-input" appearance="outline">
+            <input type="text" matInput placeholder="Buscar...">
+            <mat-icon svgIcon="ic-search" matSuffix></mat-icon>
+        </mat-form-field>
+    </div>
+</div>

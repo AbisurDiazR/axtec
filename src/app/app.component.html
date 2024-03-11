@@ -1,3 +1,34 @@
-<app-header></app-header>
+<!--<app-header></app-header>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer></app-footer>-->
+<mat-drawer-container class="app-container" [hasBackdrop]="true">
+    <mat-drawer class="app-mat-drawer" #drawer mode="over">
+        <div class="app-menu">
+            <div class="app-menu-header">
+                <button (click)="closeDrawer(false)" mat-icon-button aria-label="Example icon button with a menu icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div class="menu__content">
+                <mat-list>
+                    <mat-list-item>{{'HEADER.home' | translate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>{{'HEADER.collection' | translate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>{{'HEADER.blog' | translate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>{{'HEADER.catalog' | translate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>{{'HEADER.about-us' | translate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>{{'HEADER.contact-us' | translate}}</mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </mat-drawer-content>
+</mat-drawer-container>

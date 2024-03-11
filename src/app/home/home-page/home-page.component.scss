@@ -31,24 +31,28 @@
                 flex-direction: column;
                 gap: 1rem;
 
-                .home-banner-deals{
+                .home-banner-deals {
                     margin: 0;
                 }
-                .home-banner-discounts{
+
+                .home-banner-discounts {
                     margin: 0;
                 }
-                .home-banner-cto{
+
+                .home-banner-cto {
                     margin: 0;
                 }
+
                 .home-banner-button {
                     width: 150px;
                     align-self: center;
                 }
             }
+
             @media (max-width: 500px) {
                 .home-banner-text {
                     gap: 0;
-                }                
+                }
             }
         }
 
@@ -56,6 +60,18 @@
             .home-banner-text-overlay {
                 font-size: 0.2em;
             }
+        }
+    }
+
+    @media (min-width: 992px) {
+        .home-banner {
+            margin-top: 97px !important;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .home-banner {
+            margin-top: 152px !important;
         }
     }
 
@@ -84,6 +100,7 @@
                 top: 40%;
                 left: 20%;
                 z-index: 1;
+                width: 150px;
             }
 
             .home-cards-image-container {
