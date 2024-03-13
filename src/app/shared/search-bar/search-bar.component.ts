@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
@@ -9,12 +10,16 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private sideNavService: SidenavService) {}
+  constructor(private sideNavService: SidenavService, private router: Router) {}
   
   ngOnInit(): void {
   }
 
   toggle(){
     this.sideNavService.changeOpen(true);
+  }
+
+  navigateTo(route: string){
+    this.router.navigate([`${route}`]);
   }
 }

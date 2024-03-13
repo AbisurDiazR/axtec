@@ -1,9 +1,9 @@
 <div class="search-bar">
     <div class="search-bar-options">
-        <div class="search-bar-option">
+        <div (click)="navigateTo('home')" class="search-bar-option">
             <p class="search-bar-option-text">{{'HEADER.home' | translate}}</p>
         </div>
-        <div class="search-bar-option">
+        <div (click)="navigateTo('collection')" class="search-bar-option">
             <p class="search-bar-option-text">{{'HEADER.collection' | translate}}</p>
         </div>
         <div class="search-bar-option">

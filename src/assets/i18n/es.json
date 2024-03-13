@@ -6,5 +6,8 @@
         "catalog": "Catalogo",
         "about-us": "Sobre nosotros",
         "contact-us": "Contactanos"
+    },
+    "COLLECTION": {
+        "title": "Colecciones"
     }
 }
