@@ -1,0 +1,29 @@
+@import '/src/assets/scss/colors';
+
+.collection-view-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    .collection-view-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .collection-view-columns{
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            .collection-view-options{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;                
+            }
+            .collection-view-main{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+    }
+}

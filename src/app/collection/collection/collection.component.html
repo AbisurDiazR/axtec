@@ -3,7 +3,7 @@
         <div class="collection-items-container">
             <p class="collection-item-title">{{ 'COLLECTION.title' | translate }}</p>         
             <div class="collection-items">
-                <div *ngFor="let item of items" class="collection-item">
+                <div *ngFor="let item of items" class="collection-item" (click)="navigateTo(item.id)">
                     <img class="collection-item-image" src="{{item.image}}" alt="">
                     <div class="collection-item-container-name">
                         <p class="collection-item-name">{{item.name}}</p>

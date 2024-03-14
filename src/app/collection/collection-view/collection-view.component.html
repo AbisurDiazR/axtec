@@ -1,0 +1,29 @@
+<div class="collection-view-container">
+    <div class="collection-view-content">
+        <div class="collection-view-columns">
+            <div class="collection-view-options">
+                <p>{{ 'HEADER.collection' | translate }}</p>
+                <ul>
+                    <li>{{ 'HEADER.home' | translate }}</li>
+                    <li>{{ 'HEADER.catalog' | translate }}</li>
+                    <li>{{ 'HEADER.blog' | translate }}</li>
+                    <li>{{ 'HEADER.about-us' | translate }}</li>
+                    <li>{{ 'HEADER.contact-us' | translate }}</li>
+                </ul>
+                <p>{{ 'COLLECTION.brands' | translate }}</p>
+                <ul>
+                    <li *ngFor="let brand of brands">
+                        {{brand.brandName}}
+                    </li>
+                </ul>
+                <p>{{ 'COLLECTION.types' | translate }}</p>
+                <ul>
+                    <li *ngFor="let productType of productTypes">
+                        {{productType.typeName}}
+                    </li>
+                </ul>
+            </div>
+            <div class="collection-view-main"></div>
+        </div>
+    </div>
+</div>

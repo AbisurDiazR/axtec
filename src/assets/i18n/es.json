@@ -8,6 +8,8 @@
         "contact-us": "Contactanos"
     },
     "COLLECTION": {
-        "title": "Colecciones"
+        "title": "Colecciones",
+        "brands": "Marcas",
+        "types": "Tipos de producto"
     }
 }
