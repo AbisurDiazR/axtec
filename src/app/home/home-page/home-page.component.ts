@@ -16,43 +16,43 @@ export class HomePageComponent {
     {
       imagen: "https://i.ebayimg.com/images/g/4U4AAOSwOSdlnvkz/s-l1600.webp",
       titulo: "Apple Time Capsule - 1 TB",
-      precio: "$60.00",
+      precio: 60.00,
       nuevo: true,
       rebajado: false
     },
     {
       imagen: "https://i.ebayimg.com/images/g/vr4AAOSwz9hkEh3v/s-l1600.webp",
       titulo: "Apple TV  Apple TV 3.0 con Blu-ray y HD tuner",
-      precio: "$78.00",
+      precio: 78.00,
       nuevo: true,
       rebajado: true,
-      precioOriginal: "$100.00"
+      precioOriginal: 100.0
     },
     {
       imagen: "https://i.ebayimg.com/images/g/CFEAAOSwaSlf1~bV/s-l1600.webp",
       titulo: "Apple Wireless Keyboard         MC184",
-      precio: "$399.00",
+      precio: 399.00,
       nuevo: false,
       rebajado: false
     },
     {
       imagen: "https://i.ebayimg.com/images/g/9aQAAOSwLPRkkyUa/s-l1600.webp",
       titulo: "Apple TV 4K",
-      precio: "$420.00",
+      precio: 420.00,
       nuevo: false,
       rebajado: false
     },
     {
       imagen: "https://i.ebayimg.com/images/g/97kAAOSwcStkQAsm/s-l1600.webp",
       titulo: "Beats Studio3 Wireless Headphones Sand Dune",
-      precio: "$499.00",
+      precio: 499.00,
       nuevo: true,
       rebajado: false
     },
     {
       imagen: "https://i.ebayimg.com/images/g/kTAAAOSw-GJlV4yJ/s-l1600.webp",
       titulo: "Beats Studio 3 Wireless Headphone Camo Collection - Sand Dune",
-      precio: "$549.00",
+      precio: 549.00,
       nuevo: true,
       rebajado: false
     }
@@ -61,17 +61,17 @@ export class HomePageComponent {
   bestSellers: any = [
     {
       nombre: "Apple Power Mac G5 Desktop",
-      precio: "$20.00",
+      precio: 20.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_power_mac_g5_desktop_1_780x825_crop_center.png?v=1396975059"
     },
     {
       nombre: "Apple MacBook Pro (13'' 2.7GHz i7)",
-      precio: "$80.00",
+      precio: 80.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_macbook_pro_13_2-7ghz_i7_1_780x825_crop_center.png?v=1396975049"
     },
     {
       nombre: "Apple iPad 2 (16GB Wi-Fi, Black)",
-      precio: "$150.00",
+      precio: 150.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_ipad_2_16gb_wi-fi_black_1_780x825_crop_center.png?v=1396975044"
     }
   ];
@@ -79,17 +79,17 @@ export class HomePageComponent {
   mostWanted: any = [
     {
       nombre: "Apple Power Mac G5 Desktop",
-      precio: "$20.00",
+      precio: 20.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_power_mac_g5_desktop_1_780x825_crop_center.png?v=1396975059"
     },
     {
       nombre: "Apple MacBook Pro (13'' 2.7GHz i7)",
-      precio: "$80.00",
+      precio: 80.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_macbook_pro_13_2-7ghz_i7_1_780x825_crop_center.png?v=1396975049"
     },
     {
       nombre: "Apple iPad 2 (16GB Wi-Fi, Black)",
-      precio: "$150.00",
+      precio: 150.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_ipad_2_16gb_wi-fi_black_1_780x825_crop_center.png?v=1396975044"
     }
   ];
@@ -97,22 +97,22 @@ export class HomePageComponent {
   onSale: any = [
     {
       nombre: "Apple Time Capsule - 1 TB",
-      precio: "$60.00",
+      precio: 60.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_time_capsule_-_1_tb_1_100x100_crop_center.png?v=1396975064",
       nuevo: true,
       rebajado: false
     },
     {
       nombre: "Apple TV",
-      precio: "$78.00",
+      precio: 78.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_tv_1_100x100_crop_center.png?v=1396975069",
       nuevo: true,
       rebajado: true,
-      precioOriginal: "$100.00"
+      precioOriginal: 100.0
     },
     {
       nombre: "Apple TV 3.0 con Blu-ray y HD tuner",
-      precio: "$399.00",
+      precio: 399.00,
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/img_08_100x100_crop_center.png?v=1663333027",
       nuevo: false,
       rebajado: false

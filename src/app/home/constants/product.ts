@@ -1,8 +1,10 @@
 export class Product {
+    id?: number;
     imagen?: string;
     titulo?: string;
-    precio?: string;
+    precio?: number;
     nuevo?: boolean;
     rebajado?: boolean;
-    precioOriginal?: string;
+    precioOriginal?: number;
+    description?: string;
 }

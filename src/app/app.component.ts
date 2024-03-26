@@ -40,7 +40,11 @@ export class AppComponent implements OnInit{
     .addSvgIcon('ic-return-money', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/reembolso.svg'))
     .addSvgIcon('ic-search', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/search.svg'))
     .addSvgIcon('ic-down', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/down.svg'))
-    .addSvgIcon('ic-menu', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/menu.svg'));
+    .addSvgIcon('ic-menu', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/menu.svg'))
+    .addSvgIcon('ic-grid-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/grid-on.svg'))
+    .addSvgIcon('ic-grid-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/grid-off.svg'))
+    .addSvgIcon('ic-list-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-on.svg'))
+    .addSvgIcon('ic-list-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-off.svg'));
     this._subs.add(this.sideNavService.open.subscribe((param: any) => {
       param ? this.drawer.open() : this.drawer.close();
     }));

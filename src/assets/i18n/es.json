@@ -10,6 +10,9 @@
     "COLLECTION": {
         "title": "Colecciones",
         "brands": "Marcas",
-        "types": "Tipos de producto"
+        "types": "Tipos de producto",
+        "sort": "Ordenar por:",
+        "items-label": "Elementos",
+        "add-car": "Añadir al carro"
     }
 }

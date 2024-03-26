@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -16,8 +16,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select';
+import localeEsMX from '@angular/common/locales/es-MX';
 
-const lang = "es-MX";
+registerLocaleData(localeEsMX);
+
+//const lang = "es-MX";
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/','.json');
@@ -42,7 +47,9 @@ export function HttpLoaderFactory(http: HttpClient){
     MatToolbarModule,
     MatSidenavModule,
     MatDividerModule,
-    TranslateModule
+    TranslateModule,
+    MatChipsModule,
+    MatSelectModule
   ],
   exports: [
     HeaderComponent,
@@ -59,7 +66,9 @@ export function HttpLoaderFactory(http: HttpClient){
     SearchBarComponent,
     MatSidenavModule,
     MatDividerModule,
-    TranslateModule
+    TranslateModule,
+    MatChipsModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }

@@ -1,29 +1,128 @@
 <div class="collection-view-container">
     <div class="collection-view-content">
-        <div class="collection-view-columns">
-            <div class="collection-view-options">
-                <p>{{ 'HEADER.collection' | translate }}</p>
-                <ul>
-                    <li>{{ 'HEADER.home' | translate }}</li>
-                    <li>{{ 'HEADER.catalog' | translate }}</li>
-                    <li>{{ 'HEADER.blog' | translate }}</li>
-                    <li>{{ 'HEADER.about-us' | translate }}</li>
-                    <li>{{ 'HEADER.contact-us' | translate }}</li>
-                </ul>
-                <p>{{ 'COLLECTION.brands' | translate }}</p>
-                <ul>
-                    <li *ngFor="let brand of brands">
-                        {{brand.brandName}}
-                    </li>
-                </ul>
-                <p>{{ 'COLLECTION.types' | translate }}</p>
-                <ul>
-                    <li *ngFor="let productType of productTypes">
-                        {{productType.typeName}}
-                    </li>
-                </ul>
+        <div class="collection-view-options">
+            <p class="collection-view-options-title">{{ 'HEADER.collection' | translate }}</p>
+            <ul class="collection-view-options-container">
+                <li class="collection-view-options-name">
+                    <a class="collection-view-options-ref" href="">
+                        {{ 'HEADER.home' | translate}}
+                    </a>
+                </li>
+                <li class="collection-view-options-name">
+                    <a class="collection-view-options-ref" href="">
+                        {{ 'HEADER.catalog' | translate}}
+                    </a>
+                </li>
+                <li class="collection-view-options-name">
+                    <a class="collection-view-options-ref" href="">
+                        {{ 'HEADER.blog' | translate}}
+                    </a>
+                </li>
+                <li class="collection-view-options-name">
+                    <a class="collection-view-options-ref" href="">
+                        {{ 'HEADER.about-us' | translate}}
+                    </a>
+                </li>
+                <li class="collection-view-options-name">
+                    <a class="collection-view-options-ref" href="">
+                        {{ 'HEADER.contact-us' | translate}}
+                    </a>
+                </li>
+            </ul>
+            <p class="collection-view-options-title">{{ 'COLLECTION.brands' | translate }}</p>
+            <ul class="collection-view-options-container">
+                <li class="collection-view-options-name" *ngFor="let brand of brands">
+                    <a class="collection-view-options-ref" href="">{{brand.brandName}}</a>
+                </li>
+            </ul>
+            <p class="collection-view-options-title">{{ 'COLLECTION.types' | translate }}</p>
+            <ul class="collection-view-options-container">
+                <li class="collection-view-options-name" *ngFor="let productType of productTypes">
+                    <a class="collection-view-options-ref" href="">{{productType.typeName}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="collection-view-main">
+            <div class="collection-view-main-banner">
+                <img class="collection-view-main-image"
+                    src="https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_time_capsule_-_1_tb_1_980x350_crop_center.png?v=1396975064"
+                    alt="">
+                <div class="collection-view-main-title-container">
+                    <p class="collection-view-main-title">{{collectionName}}</p>
+                </div>
             </div>
-            <div class="collection-view-main"></div>
+            <div class="collection-view-main-tags">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option>Todo</mat-chip-option>
+                </mat-chip-listbox>
+            </div>
+            <!--Menu collection-->
+            <div class="collection-view-main-menu">
+                <div class="collection-view-main-sort-container">
+                    <p class="collection-view-main-sort-text">
+                        {{ 'COLLECTION.sort' | translate }}
+                    </p>
+                    <mat-form-field class="collection-view-main-sort-input" appearance="outline">
+                        <mat-select>
+                            <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                            <mat-option value="option3">Option 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <p class="collection-view-main-quantity-items">{{products.length}} {{ 'COLLECTION.items-label' |
+                    translate}}</p>
+                <div class="collection-view-main-options-list">
+                    <mat-icon class="collection-view-main-option" (click)="selectGrid()"
+                        svgIcon="{{ gridSelected ? 'ic-grid-on' : 'ic-grid-off'}}"></mat-icon>
+                    <mat-icon class="collection-view-main-option" (click)="selectList()"
+                        svgIcon="{{ listSelected ? 'ic-list-on' : 'ic-list-off'}}"></mat-icon>
+                </div>
+            </div>
+            <div *ngIf="gridSelected" class="collection-view-main-items">
+                <mat-card *ngFor="let product of products" class="collection-view-main-product-card">
+                    <div class="collection-view-main-product-card-image-container">
+                        <img class="collection-view-main-product-card-image" mat-card-md-image src="{{product.imagen}}"
+                            alt="{{product.titulo}}">
+                    </div>
+                    <mat-card-content class="collection-view-main-product-card-content">
+                        <h3 class="collection-view-main-product-card-title">{{ product.titulo }}</h3>
+                        <p>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div *ngIf="listSelected" class="collection-view-product-card-horizontal-container">
+                <mat-card class="collection-view-product-card-horizontal" *ngFor="let product of products">
+                    <img class="collection-view-product-card-horizontal-image" mat-card-lg-image
+                        src="{{product.imagen}}">
+                    <div class="collection-view-product-card-horizontal-titles">
+                        <p class="collection-view-product-card-horizontal-title-nombre">{{product.titulo}}
+                        </p>
+                        <p class="collection-view-product-card-horizontal-title-precio">{{product.precio | currency:'MXN':'symbol':'1.2-2'}}
+                        </p>
+                        <p class="collection-view-product-card-horizontal-title-description">{{product.description}}</p>
+                        <div class="collection-view-product-card-horizontal-title-button-container">
+                            <button class="collection-view-product-card-horizontal-title-button" mat-fab extended
+                                color="primary">
+                                <mat-icon>shopping_cart</mat-icon>
+                                {{'COLLECTION.add-car' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
         </div>
     </div>
 </div>
+<!--<div class="collection-view-container">
+    <div class="collection-view-content">
+        <div class="collection-view-columns">
+            <div class="collection-view-main">  
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>-->

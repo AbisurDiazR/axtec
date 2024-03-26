@@ -65,7 +65,7 @@
                                 alt="{{product.titulo}}">
                             <mat-card-content class="product-card-content">
                                 <h3 class="product-card-title">{{ product.titulo }}</h3>
-                                <p>{{ product.precio }}</p>
+                                <p>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</p>
                                 <!--<span *ngIf="product.nuevo" class="badge nuevo">Nuevo</span>
                                 <span *ngIf="product.rebajado" class="badge rebajado">Rebajado</span>
                                 <span *ngIf="product.precioOriginal" class="precio-original visible">{{
@@ -115,7 +115,7 @@
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
                             <div class="home-catalogs-titles">
                                 <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
-                                <p class="home-catalogs-title-precio">{{item.precio}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio | currency:'MXN':'symbol':'1.2-2'}}</p>
                             </div>
                         </mat-card-title-group>
                     </mat-card-header>
@@ -129,7 +129,7 @@
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
                             <div class="home-catalogs-titles">
                                 <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
-                                <p class="home-catalogs-title-precio">{{item.precio}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio | currency:'MXN':'symbol':'1.2-2'}}</p>
                             </div>
                         </mat-card-title-group>
                     </mat-card-header>

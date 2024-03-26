@@ -11,3 +11,9 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mat-mdc-text-field-wrapper {
+    height: 100% !important;
+}
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix{
+    padding: 12px !important;
+}
