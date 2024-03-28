@@ -11,6 +11,7 @@
         margin: 150px 0;
         display: grid;
         grid-template-columns: 0.3fr 1fr;
+        gap: 2rem;
 
         .collection-view-options {
             .collection-view-options-title {
@@ -80,6 +81,7 @@
                         color: $gray-title;
                         margin: 0;
                         line-height: 1.4em;
+                        font-size: 28px;
                     }
                 }
 
@@ -165,6 +167,39 @@
                         display: flex;
                         justify-content: center;
                         padding: 5px;
+                        cursor: pointer;
+                    }
+
+                    .collection-view-main-product-card-content {
+                        .collection-view-main-product-card-title {
+                            font-weight: 500;
+                            font-size: inherit;
+                            color: $gray-title;
+                        }
+
+                        .collection-view-main-product-card-price {
+                            color: $primary-blue;
+                        }
+
+                        .collection-view-main-product-card-buttons-container {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        @media (max-width: 576px) {
+                            .collection-view-main-product-card-buttons-container {
+                                .collection-view-product-card-button {
+                                    width: 100px;
+                                    height: 40px;
+                                    font-size: 11px;
+
+                                    mat-icon {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -190,6 +225,10 @@
                     flex-direction: row;
                     gap: 2rem;
                     padding: 10px;
+
+                    .collection-view-product-card-horizontal-image {
+                        cursor: pointer;
+                    }
 
                     .collection-view-product-card-horizontal-titles {
                         width: 100%;

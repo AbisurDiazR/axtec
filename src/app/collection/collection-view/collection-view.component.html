@@ -86,8 +86,16 @@
                             alt="{{product.titulo}}">
                     </div>
                     <mat-card-content class="collection-view-main-product-card-content">
-                        <h3 class="collection-view-main-product-card-title">{{ product.titulo }}</h3>
-                        <p>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</p>
+                        <p class="collection-view-main-product-card-title">{{ product.titulo }}</p>
+                        <p class="collection-view-main-product-card-price">{{ product.precio |
+                            currency:'MXN':'symbol':'1.2-2' }}</p>
+                        <div class="collection-view-main-product-card-buttons-container">
+                            <button class="collection-view-product-card-button" mat-fab extended
+                                color="primary">
+                                <mat-icon>shopping_cart</mat-icon>
+                                {{'COLLECTION.add-car' | translate}}
+                            </button>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -98,7 +106,8 @@
                     <div class="collection-view-product-card-horizontal-titles">
                         <p class="collection-view-product-card-horizontal-title-nombre">{{product.titulo}}
                         </p>
-                        <p class="collection-view-product-card-horizontal-title-precio">{{product.precio | currency:'MXN':'symbol':'1.2-2'}}
+                        <p class="collection-view-product-card-horizontal-title-precio">{{product.precio |
+                            currency:'MXN':'symbol':'1.2-2'}}
                         </p>
                         <p class="collection-view-product-card-horizontal-title-description">{{product.description}}</p>
                         <div class="collection-view-product-card-horizontal-title-button-container">
