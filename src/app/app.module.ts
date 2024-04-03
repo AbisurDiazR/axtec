@@ -23,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    })    
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX'}],
   bootstrap: [AppComponent]

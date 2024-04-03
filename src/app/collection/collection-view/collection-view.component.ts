@@ -4,7 +4,7 @@ import { ProductType } from '../constants/productType';
 import { Product } from 'src/app/home/constants/product';
 import { Item } from '../constants/item';
 import { COLLECTIONS } from '../constants/utils';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-collection-view',
@@ -65,7 +65,7 @@ export class CollectionViewComponent implements OnInit {
   collections: Item[] = COLLECTIONS;
   collectionName: string | undefined;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe(((res: any) => {
@@ -86,5 +86,9 @@ export class CollectionViewComponent implements OnInit {
   selectList() {
     this.listSelected = true;
     this.gridSelected = false;
+  }
+
+  navigateToProduct(productId: number | undefined){
+    this.router.navigate([`product/${productId}`]);
   }
 }

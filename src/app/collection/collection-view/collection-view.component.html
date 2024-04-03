@@ -81,7 +81,8 @@
             </div>
             <div *ngIf="gridSelected" class="collection-view-main-items">
                 <mat-card *ngFor="let product of products" class="collection-view-main-product-card">
-                    <div class="collection-view-main-product-card-image-container">
+                    <div class="collection-view-main-product-card-image-container"
+                        (click)="navigateToProduct(product.id)">
                         <img class="collection-view-main-product-card-image" mat-card-md-image src="{{product.imagen}}"
                             alt="{{product.titulo}}">
                     </div>
@@ -90,8 +91,7 @@
                         <p class="collection-view-main-product-card-price">{{ product.precio |
                             currency:'MXN':'symbol':'1.2-2' }}</p>
                         <div class="collection-view-main-product-card-buttons-container">
-                            <button class="collection-view-product-card-button" mat-fab extended
-                                color="primary">
+                            <button class="collection-view-product-card-button" mat-fab extended color="primary">
                                 <mat-icon>shopping_cart</mat-icon>
                                 {{'COLLECTION.add-car' | translate}}
                             </button>
@@ -102,7 +102,7 @@
             <div *ngIf="listSelected" class="collection-view-product-card-horizontal-container">
                 <mat-card class="collection-view-product-card-horizontal" *ngFor="let product of products">
                     <img class="collection-view-product-card-horizontal-image" mat-card-lg-image
-                        src="{{product.imagen}}">
+                        src="{{product.imagen}}" (click)="navigateToProduct(product.id)">
                     <div class="collection-view-product-card-horizontal-titles">
                         <p class="collection-view-product-card-horizontal-title-nombre">{{product.titulo}}
                         </p>

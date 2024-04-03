@@ -19,6 +19,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
 import localeEsMX from '@angular/common/locales/es-MX';
+import { LottieModule } from "ngx-lottie";
+import player from "lottie-web";
+import { PurchaseComponent } from './purchase/purchase.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PolicyDialogComponent } from './policy-dialog/policy-dialog.component';
+
+//player lottie
+export function playerFactory() {
+  return player;
+}
 
 registerLocaleData(localeEsMX);
 
@@ -32,7 +42,9 @@ export function HttpLoaderFactory(http: HttpClient){
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    PurchaseComponent,
+    PolicyDialogComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +61,9 @@ export function HttpLoaderFactory(http: HttpClient){
     MatDividerModule,
     TranslateModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    LottieModule.forRoot({player: playerFactory}),
+    MatDialogModule
   ],
   exports: [
     HeaderComponent,
@@ -68,7 +82,9 @@ export function HttpLoaderFactory(http: HttpClient){
     MatDividerModule,
     TranslateModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    PurchaseComponent,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,4 @@
-export class Product {
+export interface Product {
     id?: number;
     imagen?: string;
     titulo?: string;
@@ -7,4 +7,10 @@ export class Product {
     rebajado?: boolean;
     precioOriginal?: number;
     description?: string;
+    images?: any[];
+    cantidad?: number;
+    vendedor?: string;
+    categoria?: string;
+    peso?: string;
+    subcategorias?: string[];
 }

@@ -1,0 +1,15 @@
+.policy-dialog-close-container {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    .policy-dialog-close-icon {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.policy-dialog-container {
+    padding: 10px;
+}

@@ -44,7 +44,8 @@ export class AppComponent implements OnInit{
     .addSvgIcon('ic-grid-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/grid-on.svg'))
     .addSvgIcon('ic-grid-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/grid-off.svg'))
     .addSvgIcon('ic-list-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-on.svg'))
-    .addSvgIcon('ic-list-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-off.svg'));
+    .addSvgIcon('ic-list-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-off.svg'))
+    .addSvgIcon('ic-no-review', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ghost.svg'));
     this._subs.add(this.sideNavService.open.subscribe((param: any) => {
       param ? this.drawer.open() : this.drawer.close();
     }));
