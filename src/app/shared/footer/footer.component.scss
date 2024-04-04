@@ -85,14 +85,14 @@
         position: relative;
         padding-right: 0;
         font-weight: 600;
-        font-size: calc(14px + 4*((100vw - 420px) / 980));
+        font-size: inherit;
         text-align: left;
         letter-spacing: .02em;
         text-transform: capitalize;
     }
 
     .footer-item-text {
-        font-size: calc(12px + 4*((100vw - 420px) / 980));
+        font-size: inherit;
         color: #7d7f83;
         font-weight: 400;
         font-style: normal;

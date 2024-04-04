@@ -1,12 +1,19 @@
-.app-container{
-    .app-mat-drawer{
+.app-container {
+    .app-mat-drawer {
         width: 250px;
-        .app-menu{
-            .app-menu-header{
+
+        .app-menu {
+            .app-menu-header {
                 display: flex;
                 justify-content: end;
                 align-items: center;
             }
         }
+    }
+
+    .app-content {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr;
     }
 }
