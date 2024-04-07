@@ -148,7 +148,7 @@
                     <p class="home-blogs-extact">{{article.extracto}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button color="primary">Leer más</button>
+                    <button (click)="goToBlog(article.id)" mat-button color="primary">{{'BLOG.read-more' | translate}}</button>
                 </mat-card-actions>
             </mat-card>
         </div>

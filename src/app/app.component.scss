@@ -1,4 +1,5 @@
 .app-container {
+
     .app-mat-drawer {
         width: 250px;
 
@@ -11,9 +12,13 @@
         }
     }
 
-    .app-content {
+    .app-mat-drawer-content {
         height: 100vh;
-        display: grid;
-        grid-template-rows: 1fr;
+        display: flex;
+        flex-direction: column;
+
+        .app-content {
+            flex: 1;
+        }
     }
 }

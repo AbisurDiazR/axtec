@@ -4,6 +4,8 @@ import { Category } from '../constants/category';
 import { Product } from '../constants/product';
 import { CustomOptios } from '../constants/customOptions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Article } from 'src/app/blog/constants/article';
+import { RedirectService } from 'src/app/services/redirect.service';
 
 @Component({
   selector: 'app-home-page',
@@ -119,20 +121,23 @@ export class HomePageComponent {
     }
   ]
 
-  articles: any = [
+  articles: Article[] = [
     {
+      id: "1",
       titulo: "Repellendus consequuntur aut",
       fecha: "08 de abril de 2014",
       extracto: "Ullam consequatur, dolorem necessitatibus, perspiciatis, magni, voluptatem, doloribus, voluptas, iure, distinctio. Quaerat, facilis, voluptatum.",
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/articles/post-1_370x275_crop_top.jpg?v=1604580029"
     },
     {
+      id: "2",
       titulo: "Harum, at sequi impedit",
       fecha: "08 de abril de 2014",
       extracto: "Doloribus, voluptatem, doloribus, voluptas, iure, distinctio. Quaerat, facilis, voluptatum.",
       imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/articles/post-2_370x275_crop_top.jpg?v=1604580046"
     },
     {
+      id: "3",
       titulo: "Tempora quae dolor cumque nemo",
       fecha: "08 de abril de 2014",
       extracto: "Quaerat, facilis, voluptatum. Suscipit, dolorem, sit, amet, consectetur, adipiscing, elit. Suspendisse potenti.",
@@ -176,10 +181,18 @@ export class HomePageComponent {
     { hover: false, iconDark: 'ic-tv', iconLight: 'ic-tv-light', categoryName: 'TV / Games', categoryPath: '' },
     { hover: false, iconDark: 'ic-hardware', iconLight: 'ic-hardware-light', categoryName: 'Hardware', categoryPath: '' },
     { hover: false, iconDark: 'ic-smartphone', iconLight: 'ic-smartphone-light', categoryName: 'Smartphone', categoryPath: '' },
-  ]
+  ];
+
+  constructor(private navigateService: RedirectService){}
 
   changeIcon(isHover: boolean, index: number) {
     this.categories[index].hover = isHover;
+  }
+
+  goToBlog(path: string | undefined){
+    if (path != undefined) {
+      this.navigateService.redirectTo(`blog/${path}`);
+    }
   }
 
 }

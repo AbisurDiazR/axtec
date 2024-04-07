@@ -48,5 +48,17 @@
         "security-paraph-three": "Además, entendemos la importancia de brindarte tranquilidad en caso de que necesites realizar una devolución de pago. Es por eso que, en el caso de que se requiera una devolución de fondos, nos comprometemos a procesarla de manera rápida y eficiente a través de medios tradicionales, como transferencias directas a tus cuentas bancarias. Para garantizar la transparencia y el seguimiento de estas devoluciones, proporcionaremos tickets y comprobantes detallados, generados al momento en que realizaste la compra en nuestra tienda en línea.",
         "security-paraph-four": "Nuestro equipo está aquí para brindarte todo el apoyo que necesites en cuanto a seguridad y transparencia en tus transacciones. Si tienes alguna pregunta o inquietud relacionada con la seguridad de tus datos o pagos, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte y proporcionarte la mejor experiencia de compra posible.",
         "security-paraph-five": "En Axtec, tu seguridad y confianza son nuestra prioridad número uno. Gracias por confiar en nosotros para tus compras en línea."
+    },
+    "BLOG": {
+        "read-more": "Leer más",
+        "categories": "Categorias",
+        "recent-post": "Post recientes",
+        "blog-tags": "Etiquetas",
+        "blog-comments": "Comentarios",
+        "redacted-by": "Por: ",
+        "next-post": "Siguiente post",
+        "before-post": "Anterior post",
+        "leave-comment": "Dejar comentario",
+        "post-comment": "Publicar comentario"
     }
 }
