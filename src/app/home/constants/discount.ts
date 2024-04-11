@@ -3,4 +3,5 @@ export class Discount {
     className?: string;
     title?: string;
     content?: string;
+    redirectPath?: string;
 }

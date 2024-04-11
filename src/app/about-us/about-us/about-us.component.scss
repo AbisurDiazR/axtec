@@ -1,0 +1,421 @@
+@import '/src/assets/scss/colors';
+
+.about-us-container {
+    margin: 140px 0;
+
+    .about-us-banner {
+        position: relative;
+        width: 100%;
+        max-height: 400px;
+        overflow: hidden;
+
+        .about-us-banner-background {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-us-banner-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: $white-title;
+            width: 100%;
+            font-size: calc(12px + 4 * ((100vw - 420px) / 980));
+            display: flex;
+            justify-content: center;
+
+            .about-us-banner-text {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .about-us-banner-title {
+                    margin: 0;
+                    font-size: 2.5em;
+                }
+
+                .about-us-banner-description {
+                    margin: 0;
+                }
+
+                .about-us-banner-button {
+                    width: 150px;
+                    align-self: center;
+                }
+            }
+
+            @media (max-width: 500px) {
+                .about-us-banner-text {
+                    gap: 0;
+                }
+            }
+        }
+
+        @media(max-width: 500px) {
+            .about-us-banner-text-overlay {
+                font-size: 0.2em;
+            }
+        }
+    }
+
+    .about-us-cards-container {
+        margin: 10px 0;
+        display: grid;
+        gap: 1rem;
+
+        .about-us-cards-card {
+            display: flex;
+            position: relative;
+            justify-content: flex-end;
+
+            .about-us-cards-text {
+                position: absolute;
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                width: 230px;
+                font-size: 2.5em;
+                z-index: 1;
+            }
+
+            .about-us-cards-button {
+                position: absolute;
+                top: 40%;
+                left: 20%;
+                z-index: 1;
+                width: 150px;
+            }
+
+            .about-us-cards-image-container {
+                overflow: hidden;
+
+                .about-us-cards-image {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover .about-us-cards-image {
+                    transform: scale(1.1);
+                    /* Scale image on hover by 110% */
+                }
+            }
+        }
+
+        .about-us-card-blue {
+            background: $primary-blue;
+
+            .about-us-cards-text {
+                .about-us-cards-title {
+                    font-size: calc(14px + 4*((100vw - 420px) / 980));
+                    color: $white-title;
+                    font-weight: 500;
+                    text-align: left;
+                }
+
+                .about-us-cards-content {
+                    font-size: calc(12px + 4*((100vw - 420px) / 980));
+                    color: $white-subtitle;
+                    font-weight: 600;
+                    text-align: left;
+                }
+            }
+        }
+
+        .about-us-card-gray {
+            background: rgba(161, 207, 201, 0.61);
+
+            .about-us-cards-text {
+                .about-us-cards-title {
+                    font-size: calc(14px + 4*((100vw - 420px) / 980));
+                    color: $gray-title;
+                    font-weight: 500;
+                    text-align: left;
+                }
+
+                .about-us-cards-content {
+                    font-size: calc(12px + 4*((100vw - 420px) / 980));
+                    color: $gray-subtitle;
+                    font-weight: 600;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    /** Media screens **/
+    @media (min-width: 1230px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 900px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+    }
+
+    @media (max-width: 576px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+    }
+
+    @media (max-width: 450px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+    }
+
+    /* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+    @media (max-width: 320px) {
+        .about-us-cards-container {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+    }
+
+    .about-us-quality-container {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+
+        .about-us-quality-content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+
+            .about-us-quality-left {
+                .about-us-quality-left-title {
+                    font-weight: 700;
+                    color: $black-title;
+                }
+
+                .about-us-quality-left-description {
+                    font-size: 12px;
+                    color: $gray-title;
+                }
+            }
+
+            .about-us-quality-rigth {
+                .about-us-quality-rigth-image {
+                    width: 100%;
+                }
+            }
+        }
+
+        /** Media screens **/
+        @media (min-width: 1230px) {
+            .about-us-quality-content {
+                max-width: 1200px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-us-quality-content {
+                max-width: 950px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-us-quality-content {
+                max-width: 850px;
+
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-us-quality-content {
+                max-width: 500px;
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .about-us-quality-content {
+                max-width: 400px;
+                grid-template-columns: repeat(1, 1fr);
+
+            }
+        }
+
+        /* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+        @media (max-width: 320px) {
+            .about-us-quality-content {
+                max-width: 300px;
+                grid-template-columns: repeat(1, 1fr);
+
+            }
+        }
+    }
+
+    .about-us-testimonials-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .about-us-testimonials-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .about-us-reviews-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .about-us-reviews-direction {
+                cursor: pointer;
+            }
+
+            .about-us-reviews {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .about-us-review-text {
+                    color: $gray-title;
+                }
+            }
+        }
+
+        /** Media screens **/
+        @media (min-width: 1230px) {
+            .about-us-testimonials-content {
+                max-width: 1200px;
+            }
+
+            .about-us-reviews-content {
+                max-width: 1200px;
+
+                .about-us-reviews {
+                    max-width: 950px;
+
+                    .about-us-review-text {
+                        font-size: 18px;
+                    }
+
+                    .about-us-review-author {
+                        color: $primary-blue;
+                        font-weight: 700;
+                        font-size: calc(12px + 4 * ((100vw - 420px) / 980));
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-us-testimonials-content {
+                max-width: 950px;
+            }
+
+            .about-us-reviews-content {
+                max-width: 950px;
+
+                .about-us-reviews {
+                    max-width: 950px;
+
+                    .about-us-review-text {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-us-testimonials-content {
+                max-width: 850px;
+
+            }
+
+            .about-us-reviews-content {
+                max-width: 850px;
+
+                .about-us-reviews {
+                    max-width: 850px;
+
+                    .about-us-review-text {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-us-testimonials-content {
+                max-width: 500px;
+            }
+
+            .about-us-reviews-content {
+                max-width: 500px;
+
+                .about-us-reviews {
+                    max-width: 500px;
+
+                    .about-us-review-text {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 450px) {
+            .about-us-testimonials-content {
+                max-width: 400px;
+            }
+
+            .about-us-reviews-content {
+                max-width: 400px;
+
+                .about-us-reviews {
+                    max-width: 400px;
+
+                    .about-us-review-text {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        /* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+        @media (max-width: 320px) {
+            .about-us-testimonials-content {
+                max-width: 300px;
+            }
+
+            .about-us-reviews-content {
+                max-width: 300px;
+
+                .about-us-reviews {
+                    max-width: 300px;
+
+                    .about-us-review-text {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -101,7 +101,7 @@ export class ProductComponent implements OnInit {
 
   previousImage() {
     if (this.product && this.product.images) {
-      const currentIndex = this.product.images.findIndex(image => image.url === this.currentImage);
+      const currentIndex = this.product.images.findIndex(image => image.url === this.currentImage);      
       if (currentIndex > 0) {
         this.currentImage = this.product.images[currentIndex - 1].url;
       } else {
