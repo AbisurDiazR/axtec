@@ -1,6 +1,33 @@
 {
     "HOME": {
-        "shop-now": "Comprar ahora"
+        "shop-now": "Comprar ahora",
+        "recent-shop": "Recién llegados",
+        "our-products": "Nuestros Productos",
+        "most-seller": "Más vendidos",
+        "featured": "Colaboración",
+        "on-sale": "En venta",
+        "free-delivery": "Envio gratis",
+        "free-delivery-cto": "Disfruta de envios gratis en todas las compras mayores a $50",
+        "return": "Reembolso",
+        "return-cto": "Garantía de 30 días y reembolso",
+        "secure-payment": "Pagos seguros",
+        "secure-payment-cto": "Pagos 100% seguros"
+    },
+    "FOOTER": {
+        "customer-service": "Servicio al cliente",
+        "atention-days": "Lunes a Viernes",
+        "atention-schedules": "10:00am a 6:30pm (Hora local México)",
+        "atention-phone": "+52 (55) 5555-5555",
+        "atention-email": "atención-cliente@axtec.com",
+        "user-account": "Cuenta de usuario",
+        "my-account": "Mi cuenta",
+        "my-address": "Mi dirección",
+        "my-cart": "Mi carro",
+        "main-menu": "Menú principal",
+        "news": "Noticias",
+        "trends": "¡Tendencias, novedades, ofertas, suscríbete a nuestra newsletter y disfruta de rebajas exclusivas!",
+        "enter-email": "Introduzca su correo electrónico",
+        "subscribe": "Inscribirse"
     },
     "HEADER": {
         "home": "Inicio",
@@ -62,7 +89,10 @@
         "next-post": "Siguiente post",
         "before-post": "Anterior post",
         "leave-comment": "Dejar comentario",
-        "post-comment": "Publicar comentario"
+        "post-comment": "Publicar comentario",
+        "name": "Nombre",
+        "email": "Correo",
+        "coment": "Comentario"
     },
     "ABOUT-US": {
         "go": "¡Llevame ahí!",
@@ -73,5 +103,26 @@
         "highest-quality-description": "En Axtec, nos enorgullece ofrecer una selección cuidadosamente curada de productos tecnológicos de primera calidad. Desde computadoras hasta consolas y dispositivos electrónicos de vanguardia, cada artículo en nuestro catálogo ha sido meticulosamente seleccionado por nuestro equipo de expertos en tecnología. Nos comprometemos a ofrecer productos que no solo cumplan, sino que superen las expectativas de nuestros clientes en cuanto a rendimiento, durabilidad y diseño. Con un enfoque inquebrantable en la excelencia, garantizamos que cada compra en Axtec sea sinónimo de calidad insuperable y satisfacción garantizada. Descubre la diferencia que la calidad genuina puede hacer en tu experiencia tecnológica con nosotro",
         "testimonials": "Testimonios",
         "reviews-from": "Reseñas de:"
+    },
+    "CONTACT-US": {
+        "product-services": "Productos y servicios",
+        "store-location": "Localización de la tienda",
+        "dom-location": "123 Calle Principal, Ciudad Tech, Estado Tecnológico, Código Postal: 12345, País de la Tecnología",
+        "message": "Mensaje",
+        "submit": "Enviar",
+        "question-title": "¿Tiene alguna pregunta sobre un producto, nuestra empresa o simplemente quiere conversar? ¡Envíanos un correo electrónico!",
+        "call-to-action": "Estaremos encantados de ayudarte con cualquier pregunta y animarte a compartir tus ideas y mejoras con nosotros."
+    },
+    "DELIVERY-INFO": {
+        "title": "Información de envío",
+        "paraph-one": "En Axtec, entendemos que la experiencia de compra no termina en el momento de la transacción, sino en la entrega de tus productos en tus manos. Por eso, nos esforzamos por brindarte un servicio de envío excepcional que refleje nuestro compromiso con tu satisfacción y comodidad.",
+        "paraph-two": "Nuestro equipo trabaja arduamente para asegurarse de que tus productos sean empacados cuidadosamente y enviados con rapidez y eficiencia. Colaboramos con DHL y FedEx, dos de las empresas de logística más confiables del mundo, para garantizar que tu pedido llegue a su destino de manera oportuna y en perfectas condiciones.",
+        "paraph-three": "Desde el momento en que realizas tu compra en nuestro sitio web, nos encargamos de todo el proceso logístico para que tú no tengas que preocuparte por nada. Una vez que tu pedido está listo para ser enviado, recibirás un número de seguimiento único que te permitirá rastrear su progreso en tiempo real. Además, te ofrecemos acceso exclusivo a una sección especial en nuestro sitio web donde puedes seguir el trayecto de tu compra de manera detallada y sin complicaciones.",
+        "paraph-four": "Sabemos lo importante que es para ti tener visibilidad sobre el estado de tu pedido, por lo que nos aseguramos de mantenerte informado en todo momento. Siempre estamos disponibles para responder tus preguntas y brindarte asistencia en caso de que necesites ayuda con tu envío.",
+        "paraph-five": "Además de proporcionarte un servicio de envío de alta calidad, también te ofrecemos la tranquilidad de saber que tu compra está en buenas manos. Nos comprometemos a cuidar de tus productos durante todo el proceso de envío y a garantizar su entrega segura y puntual.",
+        "paraph-six": "Con Axtec, puedes confiar en que recibirás tus productos en tiempo y forma, sin contratiempos ni complicaciones. Nos esforzamos por superar tus expectativas en cada paso del camino y por ofrecerte una experiencia de compra en línea que sea conveniente, confiable y satisfactoria."
+    },
+    "SEARCH-BAR": {
+        "search-input": "Buscar..."
     }
 }

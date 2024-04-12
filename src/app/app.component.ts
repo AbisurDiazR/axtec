@@ -6,6 +6,7 @@ import { SidenavService } from './services/sidenav.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { DEFAULT_LANGUAGE } from './shared/data';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit{
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private sideNavService: SidenavService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ){
     translate.setDefaultLang(DEFAULT_LANGUAGE);
     this.iconRegistry.addSvgIcon('ic-computadoras', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ordenador-portatil.svg'))
@@ -45,7 +47,8 @@ export class AppComponent implements OnInit{
     .addSvgIcon('ic-grid-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/grid-off.svg'))
     .addSvgIcon('ic-list-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-on.svg'))
     .addSvgIcon('ic-list-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-off.svg'))
-    .addSvgIcon('ic-no-review', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ghost.svg'));
+    .addSvgIcon('ic-no-review', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ghost.svg'))
+    .addSvgIcon('ic-phone', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/phone.svg'));
     this._subs.add(this.sideNavService.open.subscribe((param: any) => {
       param ? this.drawer.open() : this.drawer.close();
     }));
@@ -57,5 +60,10 @@ export class AppComponent implements OnInit{
 
   closeDrawer(value: boolean){
     this.sideNavService.changeOpen(value);
+  }
+
+  navigateTo(route: string){
+    this.router.navigate([`${route}`]);
+    this.closeDrawer(false);
   }
 }

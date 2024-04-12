@@ -56,7 +56,7 @@
                 <b class="blog-article-rigth-comment-title">{{ 'BLOG.leave-comment' | translate }}</b>
             </div>
             <div class="blog-article-comments-container">
-                <h2 class="blog-article-comments-heading">Comentarios</h2>
+                <h2 class="blog-article-comments-heading">{{ 'BLOG.blog-comments' | translate }}</h2>
                 <mat-list class="blog-article-comments-list">
                     <div class="blog-article-comments-item" *ngFor="let comment of blogArticle.comentarios">
                         <div class="blog-article-comment-info">
@@ -72,16 +72,16 @@
 
             <form class="blog-article-comment-form">
                 <mat-form-field appearance="outline" class="blog-article-full-width">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput placeholder="Nombre" required>
+                    <mat-label>{{ 'BLOG.name' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.name' | translate }}" required>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="blog-article-full-width">
-                    <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" required>
+                    <mat-label>{{ 'BLOG.email' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.email' | translate }}" required>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="blog-article-full-width">
-                    <mat-label>Comentario</mat-label>
-                    <textarea matInput placeholder="Comentario" required></textarea>
+                    <mat-label>{{ 'BLOG.coment' | translate }}</mat-label>
+                    <textarea matInput placeholder="{{ 'BLOG.coment' | translate }}" required></textarea>
                 </mat-form-field>
                 <button mat-raised-button color="primary" type="submit">{{ 'BLOG.post-comment' | translate }}</button>
             </form>

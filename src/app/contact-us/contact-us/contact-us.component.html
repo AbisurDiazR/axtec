@@ -1,1 +1,51 @@
-<p>contact-us works!</p>
+<div class="contact-us-container">
+    <div class="contact-us-content">
+        <div class="contact-us-left">
+            <div class="contact-us-left-section">
+                <p class="contact-us-left-section-title">{{ 'FOOTER.customer-service' | translate }}</p>
+                <div class="contact-us-left-text-container">
+                    <div class="contact-us-left-text-phone-container">
+                        <mat-icon class="contact-us-left-text-icon" svgIcon="ic-phone"></mat-icon>
+                        <p class="contact-us-left-text-phone">{{ 'FOOTER.atention-phone' | translate }}</p>
+                    </div>
+                    <p class="contact-us-left-text-description">{{ 'FOOTER.atention-days' | translate }}</p>
+                    <p class="contact-us-left-text-description">{{ 'FOOTER.atention-schedules' | translate }}</p>
+                </div>
+            </div>
+            <div class="contact-us-left-section">
+                <p class="contact-us-left-section-title">{{ 'CONTACT-US.product-services' | translate }}</p>
+                <div class="contact-us-left-text-container">
+                    <div class="contact-us-left-text-phone-container">
+                        <mat-icon class="contact-us-left-text-icon" svgIcon="ic-phone"></mat-icon>
+                        <p class="contact-us-left-text-phone">{{ 'FOOTER.atention-phone' | translate }}</p>
+                    </div>
+                    <p class="contact-us-left-text-description">{{ 'FOOTER.atention-days' | translate }}</p>
+                    <p class="contact-us-left-text-description">{{ 'FOOTER.atention-schedules' | translate }}</p>
+                </div>
+            </div>
+            <div class="contact-us-left-section">
+                <p class="contact-us-left-section-title">{{ 'CONTACT-US.store-location' | translate }}</p>
+                <p class="contact-us-left-text-description">{{ 'CONTACT-US.dom-location' | translate }}</p>
+            </div>
+        </div>
+        <div class="contact-us-rigth">
+            <p class="contact-us-title-question">{{ 'CONTACT-US.question-title' | translate }}</p>
+            <p class="contact-us-title-cto">{{ 'CONTACT-US.call-to-action' | translate }}</p>
+            <form class="contact-us-email-form">
+                <mat-form-field appearance="outline" class="contact-us-full-width">
+                    <mat-label>{{ 'BLOG.name' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.name' | translate }}" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="contact-us-full-width">
+                    <mat-label>{{ 'BLOG.email' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.email' | translate }}" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="contact-us-full-width">
+                    <mat-label>{{ 'CONTACT-US.message' | translate }}</mat-label>
+                    <textarea matInput placeholder="{{ 'CONTACT-US.message' | translate }}" required></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">{{ 'CONTACT-US.submit' | translate }}</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@
         <div (click)="navigateTo('about-us')" class="search-bar-option">
             <p class="search-bar-option-text">{{'HEADER.about-us' | translate}}</p>
         </div>
-        <div class="search-bar-option">
+        <div (click)="navigateTo('contact-us')" class="search-bar-option">
             <p class="search-bar-option-text">{{'HEADER.contact-us' | translate}}</p>
         </div>
     </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="search-bar-input-container">
         <mat-form-field class="search-bar-input" appearance="outline">
-            <input type="text" matInput placeholder="Buscar...">
+            <input type="text" matInput placeholder="{{ 'SEARCH-BAR.search-input' | translate }}">
             <mat-icon svgIcon="ic-search" matSuffix></mat-icon>
         </mat-form-field>
     </div>

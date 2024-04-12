@@ -6,8 +6,7 @@
                 <h5 class="home-banner-deals">Mejores tratos</h5>
                 <h2 class="home-banner-discounts">Gran venta 30% de descuento</h2>
                 <p class="home-banner-cto">No pierdas la oportunidad de conseguir gadgets a buen precio.</p>
-                <button class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
-                <!--<a href="/collections/accessories" class="btn btn_lg">{{ 'HOME.shop-now'  | translate }}</a>-->
+                <button (click)="goToCollection()" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
             </div>
         </div>
     </section>
@@ -17,7 +16,7 @@
                 <p class="home-cards-title">{{discount.title}}</p>
                 <p class="home-cards-content">{{discount.content}}</p>                
             </div>            
-            <button class="home-cards-button" mat-flat-button color="primary">{{ 'HOME.shop-now'  | translate }}</button>
+            <button (click)="goToCollection()" class="home-cards-button" mat-flat-button color="primary">{{ 'HOME.shop-now'  | translate }}</button>
             <div class="home-cards-image-container">
                 <img class="home-cards-image" src="{{discount.imagePath}}" alt="">
             </div>
@@ -27,7 +26,7 @@
     <div class="home-categories-container">
         <div class="home-categories-sections">
             <div class="home-categories-left">
-                <div class="home-categories-category" (mouseenter)="changeIcon(true, i)"
+                <div (click)="goToCollection()" class="home-categories-category" (mouseenter)="changeIcon(true, i)"
                     (mouseleave)="changeIcon(false, i)" *ngFor="let category of categories; let i = index;">
                     <mat-icon class="home-categories-icon" *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
                         class="home-categories-icon"></mat-icon>
@@ -40,7 +39,7 @@
                 <div class="home-categories-text">
                     <p class="home-categories-title">13-INCH MODEL</p>
                     <h3 class="home-categories-subtitle">Macbook Pro</h3>
-                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button (click)="goToCatalog()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
                 <img class="home-categories-images" src="assets/banners/macbook-pro.webp" alt="Macbook proo">
             </div>
@@ -50,26 +49,22 @@
     <div class="home-products-container">
         <div class="home-products-sections">
             <div class="home-products-header">
-                <h2 class="home-products-header-left">Nuestros Productos</h2>
+                <h2 class="home-products-header-left">{{ 'HOME.our-products' | translate }}</h2>
                 <div class="home-products-header-right">
-                    <span class="home-products-header-right-text underline-hover">Recién llegados</span>
-                    <span class="home-products-header-right-text underline-hover">Más vendidos</span>
-                    <span class="home-products-header-right-text underline-hover">Colaboración</span>
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.recent-shop' | translate }}</span>
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.most-seller' | translate }}</span>
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.featured' | translate }}</span>
                 </div>
             </div>
             <owl-carousel-o [options]="options">
                 <ng-container *ngFor="let product of products">
                     <ng-template class="slide" carouselSlide>
-                        <mat-card class="product-card">
+                        <mat-card (click)="goToProduct()" class="product-card">
                             <img class="product-card-image" mat-card-image src="{{product.imagen}}"
                                 alt="{{product.titulo}}">
                             <mat-card-content class="product-card-content">
                                 <h3 class="product-card-title">{{ product.titulo }}</h3>
                                 <p>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</p>
-                                <!--<span *ngIf="product.nuevo" class="badge nuevo">Nuevo</span>
-                                <span *ngIf="product.rebajado" class="badge rebajado">Rebajado</span>
-                                <span *ngIf="product.precioOriginal" class="precio-original visible">{{
-                                    product.precioOriginal }}</span>-->
                             </mat-card-content>
                         </mat-card>
                     </ng-template>
@@ -84,14 +79,14 @@
                 <img class="home-discounts-image" src="assets/discounts/1.webp" alt="">
                 <div class="home-discounts-text">
                     <p>20% en Gaming</p>
-                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button (click)="goToCollection()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
             <div class="home-discounts-card">
                 <img class="home-discounts-image" src="assets/discounts/2.webp" alt="">
                 <div class="home-discounts-text">
                     <p>20% en Laptops</p>
-                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button (click)="goToCollection()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
         </div>
@@ -104,12 +99,12 @@
                 <div class="home-catalogs-text">
                     <p class="home-catalogs-title">27-inch model</p>
                     <h3 class="home-catalogs-subtitle">New iMac</h3>
-                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button (click)="goToProduct()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
             <div class="home-catalogs-right">
-                <p class="home-catalogs-title">Más vendidos</p>
-                <mat-card class="home-catalogs-card" *ngFor="let item of bestSellers">
+                <p class="home-catalogs-title">{{ 'HOME.most-seller' | translate }}</p>
+                <mat-card (click)="goToProduct()" class="home-catalogs-card" *ngFor="let item of bestSellers">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
@@ -122,8 +117,8 @@
                 </mat-card>
             </div>
             <div class="home-catalogs-right">
-                <p class="home-catalogs-title">En venta</p>
-                <mat-card class="home-catalogs-card" *ngFor="let item of onSale">
+                <p class="home-catalogs-title">{{ 'HOME.on-sale' | translate }}</p>
+                <mat-card (click)="goToProduct()" class="home-catalogs-card" *ngFor="let item of onSale">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
@@ -157,23 +152,23 @@
     <div class="home-features-container">
         <div class="home-feature">
             <mat-icon class="home-feature-icon" svgIcon="ic-free-shipment"></mat-icon>
-            <p class="home-feature-title">Envio gratis</p>
+            <p class="home-feature-title">{{ 'HOME.free-delivery' | translate }}</p>
             <div class="home-feature-text-container">
-                <p class="home-feature-text">Disfruta de envios gratis en todas las compras mayores a $50</p>
+                <p class="home-feature-text">{{ 'HOME.free-delivery-info' | translate }}</p>
             </div>
         </div>
         <div class="home-feature">
             <mat-icon class="home-feature-icon" svgIcon="ic-return-money"></mat-icon>
-            <p class="home-feature-title">Reembolso</p>
+            <p class="home-feature-title">{{ 'HOME.return' | translate }}</p>
             <div class="home-feature-text-container">
-                <p class="home-feature-text">Garantía de 30 días y reembolso</p>
+                <p class="home-feature-text">{{ 'HOME.return-cto' | translate }}</p>
             </div>
         </div>
         <div class="home-feature">
             <mat-icon class="home-feature-icon" svgIcon="ic-secure-payment"></mat-icon>
-            <p class="home-feature-title">Pagos seguros</p>
+            <p class="home-feature-title">{{ 'HOME.secure-payment' | translate }}</p>
             <div class="home-feature-text-container">
-                <p class="home-feature-text">Pagos 100% seguros</p>
+                <p class="home-feature-text">{{ 'HOME.secure-payment-cto' | translate }}</p>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import { CustomOptios } from '../constants/customOptions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Article } from 'src/app/blog/constants/article';
 import { RedirectService } from 'src/app/services/redirect.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -183,7 +184,7 @@ export class HomePageComponent {
     { hover: false, iconDark: 'ic-smartphone', iconLight: 'ic-smartphone-light', categoryName: 'Smartphone', categoryPath: '' },
   ];
 
-  constructor(private navigateService: RedirectService){}
+  constructor(private navigateService: RedirectService, private router: Router){}
 
   changeIcon(isHover: boolean, index: number) {
     this.categories[index].hover = isHover;
@@ -193,6 +194,18 @@ export class HomePageComponent {
     if (path != undefined) {
       this.navigateService.redirectTo(`blog/${path}`);
     }
+  }
+
+  goToCollection(){
+    this.router.navigate([`collection/acessories`], {queryParams: { page: 1 } });
+  }
+
+  goToCatalog(){
+    this.router.navigate([`collection`]);
+  }
+
+  goToProduct(){
+    this.router.navigate([`product/1`]);
   }
 
 }

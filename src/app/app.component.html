@@ -8,17 +8,17 @@
             </div>
             <div class="menu__content">
                 <mat-list>
-                    <mat-list-item>{{'HEADER.home' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('home')">{{'HEADER.home' | translate}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item>{{'HEADER.collection' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('collection')">{{'HEADER.collection' | translate}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item>{{'HEADER.blog' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('blog')">{{'HEADER.blog' | translate}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item>{{'HEADER.catalog' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('collection/1')">{{'HEADER.catalog' | translate}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item>{{'HEADER.about-us' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('about-us')">{{'HEADER.about-us' | translate}}</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item>{{'HEADER.contact-us' | translate}}</mat-list-item>
+                    <mat-list-item (click)="navigateTo('contact-us')">{{'HEADER.contact-us' | translate}}</mat-list-item>
                 </mat-list>
             </div>
         </div>
