@@ -4,4 +4,5 @@ export class Discount {
     title?: string;
     content?: string;
     redirectPath?: string;
+    category?: string;
 }

@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Product } from 'src/app/home/constants/product';
+import { Item } from 'src/app/home/constants/item';
 import { Review } from '../constants/review';
 import { MatDialog } from '@angular/material/dialog';
 import { PolicyDialogComponent } from 'src/app/shared/policy-dialog/policy-dialog.component';
+import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProviderService } from 'src/app/services/provider.service';
+import { PaymentService } from 'src/app/services/payment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -15,29 +22,8 @@ export class ProductComponent implements OnInit {
   review: boolean = false;
 
   product: Product = {
-    "id": 1,
-    "titulo": "Laptop HP Pavilion 15",
-    "precio": 899.99,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget sem at elit finibus condimentum. Nullam eleifend leo vel lacus cursus, sed tincidunt diam vestibulum. Nulla facilisi. Donec vel aliquam elit. Vivamus convallis ultrices nisl, ut fermentum risus suscipit id. Nulla sit amet turpis in tortor venenatis lobortis.",
-    "images": [
-      { idImage: 0, url: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_wireless_keyboard_mc184_1_148x148_crop_center.png?v=1396975080" },
-      { idImage: 1, url: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_wireless_keyboard_mc184_2_148x148_crop_center.png?v=1396975080" },
-      { idImage: 2, url: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_wireless_keyboard_mc184_3_148x148_crop_center.png?v=1663570747" }],
-    "cantidad": 100,
-    "vendedor": "HP",
-    "categoria": "Computadoras Portatiles",
-    "peso": "25.06 kg",
-    "subcategorias": [
-      'Laptops HP Pavilion',
-      'Laptops HP ENVY',
-      'Laptops HP Spectre',
-      'Laptops HP EliteBook',
-      'Laptops HP ProBook',
-      'Laptops HP ZBook',
-      'Laptops HP Chromebook',
-      'Laptops HP Omen',
-      // Agrega más subcategorías si es necesario
-    ]
+    titulo: '',
+    precio: 0
   };
   reviews: Review[] = [
     {
@@ -68,13 +54,74 @@ export class ProductComponent implements OnInit {
   ];
   currentImage: any;
   imageLoaded: boolean = false;
+  productId: string = "";
+  devMode: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
+    private categoryService: CategoryService,
+    private providerService: ProviderService,
+    private paymentService: PaymentService
+  ) { }
 
   ngOnInit() {
-    if (this.product && this.product.images && this.product.images.length > 0) {
-      this.currentImage = this.product.images[0].url;
-    }
+    this.activatedRoute.params.subscribe((param) => {
+      this.productId = param["product-id"];
+    });
+    this.setProduct();
+  }
+
+  setProduct() {
+    this.devMode = isDevMode();
+    this.productService.getProductById(this.productId).subscribe((res) => {
+      console.log(res);
+      var productImages: any[] = []
+      var currentProduct = res;
+      var index = 0;
+      currentProduct.images.forEach((image: String) => {
+        productImages.push({ id: index, url: image });
+      });
+      this.product = {
+        id: currentProduct.id,
+        description: currentProduct.descripcion,
+        peso: currentProduct.peso,
+        cantidad: currentProduct.disponibilidad["cantidad"],
+        titulo: currentProduct.titulo,
+        precio: +currentProduct.precioOriginal,
+        images: productImages,
+        sku: currentProduct.sku,
+      };
+      if (this.product && this.product.images && this.product.images.length > 0) {
+        this.currentImage = this.product.images[0].url;
+      }
+      this.setCategory(currentProduct.categoria);
+      this.setProvider(currentProduct.marca);
+      this.setSubcategories(currentProduct.categoria);
+    });
+  }
+
+  setSubcategories(categoria: any) {
+    this.categoryService.getSubcategoriesByCategoryId(categoria).subscribe((res) => {
+      var subcategoriesTmp: string[] = [];
+      res.forEach((subcategorie: any) => {
+        subcategoriesTmp.push(subcategorie.subCategoryName);
+      });
+      this.product.subcategorias = subcategoriesTmp;
+    })
+  }
+
+  setProvider(marca: string) {
+    this.providerService.getCategoryById(marca).subscribe((res) => {
+      this.product.vendedor = res.brandName;
+    });
+  }
+
+  setCategory(categoria: string) {
+    this.categoryService.getCategoryById(categoria).subscribe((res) => {
+      this.product.categoria = res.categoryName;
+    });
   }
 
   selectDescription() {
@@ -101,7 +148,7 @@ export class ProductComponent implements OnInit {
 
   previousImage() {
     if (this.product && this.product.images) {
-      const currentIndex = this.product.images.findIndex(image => image.url === this.currentImage);      
+      const currentIndex = this.product.images.findIndex(image => image.url === this.currentImage);
       if (currentIndex > 0) {
         this.currentImage = this.product.images[currentIndex - 1].url;
       } else {
@@ -129,6 +176,33 @@ export class ProductComponent implements OnInit {
 
   onImageLoad() {
     this.imageLoaded = true;
+  }
+
+  purchase() {
+    let item: Item = {
+      title: this.product.titulo,
+      unit_price: this.product.precio != undefined ? this.product.precio : 0.0,
+      quantity: 1
+    };
+    let productTmp = {
+      "back_urls": environment.back_urls,
+      "items": item,
+      "fee": 0
+    }
+    console.log(productTmp);
+    this.paymentService.createPayment(productTmp).then((res: any) => {
+      console.log(res);
+      let response = res.data;
+      if (response && response.init_point) {
+        localStorage.setItem('idSell', `${this.productId}`)
+        console.log(localStorage.getItem('idSell'));
+        window.location.href = response.init_point;
+      } else {
+        console.error('Error: init_point not found in response', response);
+      }
+    }).catch((error: any) => {
+      console.error('Error creating payment:', error);
+    });
   }
 
 }

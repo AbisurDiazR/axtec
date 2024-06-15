@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Discount } from '../constants/discount';
 import { Category } from '../constants/category';
 import { Product } from '../constants/product';
@@ -7,59 +7,20 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Article } from 'src/app/blog/constants/article';
 import { RedirectService } from 'src/app/services/redirect.service';
 import { Router } from '@angular/router';
+import { DiscountsService } from 'src/app/services/discounts.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { PromotionsService } from 'src/app/services/promotions.service';
+import { Promotion } from '../constants/promotion';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
-
-  products: Product[] = [
-    {
-      imagen: "https://i.ebayimg.com/images/g/4U4AAOSwOSdlnvkz/s-l1600.webp",
-      titulo: "Apple Time Capsule - 1 TB",
-      precio: 60.00,
-      nuevo: true,
-      rebajado: false
-    },
-    {
-      imagen: "https://i.ebayimg.com/images/g/vr4AAOSwz9hkEh3v/s-l1600.webp",
-      titulo: "Apple TV  Apple TV 3.0 con Blu-ray y HD tuner",
-      precio: 78.00,
-      nuevo: true,
-      rebajado: true,
-      precioOriginal: 100.0
-    },
-    {
-      imagen: "https://i.ebayimg.com/images/g/CFEAAOSwaSlf1~bV/s-l1600.webp",
-      titulo: "Apple Wireless Keyboard         MC184",
-      precio: 399.00,
-      nuevo: false,
-      rebajado: false
-    },
-    {
-      imagen: "https://i.ebayimg.com/images/g/9aQAAOSwLPRkkyUa/s-l1600.webp",
-      titulo: "Apple TV 4K",
-      precio: 420.00,
-      nuevo: false,
-      rebajado: false
-    },
-    {
-      imagen: "https://i.ebayimg.com/images/g/97kAAOSwcStkQAsm/s-l1600.webp",
-      titulo: "Beats Studio3 Wireless Headphones Sand Dune",
-      precio: 499.00,
-      nuevo: true,
-      rebajado: false
-    },
-    {
-      imagen: "https://i.ebayimg.com/images/g/kTAAAOSw-GJlV4yJ/s-l1600.webp",
-      titulo: "Beats Studio 3 Wireless Headphone Camo Collection - Sand Dune",
-      precio: 549.00,
-      nuevo: true,
-      rebajado: false
-    }
-  ];
+export class HomePageComponent implements OnInit {
+  
+  products: Product[] = [];
 
   bestSellers: any = [
     {
@@ -148,63 +109,97 @@ export class HomePageComponent {
 
   options: OwlOptions = CustomOptios;
 
-  discounts: Discount[] = [
-    {
-      imagePath: 'assets/banners/pc.webp',
-      className: 'home-card-blue',
-      title: 'Computadoras',
-      content: '¡Obtén 20% de descuento!',
-    },
-    {
-      imagePath: 'assets/banners/mac.webp',
-      className: 'home-card-gray',
-      title: 'Laptops',
-      content: '¡Obtén 50% de descuento!',
-    },
-    {
-      imagePath: 'assets/banners/tablet.webp',
-      className: 'home-card-blue',
-      title: 'Tablets',
-      content: '¡Obtén 50% de descuento!',
-    },
-    {
-      imagePath: 'assets/banners/monitor.webp',
-      className: 'home-card-gray',
-      title: 'Monitores',
-      content: '¡Obtén 10% de descuento!',
-    },
-  ];
+  //Descuentos
+  discounts: Discount[] = [];
 
   categories: Category[] = [
-    { hover: false, iconDark: 'ic-computadoras', iconLight: 'ic-computadoras-light', categoryName: 'Notebooks, Tablets', categoryPath: '' },
-    { hover: false, iconDark: 'ic-fotos', iconLight: 'ic-fotos-light', categoryName: 'Foto / Video', categoryPath: '' },
+    { hover: false, iconDark: 'ic-computadoras', iconLight: 'ic-computadoras-light', categoryName: 'Tablets', categoryPath: '' },
+    { hover: false, iconDark: 'ic-fotos', iconLight: 'ic-fotos-light', categoryName: 'Camaras', categoryPath: '' },
     { hover: false, iconDark: 'ic-software', iconLight: 'ic-software-light', categoryName: 'Software', categoryPath: '' },
-    { hover: false, iconDark: 'ic-tv', iconLight: 'ic-tv-light', categoryName: 'TV / Games', categoryPath: '' },
+    { hover: false, iconDark: 'ic-tv', iconLight: 'ic-tv-light', categoryName: 'Gaming', categoryPath: '' },
     { hover: false, iconDark: 'ic-hardware', iconLight: 'ic-hardware-light', categoryName: 'Hardware', categoryPath: '' },
     { hover: false, iconDark: 'ic-smartphone', iconLight: 'ic-smartphone-light', categoryName: 'Smartphone', categoryPath: '' },
   ];
 
-  constructor(private navigateService: RedirectService, private router: Router){}
+  promotions: Promotion[] = [];
+
+  constructor(
+    private navigateService: RedirectService,
+    private router: Router,
+    private discountService: DiscountsService,
+    private categoryService: CategoryService,
+    private promotionService: PromotionsService,
+    private productService: ProductService
+  ) { }
+
+  ngOnInit(): void {
+    this.setDiscounts();
+    this.setPromotions();
+    this.getLastProducts();
+  }
+  
+  getLastProducts() {
+    this.productService.getLastProducts().subscribe((res) => {
+      res.forEach((element: any) => {
+        this.products.push(
+          {
+            imagen: element.images[0],
+            titulo: element.titulo,
+            precio: element.precioOriginal
+          }
+        );
+      });
+    });
+  }
+
+  setPromotions() {
+    this.promotionService.getPromotions().subscribe((res) => {
+      console.log(res);
+      this.promotions = res;
+    });
+  }
+
+  //Inicializar descuentos
+  setDiscounts() {
+    this.discountService.getDiscounts().subscribe((res) => {
+      this.discounts = res;
+    });
+  }
 
   changeIcon(isHover: boolean, index: number) {
     this.categories[index].hover = isHover;
   }
 
-  goToBlog(path: string | undefined){
+  goToBlog(path: string | undefined) {
     if (path != undefined) {
       this.navigateService.redirectTo(`blog/${path}`);
     }
   }
 
-  goToCollection(){
-    this.router.navigate([`collection/acessories`], {queryParams: { page: 1 } });
+  goToCollection(categoryName: string | undefined) {
+    console.log(categoryName);
+    if (categoryName) {
+      this.categoryService.getCategoryIdByName(categoryName).subscribe((res) => {
+        if (res != null) {
+          this.router.navigate([`collection/${categoryName}`], { queryParams: { page: 1 } });
+        }
+      });
+    }
   }
 
-  goToCatalog(){
+  goToCategoryList(idCategory: string | undefined) {
+    if (idCategory != undefined) {
+      this.categoryService.getCategoryById(idCategory).subscribe((res) => {
+        this.router.navigate([`collection/${res.categoryName}`], { queryParams: { page: 1 } });
+      });
+    }
+  }
+
+  goToCatalog() {
     this.router.navigate([`collection`]);
   }
 
-  goToProduct(){
+  goToProduct() {
     this.router.navigate([`product/1`]);
   }
 

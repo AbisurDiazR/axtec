@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'delivery-info',
     loadChildren: () => import('./delivery/delivery.module').then(m => m.DeliveryModule)
+  },
+  {
+    path: 'failure',
+    loadChildren: () => import('./failure/failure.module').then(m => m.FailureModule)
   }
 ];
 

@@ -50,7 +50,10 @@ export class AppComponent implements OnInit{
     .addSvgIcon('ic-no-review', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ghost.svg'))
     .addSvgIcon('ic-phone', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/phone.svg'));
     this._subs.add(this.sideNavService.open.subscribe((param: any) => {
-      param ? this.drawer.open() : this.drawer.close();
+      //param ? this.drawer.open() : this.drawer.close();
+      if(this.drawer != undefined){
+        param ? this.drawer.open() : this.drawer.close();
+      }
     }));
   }  
   

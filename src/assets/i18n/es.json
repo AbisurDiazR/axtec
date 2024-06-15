@@ -124,5 +124,10 @@
     },
     "SEARCH-BAR": {
         "search-input": "Buscar..."
+    },
+    "FAILURE":{
+        "title": "Error de pago",
+        "description": "Por favor, revise la información de su tarjeta e intente nuevamente.",
+        "return": "Reintentar"
     }
 }

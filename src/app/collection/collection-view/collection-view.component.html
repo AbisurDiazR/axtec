@@ -37,16 +37,14 @@
             </ul>
             <p class="collection-view-options-title">{{ 'COLLECTION.types' | translate }}</p>
             <ul class="collection-view-options-container">
-                <li class="collection-view-options-name" *ngFor="let productType of productTypes">
-                    <a class="collection-view-options-ref" href="">{{productType.typeName}}</a>
+                <li class="collection-view-options-name" *ngFor="let category of categories">
+                    <a class="collection-view-options-ref" href="">{{category.categoryName}}</a>
                 </li>
             </ul>
         </div>
         <div class="collection-view-main">
             <div class="collection-view-main-banner">
-                <img class="collection-view-main-image"
-                    src="https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_time_capsule_-_1_tb_1_980x350_crop_center.png?v=1396975064"
-                    alt="">
+                <img class="collection-view-main-image" src="{{bannerImage}}" alt="">
                 <div class="collection-view-main-title-container">
                     <p class="collection-view-main-title">{{collectionName}}</p>
                 </div>

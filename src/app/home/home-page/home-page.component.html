@@ -6,7 +6,7 @@
                 <h5 class="home-banner-deals">Mejores tratos</h5>
                 <h2 class="home-banner-discounts">Gran venta 30% de descuento</h2>
                 <p class="home-banner-cto">No pierdas la oportunidad de conseguir gadgets a buen precio.</p>
-                <button (click)="goToCollection()" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
+                <button (click)="goToCollection('laptops')" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
             </div>
         </div>
     </section>
@@ -16,7 +16,7 @@
                 <p class="home-cards-title">{{discount.title}}</p>
                 <p class="home-cards-content">{{discount.content}}</p>                
             </div>            
-            <button (click)="goToCollection()" class="home-cards-button" mat-flat-button color="primary">{{ 'HOME.shop-now'  | translate }}</button>
+            <button (click)="goToCategoryList(discount.category)" class="home-cards-button" mat-flat-button color="primary">{{ 'HOME.shop-now'  | translate }}</button>
             <div class="home-cards-image-container">
                 <img class="home-cards-image" src="{{discount.imagePath}}" alt="">
             </div>
@@ -26,7 +26,7 @@
     <div class="home-categories-container">
         <div class="home-categories-sections">
             <div class="home-categories-left">
-                <div (click)="goToCollection()" class="home-categories-category" (mouseenter)="changeIcon(true, i)"
+                <div (click)="goToCollection(category.categoryName)" class="home-categories-category" (mouseenter)="changeIcon(true, i)"
                     (mouseleave)="changeIcon(false, i)" *ngFor="let category of categories; let i = index;">
                     <mat-icon class="home-categories-icon" *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
                         class="home-categories-icon"></mat-icon>
@@ -75,18 +75,11 @@
     <div class="home-ads"></div>
     <div class="home-discounts-container">
         <div class="home-discounts-sections">
-            <div class="home-discounts-card">
-                <img class="home-discounts-image" src="assets/discounts/1.webp" alt="">
+            <div *ngFor="let promotion of promotions" class="home-discounts-card">
+                <img class="home-discounts-image" src="{{promotion.imagePath}}" alt="">
                 <div class="home-discounts-text">
-                    <p>20% en Gaming</p>
-                    <button (click)="goToCollection()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
-                </div>
-            </div>
-            <div class="home-discounts-card">
-                <img class="home-discounts-image" src="assets/discounts/2.webp" alt="">
-                <div class="home-discounts-text">
-                    <p>20% en Laptops</p>
-                    <button (click)="goToCollection()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <p>{{promotion.content}}</p>
+                    <button (click)="goToCategoryList(promotion.category)" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
         </div>

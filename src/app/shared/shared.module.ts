@@ -24,6 +24,7 @@ import player from "lottie-web";
 import { PurchaseComponent } from './purchase/purchase.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PolicyDialogComponent } from './policy-dialog/policy-dialog.component';
+import { PaymentErrorComponent } from './payment-error/payment-error.component';
 
 //player lottie
 export function playerFactory() {
@@ -44,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient){
     FooterComponent,
     SearchBarComponent,
     PurchaseComponent,
-    PolicyDialogComponent
+    PolicyDialogComponent,
+    PaymentErrorComponent
   ],
   imports: [
     CommonModule,
@@ -84,7 +86,8 @@ export function HttpLoaderFactory(http: HttpClient){
     MatChipsModule,
     MatSelectModule,
     PurchaseComponent,
-    MatDialogModule
+    MatDialogModule,
+    PaymentErrorComponent
   ]
 })
 export class SharedModule { }
