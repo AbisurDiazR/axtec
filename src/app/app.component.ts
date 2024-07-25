@@ -48,7 +48,8 @@ export class AppComponent implements OnInit{
     .addSvgIcon('ic-list-on', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-on.svg'))
     .addSvgIcon('ic-list-off', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/list-off.svg'))
     .addSvgIcon('ic-no-review', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ghost.svg'))
-    .addSvgIcon('ic-phone', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/phone.svg'));
+    .addSvgIcon('ic-phone', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/phone.svg'))
+    .addSvgIcon('ic-empty', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/empty-box.svg'));
     this._subs.add(this.sideNavService.open.subscribe((param: any) => {
       //param ? this.drawer.open() : this.drawer.close();
       if(this.drawer != undefined){

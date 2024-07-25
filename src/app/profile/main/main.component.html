@@ -1,0 +1,40 @@
+<mat-card class="main-card-container">
+    <div if="currentUser" class="main-card-profile-row">
+        <img src="{{currentUser.photoURL}}"
+            alt="" class="main-card-profile-image">
+        <div class="main-card-profile-resume">
+            <p class="main-card-profile-name">
+                {{currentUser.displayName}}
+            </p>
+            <p class="main-card-profile-email-phone">
+                {{currentUser.email}}
+            </p>
+            <p class="main-card-profile-email-phone">
+                {{currentUser.phone}}
+            </p>
+        </div>
+    </div>
+    <div class="main-card-profile-divider"></div>
+    <div class="main-card-profile-adrress-container">
+        <mat-card class="main-card-profile-adrress-card" *ngFor="let address of userAddresses">
+            <mat-icon>location_on</mat-icon>
+            <p>{{address.country}}, {{address.city}}, {{address.state}}, {{address.locality}}</p>
+            <p>{{'ADDRESS.postalCode' | translate}}: {{address.zip}}</p>
+            <p>{{address.internalNumber}}, {{address.externalNumber}}</p>
+        </mat-card>
+        <div class="example-button-container">
+            <a (click)="newAddress()" mat-fab extended routerLink=".">
+                <mat-icon>add</mat-icon>
+                {{'PROFILE.add-location' | translate}}
+            </a>
+        </div>
+    </div>
+    <div class="main-card-profile-divider"></div>
+    <div *ngIf="orders.length == 0" class="main-card-profile-orders-empty">
+        <mat-icon class="main-card-profile-orders-icon" svgIcon="ic-empty"></mat-icon>
+        <p class="main-card-profile-orders-text">{{'ADDRESS.empty' | translate}}</p>
+    </div>
+    <div *ngIf="orders.length != 0" class="main-card-profile-orders-container">
+        <h3 class="main-card-profile-orders-title">{{'ADDRESS.your-orders' | translate}}</h3>
+    </div>
+</mat-card>

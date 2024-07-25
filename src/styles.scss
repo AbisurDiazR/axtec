@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import 'ngx-toastr/toastr';
 html,
 body {
     height: 100%;
@@ -25,4 +25,9 @@ body {
 }
 .mat-mdc-standard-chip .mdc-evolution-chip__text-label{
     font-size: 11px !important;
+}
+.axtec-dialog-border{
+    .mat-mdc-tab-body-content{
+        overflow: hidden !important;
+    }
 }

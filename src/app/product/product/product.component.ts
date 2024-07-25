@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { ProviderService } from 'src/app/services/provider.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -20,11 +21,14 @@ export class ProductComponent implements OnInit {
   description: boolean = true;
   delivery: boolean = false;
   review: boolean = false;
+  productQuantity: number = 1;
 
   product: Product = {
     titulo: '',
-    precio: 0
+    precio: 0,
+    cantidad: 0
   };
+
   reviews: Review[] = [
     {
       "author": "Usuario 1",
@@ -56,6 +60,7 @@ export class ProductComponent implements OnInit {
   imageLoaded: boolean = false;
   productId: string = "";
   devMode: boolean = false;
+  userLogged: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -63,20 +68,27 @@ export class ProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
     private providerService: ProviderService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((param) => {
       this.productId = param["product-id"];
     });
+    this.authService.observerCurrentUser.subscribe((res) => {
+      if (res) {
+        this.userLogged = true
+      } else {
+        this.userLogged = false;
+      }
+    })
     this.setProduct();
   }
 
   setProduct() {
     this.devMode = isDevMode();
     this.productService.getProductById(this.productId).subscribe((res) => {
-      console.log(res);
       var productImages: any[] = []
       var currentProduct = res;
       var index = 0;
@@ -182,20 +194,17 @@ export class ProductComponent implements OnInit {
     let item: Item = {
       title: this.product.titulo,
       unit_price: this.product.precio != undefined ? this.product.precio : 0.0,
-      quantity: 1
+      quantity: this.productQuantity
     };
     let productTmp = {
       "back_urls": environment.back_urls,
       "items": item,
       "fee": 0
     }
-    console.log(productTmp);
     this.paymentService.createPayment(productTmp).then((res: any) => {
-      console.log(res);
       let response = res.data;
       if (response && response.init_point) {
-        localStorage.setItem('idSell', `${this.productId}`)
-        console.log(localStorage.getItem('idSell'));
+        localStorage.setItem('idSell', `${this.productId}`);
         window.location.href = response.init_point;
       } else {
         console.error('Error: init_point not found in response', response);
@@ -203,6 +212,18 @@ export class ProductComponent implements OnInit {
     }).catch((error: any) => {
       console.error('Error creating payment:', error);
     });
+  }
+
+  onQuantityChange(value: number) {
+    console.log(value);
+    if (value == 0) {
+      this.productQuantity = this.productQuantity + 1;
+    } else if(value > this.product.cantidad){
+      this.productQuantity = this.product.cantidad;
+    }
+    else {
+      this.productQuantity = value;
+    }
   }
 
 }

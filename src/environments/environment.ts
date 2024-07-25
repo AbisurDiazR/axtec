@@ -10,8 +10,8 @@ export const environment = {
         measurementId: "G-BSDF8H7GXL"
     },
     back_urls: {
-        "success": "https://axtec-store.000webhostapp.com/success",
-        "failure": "https://axtec-store.000webhostapp.com/failure",
-        "pending": "https://axtec-store.000webhostapp.com/pending"
+        "success": "https://axtec-store.000webhostapp.com/payment-results/success",
+        "failure": "https://axtec-store.000webhostapp.com/payment-results/failure",
+        "pending": "https://axtec-store.000webhostapp.com/payment-results/pending"
     }
 };

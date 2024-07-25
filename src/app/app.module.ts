@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { HttpLoaderFactory, SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    RouterModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
@@ -29,7 +33,9 @@ import { environment } from 'src/environments/environment';
       }
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    ToastrModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]

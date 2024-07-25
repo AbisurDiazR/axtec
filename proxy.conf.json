@@ -1,5 +1,5 @@
 {
-    "/api": {        
+    "/api": {
         "target": "https://us-central1-axtec-e3499.cloudfunctions.net/",
         "secure": false,
         "changeOrigin": true,

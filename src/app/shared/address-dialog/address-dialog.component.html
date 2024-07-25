@@ -1,0 +1,62 @@
+<div class="address-container">
+    <h2 class="address-container-title">{{'PROFILE.address' | translate}}</h2>
+    <form class="address-form" [formGroup]="addressForm">
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input #placesRef="ngx-places" ngx-gp-autocomplete [options]='options'
+                (onAddressChange)="handleAddressChange($event)" formControlName="calle" matInput type="text"
+                name="calle" placeholder="{{'ADDRESS.street' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('calle').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="numeroExterior" matInput type="text" name="numeroExterior"
+                placeholder="{{'ADDRESS.extNumber' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('numeroExterior').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="numeroInterior" matInput type="text" name="numeroInterior"
+                placeholder="{{'ADDRESS.intNumber' | translate}}">
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="colonia" matInput type="text" name="colonia"
+                placeholder="{{'ADDRESS.neighborhood' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('colonia').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="codigoPostal" matInput type="text" name="codigoPostal"
+                placeholder="{{'ADDRESS.postalCode' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('codigoPostal').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="ciudad" matInput type="text" name="ciudad"
+                placeholder="{{'ADDRESS.city' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('ciudad').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="estado" matInput type="text" name="estado"
+                placeholder="{{'ADDRESS.state' | translate}}" required>
+            <mat-error *ngIf="addressForm.get('estado').hasError('required')">
+                {{'GENERAL.ERROR.requiredData' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="address-form-field" appearance="outline">
+            <input formControlName="pais" matInput type="text" name="pais"
+                placeholder="{{'ADDRESS.country' | translate}}" value="México" readonly>
+        </mat-form-field>
+    </form>
+    <div class="address-buttons-container">
+        <button (click)="submitAddress()" [disabled]="!addressForm.valid" mat-flat-button
+            color="primary">{{'ADDRESS.submit' | translate}}</button>
+        <button class="address-button-cancel" (click)="cancel()" mat-flat-button>{{'ADDRESS.cancel' |
+            translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="profile-container">
+    <div class="profile-content">
+        <mat-list class="profile-left-menu">
+            <a (click)="goTo('main')" [ngClass]="{'profile-left-item-active': main, 'profile-left-item-unactive': !main}" mat-list-item>
+                <span>{{'PROFILE.main-account' | translate}}</span>
+            </a>
+            <a (click)="goTo('shopping-cart')" [ngClass]="{'profile-left-item-active': shoppingCart, 'profile-left-item-unactive': !shoppingCart}" mat-list-item>
+                <span>{{'PROFILE.shopping-cart' | translate}}</span>
+            </a>
+            <a (click)="goTo('new-orders')" [ngClass]="{'profile-left-item-active': newOrders, 'profile-left-item-unactive': !newOrders}" mat-list-item>
+                <span>{{'PROFILE.new-orders' | translate}}</span>
+            </a>
+            <a (click)="goTo('orders-history')" [ngClass]="{'profile-left-item-active': ordersHistory, 'profile-left-item-unactive': !ordersHistory}"
+                mat-list-item>
+                <span>{{'PROFILE.orders-history' | translate}}</span>
+            </a>
+            <a (click)="goTo('wish-list')" [ngClass]="{'profile-left-item-active': wishList, 'profile-left-item-unactive': !wishList}" mat-list-item>
+                <span>{{'PROFILE.wishlist' | translate}}</span>
+            </a>
+            <a (click)="goTo('transactions')" [ngClass]="{'profile-left-item-active': transactions, 'profile-left-item-unactive': !transactions}"
+                mat-list-item>
+                <span>{{'PROFILE.transactions' | translate}}</span>
+            </a>
+            <a (click)="goTo('settings')" [ngClass]="{'profile-left-item-active': settings, 'profile-left-item-unactive': !settings}" mat-list-item>
+                <span>{{'PROFILE.settings' | translate}}</span>
+            </a>
+            <a (click)="singout()" [ngClass]="{'profile-left-item-active': logout, 'profile-left-item-unactive': !logout}" mat-list-item>
+                <span>{{'PROFILE.logout' | translate}}</span>
+            </a>
+        </mat-list>
+        <div class="profile-rigth-menu">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

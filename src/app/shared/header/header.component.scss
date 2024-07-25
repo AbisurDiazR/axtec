@@ -21,6 +21,9 @@
             .header-icons-container{
                 display: flex;
                 justify-content: space-between;
+                .header-icons-item{
+                    cursor: pointer;
+                }
             }
         }
     }

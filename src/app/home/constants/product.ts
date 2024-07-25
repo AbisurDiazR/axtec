@@ -1,5 +1,5 @@
 export interface Product {
-    id?: number;
+    id?: string;
     imagen?: string;
     titulo: string;
     precio?: number;
@@ -8,7 +8,7 @@ export interface Product {
     precioOriginal?: number;
     description?: string;
     images?: any[];
-    cantidad?: number;
+    cantidad: number;
     vendedor?: string;
     categoria?: string;
     peso?: string;

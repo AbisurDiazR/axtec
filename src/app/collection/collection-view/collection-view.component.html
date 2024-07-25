@@ -88,8 +88,8 @@
                         <p class="collection-view-main-product-card-title">{{ product.titulo }}</p>
                         <p class="collection-view-main-product-card-price">{{ product.precio |
                             currency:'MXN':'symbol':'1.2-2' }}</p>
-                        <div class="collection-view-main-product-card-buttons-container">
-                            <button class="collection-view-product-card-button" mat-fab extended color="primary">
+                        <div *ngIf="userLogged" class="collection-view-main-product-card-buttons-container">
+                            <button (click)="addCart(product)" class="collection-view-product-card-button" mat-fab extended color="primary">
                                 <mat-icon>shopping_cart</mat-icon>
                                 {{'COLLECTION.add-car' | translate}}
                             </button>
@@ -108,7 +108,7 @@
                             currency:'MXN':'symbol':'1.2-2'}}
                         </p>
                         <p class="collection-view-product-card-horizontal-title-description">{{product.description}}</p>
-                        <div class="collection-view-product-card-horizontal-title-button-container">
+                        <div *ngIf="userLogged" class="collection-view-product-card-horizontal-title-button-container">
                             <button class="collection-view-product-card-horizontal-title-button" mat-fab extended
                                 color="primary">
                                 <mat-icon>shopping_cart</mat-icon>

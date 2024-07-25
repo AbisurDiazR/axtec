@@ -10,8 +10,8 @@ export const environment = {
         measurementId: "G-BSDF8H7GXL"
     },
     back_urls: {
-        "success": "http://localhost:4200/success",
-        "failure": "http://localhost:4200/failure",
-        "pending": "http://localhost:4200/pending"
+        "success": "http://localhost:4200/payment-results/success",
+        "failure": "http://localhost:4200/payment-results/failure",
+        "pending": "http://localhost:4200/payment-results/pending"
     }
 };

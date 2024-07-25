@@ -129,5 +129,47 @@
         "title": "Error de pago",
         "description": "Por favor, revise la información de su tarjeta e intente nuevamente.",
         "return": "Reintentar"
+    },
+    "GENERAL": {
+        "ERROR": {
+            "requiredData": "Campo requerido",
+            "invalidEmail": "Correo invalido",
+            "errorPasswordSize": "La contraseña debe tener entre 8 a 16 caracteres"
+        }
+    },
+    "AUTH": {
+        "login": "Acceder",
+        "signin": "Registrarse",
+        "password": "Contraseña",
+        "phone": "Introduzca un número telefónico",
+        "name": "Introduzca su nombre completo"
+    },
+    "PROFILE":{
+        "main-account": "Cuenta principal",
+        "new-orders": "Ordenes recientes",
+        "orders-history": "Historial de ordenes",
+        "wishlist": "Lista de deseos",
+        "transactions": "Transacciones",
+        "settings": "Configuración",
+        "logout": "Cerrar sesión",
+        "add-location": "Agregar dirección",
+        "address": "Dirección",
+        "shopping-cart": "Carrito de compra"
+    },
+    "ADDRESS": {
+        "street": "Calle",
+        "extNumber": "Número exterior",
+        "intNumber": "Número interior",
+        "neighborhood": "Localidad / Colonía / Municipio",
+        "postalCode": "Codigo postal",
+        "city": "Ciudad",
+        "state": "Estado",
+        "submit": "Crear",
+        "cancel": "Cancelar",
+        "your-orders": "Tus ordenes",
+        "empty": "No hay ordenes recientes"
+    },
+    "SUCCESS": {
+        "title": "¡Pago exitoso!"
     }
 }

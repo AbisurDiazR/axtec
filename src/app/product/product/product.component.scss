@@ -49,7 +49,7 @@
 
                     .product-details-list-images {
                         display: flex;
-                        justify-content: center;
+                        flex-wrap: wrap;
                         gap: 1rem;
 
                         .product-details-list-image {

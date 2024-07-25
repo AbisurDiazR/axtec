@@ -59,7 +59,7 @@
             <owl-carousel-o [options]="options">
                 <ng-container *ngFor="let product of products">
                     <ng-template class="slide" carouselSlide>
-                        <mat-card (click)="goToProduct()" class="product-card">
+                        <mat-card (click)="goToProduct(product)" class="product-card">
                             <img class="product-card-image" mat-card-image src="{{product.imagen}}"
                                 alt="{{product.titulo}}">
                             <mat-card-content class="product-card-content">
@@ -92,12 +92,12 @@
                 <div class="home-catalogs-text">
                     <p class="home-catalogs-title">27-inch model</p>
                     <h3 class="home-catalogs-subtitle">New iMac</h3>
-                    <button (click)="goToProduct()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
             <div class="home-catalogs-right">
                 <p class="home-catalogs-title">{{ 'HOME.most-seller' | translate }}</p>
-                <mat-card (click)="goToProduct()" class="home-catalogs-card" *ngFor="let item of bestSellers">
+                <mat-card (click)="goToProduct(item)" class="home-catalogs-card" *ngFor="let item of bestSellers">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
@@ -111,7 +111,7 @@
             </div>
             <div class="home-catalogs-right">
                 <p class="home-catalogs-title">{{ 'HOME.on-sale' | translate }}</p>
-                <mat-card (click)="goToProduct()" class="home-catalogs-card" *ngFor="let item of onSale">
+                <mat-card (click)="goToProduct(item)" class="home-catalogs-card" *ngFor="let item of onSale">
                     <mat-card-header class="home-catalogs-header">
                         <mat-card-title-group class="home-catalogs-title-group">
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">

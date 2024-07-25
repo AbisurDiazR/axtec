@@ -6,6 +6,9 @@ import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Category } from 'src/app/collection/constants/category';
 import { BrandsService } from 'src/app/services/brands.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsersService } from 'src/app/services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-collection-view',
@@ -22,22 +25,32 @@ export class CollectionViewComponent implements OnInit {
 
 
   products: Product[] = [];
-  
+
   collectionName: string | undefined;
   bannerImage: string = "";
+  userId: string = '';
+  userLogged: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private categoryService: CategoryService,
     private productService: ProductService,
-    private brandService: BrandsService
+    private brandService: BrandsService,
+    private authService: AuthService,
+    private usersService: UsersService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe(((res: any) => {
-      console.log(res);
-    }));
+    this.authService.observerCurrentUser.subscribe((res) => {
+      if (res) {
+        this.userLogged = true;
+        this.userId = res.uid;
+      }else{
+        this.userLogged = false;
+      }
+    });
     this.activatedRoute.params.subscribe(((res: any) => {
       let collectionId = res['collection-id'];
       this.getProductsCategory(collectionId);
@@ -58,7 +71,8 @@ export class CollectionViewComponent implements OnInit {
               "titulo": element.titulo,
               "precio": element.precioOriginal,
               "imagen": element.images[0],
-              "description": element.descripcion
+              "description": element.descripcion,
+              "cantidad": element.disponibilidad["cantidad"]
             }
           );
         });
@@ -83,7 +97,20 @@ export class CollectionViewComponent implements OnInit {
     this.gridSelected = false;
   }
 
-  navigateToProduct(productId: number | undefined) {
+  navigateToProduct(productId: string | undefined) {
     this.router.navigate([`product/${productId}`]);
+  }
+
+  addCart(product: Product) {
+    if (product) {
+      this.usersService.addShoppingCart(this.userId, product).then(() => {
+        this.toastrService.success('Se agregado un nuevo producto a su carrito de compra', '¡Producto agregado!', {
+          timeOut: 10000,
+          positionClass: 'toast-top-right'
+        });
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   }
 }

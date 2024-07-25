@@ -140,12 +140,15 @@ export class HomePageComponent implements OnInit {
   
   getLastProducts() {
     this.productService.getLastProducts().subscribe((res) => {
+      console.log(res);
       res.forEach((element: any) => {
         this.products.push(
           {
+            id: element.id,
             imagen: element.images[0],
             titulo: element.titulo,
-            precio: element.precioOriginal
+            precio: element.precioOriginal,
+            cantidad: element.disponibilidad["cantidad"]
           }
         );
       });
@@ -154,7 +157,6 @@ export class HomePageComponent implements OnInit {
 
   setPromotions() {
     this.promotionService.getPromotions().subscribe((res) => {
-      console.log(res);
       this.promotions = res;
     });
   }
@@ -177,7 +179,6 @@ export class HomePageComponent implements OnInit {
   }
 
   goToCollection(categoryName: string | undefined) {
-    console.log(categoryName);
     if (categoryName) {
       this.categoryService.getCategoryIdByName(categoryName).subscribe((res) => {
         if (res != null) {
@@ -199,8 +200,10 @@ export class HomePageComponent implements OnInit {
     this.router.navigate([`collection`]);
   }
 
-  goToProduct() {
-    this.router.navigate([`product/1`]);
+  goToProduct(product: Product) {
+    if (product) {
+      this.router.navigate([`product/${product.id}`]);
+    }
   }
 
 }

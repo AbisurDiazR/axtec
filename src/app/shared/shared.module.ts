@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatStepperModule  } from '@angular/material/stepper';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule } from '@ngx-translate/core';
 import {MatChipsModule} from '@angular/material/chips';
@@ -25,6 +26,12 @@ import { PurchaseComponent } from './purchase/purchase.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PolicyDialogComponent } from './policy-dialog/policy-dialog.component';
 import { PaymentErrorComponent } from './payment-error/payment-error.component';
+import { LoginOptionsComponent } from './login-options/login-options.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddressDialogComponent } from './address-dialog/address-dialog.component';
+import { NgxGpAutocompleteModule } from '@angular-magic/ngx-gp-autocomplete';
+import { Loader } from '@googlemaps/js-api-loader';
+import { PaymentSuccessfullyComponent } from './payment-successfully/payment-successfully.component';
 
 //player lottie
 export function playerFactory() {
@@ -46,7 +53,10 @@ export function HttpLoaderFactory(http: HttpClient){
     SearchBarComponent,
     PurchaseComponent,
     PolicyDialogComponent,
-    PaymentErrorComponent
+    PaymentErrorComponent,
+    LoginOptionsComponent,
+    AddressDialogComponent,
+    PaymentSuccessfullyComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +75,11 @@ export function HttpLoaderFactory(http: HttpClient){
     MatChipsModule,
     MatSelectModule,
     LottieModule.forRoot({player: playerFactory}),
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxGpAutocompleteModule,
+    MatStepperModule
   ],
   exports: [
     HeaderComponent,
@@ -87,7 +101,21 @@ export function HttpLoaderFactory(http: HttpClient){
     MatSelectModule,
     PurchaseComponent,
     MatDialogModule,
-    PaymentErrorComponent
-  ]
+    PaymentErrorComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxGpAutocompleteModule,
+    PaymentSuccessfullyComponent,
+    MatStepperModule
+  ],
+  providers: [
+    {
+      provide: Loader,
+      useValue: new Loader({
+        apiKey: 'AIzaSyDyT9zeA4AoNxHDMdUpcIrvcYockFpfWh8',
+        libraries: ['places']
+      })
+    },
+  ],
 })
 export class SharedModule { }
