@@ -35,13 +35,9 @@ export class UsersService {
     return this._db.firestore.runTransaction(async (transaction) => {
       const cartDoc = await transaction.get(cartRef.ref);
       const productDoc = await transaction.get(productRef.ref);
-      //cartDoc.exists ? console.log(cartDoc.exists) : transaction.set(cartRef.ref, { createdAt: new Date() });
       if (!cartDoc.exists) {
         transaction.set(cartRef.ref, { createdAt: new Date() });
       }
-
-      //const productDoc = await transaction.get(productRef.ref);
-      //productDoc.exists ? transaction.update(productRef.ref, { quantity: productDoc.data()?.['quantity'] + 1 }) : transaction.set(productRef.ref, { ...product, quantity: 1 });
       
       if (productDoc.exists) {
         const newQuantity = productDoc.data()?.['quantity'] + 1;

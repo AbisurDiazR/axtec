@@ -1,0 +1,108 @@
+@import '/src/assets/scss/colors';
+
+.main-card-profile-orders-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .main-card-profile-orders-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .main-card-profile-orders-text {
+        font-size: 16px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+        color: $primary-blue;
+    }
+}
+
+.list-orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .card-order {
+        padding: 5px;
+        box-shadow: none;
+        border: 1px solid $dark-green;
+
+        .card-order-top-container {
+            display: flex;
+            justify-content: space-between;
+
+            .card-order-details {
+                .card-order-details-text {
+                    font-weight: bold;
+                    font-size: 14;
+                    color: $black-title;
+                }
+            }
+
+            .card-order-options {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+
+        .card-order-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            .card-order-cell {
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+
+            .contact {
+                border-left: none;
+            }
+
+            .address {
+                border-left: none;
+            }
+
+            .payment {
+                border-right: none;
+            }
+        }
+
+        .card-order-products {
+            padding: 10px 5px;
+
+            .card-order-product {
+                display: flex;
+
+                .card-order-product-image {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                .card-order-product-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    .card-order-product-title {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 200px;
+                        display: inline-block;
+                    }
+
+                    .card-order-product-text {
+                        margin: 0px;
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: $dark-green;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -65,3 +65,21 @@
         }
     }
 }
+.purchase-note {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .purchase-avatar {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  mat-divider {
+    margin: 10px 0;
+  }
+  

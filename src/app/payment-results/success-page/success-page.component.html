@@ -12,9 +12,6 @@
             <ng-template matStepperIcon="print">
                 <mat-icon>print</mat-icon>
             </ng-template>
-            <ng-template matStepperIcon="shopping_cart">
-                <mat-icon>shopping_cart</mat-icon>
-            </ng-template>
 
             <mat-step class="step-form" label="Datos de entrega" state="shipping">
                 <div class="address-container">
@@ -60,6 +57,9 @@
                             <mat-error *ngIf="contactForm.get('phone').hasError('required')">
                                 El telefono es obligatorio
                             </mat-error>
+                            <mat-error *ngIf="contactForm.get('phone').hasError('pattern')">
+                                Ingrese un número de telefono válido
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field class="contact-form-field" appearance="outline">
                             <mat-label>Correo electronico</mat-label>
@@ -76,8 +76,53 @@
                 </div>
                 <div class="button-container">
                     <button mat-flat-button color="primary" type="button" matStepperPrevious>Atras</button>
-                    <button [disabled]="!contactForm.valid" mat-flat-button color="primary" type="button">Siguiente</button>
+                    <button (click)="setPhone()" [disabled]="!contactForm.valid" mat-flat-button color="primary"
+                        type="button" matStepperNext>Siguiente</button>
                 </div>
+            </mat-step>
+            <mat-step class="step-form" label="Nota de venta" state="print">
+                <mat-card class="purchase-note">
+                    <mat-card-header>
+                        <div mat-card-avatar class="purchase-avatar"></div>
+                        <mat-card-title>Nota de Compra: {{queryParamsJson.merchant_order_id}}</mat-card-title>
+                        <mat-card-subtitle>{{ currentDate | date: 'mediumDate' }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><strong>Nombre del Cliente:</strong> {{ contactUser.displayName }}</p>
+                        <p><strong>Dirección de Envío:</strong> {{ shippingAddress }}</p>
+                        <p><strong>Datos de Contacto:</strong> {{ contactUser.phone }}, {{ contactUser.email }}</p>
+
+                        <mat-divider></mat-divider>
+
+                        <h3>Detalles del Pedido</h3>
+                        <table *ngIf="orderItems.length != 0" mat-table [dataSource]="orderItems" class="mat-elevation-z8">
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Producto </th>
+                                <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="quantity">
+                                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                                <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="price">
+                                <th mat-header-cell *matHeaderCellDef> Precio </th>
+                                <td mat-cell *matCellDef="let element"> {{element.precio | currency:'MXN':'symbol':'1.2-2'}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                        <mat-divider></mat-divider>
+
+                        <p><strong>Total:</strong> {{ orderTotal | currency:'MXN':'symbol':'1.2-2' }}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button (click)="finishPurchase()" mat-raised-button color="primary">Finalizar</button>
+                    </mat-card-actions>
+                </mat-card>
             </mat-step>
         </mat-horizontal-stepper>
     </div>

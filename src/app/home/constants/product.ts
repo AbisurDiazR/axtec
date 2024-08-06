@@ -2,7 +2,7 @@ export interface Product {
     id?: string;
     imagen?: string;
     titulo: string;
-    precio?: number;
+    precio: number;
     nuevo?: boolean;
     rebajado?: boolean;
     precioOriginal?: number;
@@ -14,4 +14,5 @@ export interface Product {
     peso?: string;
     subcategorias?: string[];
     sku?: string;
+    idPublisher?: string;
 }

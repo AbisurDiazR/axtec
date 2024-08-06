@@ -30,10 +30,7 @@
         </div>
     </div>
     <div class="main-card-profile-divider"></div>
-    <div *ngIf="orders.length == 0" class="main-card-profile-orders-empty">
-        <mat-icon class="main-card-profile-orders-icon" svgIcon="ic-empty"></mat-icon>
-        <p class="main-card-profile-orders-text">{{'ADDRESS.empty' | translate}}</p>
-    </div>
+    <app-recent-orders></app-recent-orders>
     <div *ngIf="orders.length != 0" class="main-card-profile-orders-container">
         <h3 class="main-card-profile-orders-title">{{'ADDRESS.your-orders' | translate}}</h3>
     </div>

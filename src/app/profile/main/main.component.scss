@@ -50,24 +50,7 @@
             display: flex;
             flex-direction: column;
         }
-    }
-
-    .main-card-profile-orders-empty{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .main-card-profile-orders-icon{
-            width: 90px;
-            height: 90px;
-        }
-        .main-card-profile-orders-text{
-            font-size: 16px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            color: $primary-blue;
-        }
-    }
+    }  
 
     .main-card-profile-divider {
         height: 1px;

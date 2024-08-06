@@ -11,6 +11,7 @@ import { ProviderService } from 'src/app/services/provider.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-product',
@@ -61,6 +62,7 @@ export class ProductComponent implements OnInit {
   productId: string = "";
   devMode: boolean = false;
   userLogged: boolean = false;
+  clientId: string = '';
 
   constructor(
     public dialog: MatDialog,
@@ -69,7 +71,8 @@ export class ProductComponent implements OnInit {
     private categoryService: CategoryService,
     private providerService: ProviderService,
     private paymentService: PaymentService,
-    private authService: AuthService
+    private authService: AuthService,
+    private purchaseService: PurchaseService
   ) { }
 
   ngOnInit() {
@@ -78,6 +81,7 @@ export class ProductComponent implements OnInit {
     });
     this.authService.observerCurrentUser.subscribe((res) => {
       if (res) {
+        this.clientId = res.uid;
         this.userLogged = true
       } else {
         this.userLogged = false;
@@ -104,6 +108,7 @@ export class ProductComponent implements OnInit {
         precio: +currentProduct.precioOriginal,
         images: productImages,
         sku: currentProduct.sku,
+        idPublisher: currentProduct.idPublisher
       };
       if (this.product && this.product.images && this.product.images.length > 0) {
         this.currentImage = this.product.images[0].url;
@@ -200,10 +205,11 @@ export class ProductComponent implements OnInit {
       "back_urls": environment.back_urls,
       "items": item,
       "fee": 0
-    }
+    };
     this.paymentService.createPayment(productTmp).then((res: any) => {
       let response = res.data;
       if (response && response.init_point) {
+        this.purchaseService.setTemporalPurchase(this.clientId, { productId: this.productId, productImage: this.currentImage, publisher: this.product.idPublisher, quantity: this.productQuantity, unit_price: this.product.precio, title: this.product.titulo });
         localStorage.setItem('idSell', `${this.productId}`);
         window.location.href = response.init_point;
       } else {
@@ -218,7 +224,7 @@ export class ProductComponent implements OnInit {
     console.log(value);
     if (value == 0) {
       this.productQuantity = this.productQuantity + 1;
-    } else if(value > this.product.cantidad){
+    } else if (value > this.product.cantidad) {
       this.productQuantity = this.product.cantidad;
     }
     else {

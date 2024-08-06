@@ -32,6 +32,8 @@ import { AddressDialogComponent } from './address-dialog/address-dialog.componen
 import { NgxGpAutocompleteModule } from '@angular-magic/ngx-gp-autocomplete';
 import { Loader } from '@googlemaps/js-api-loader';
 import { PaymentSuccessfullyComponent } from './payment-successfully/payment-successfully.component';
+import {MatTableModule} from '@angular/material/table';
+import { RecentOrdersComponent } from './recent-orders/recent-orders.component';
 
 //player lottie
 export function playerFactory() {
@@ -56,7 +58,8 @@ export function HttpLoaderFactory(http: HttpClient){
     PaymentErrorComponent,
     LoginOptionsComponent,
     AddressDialogComponent,
-    PaymentSuccessfullyComponent
+    PaymentSuccessfullyComponent,
+    RecentOrdersComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient){
     FormsModule,
     ReactiveFormsModule,
     NgxGpAutocompleteModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ],
   exports: [
     HeaderComponent,
@@ -106,7 +110,9 @@ export function HttpLoaderFactory(http: HttpClient){
     ReactiveFormsModule,
     NgxGpAutocompleteModule,
     PaymentSuccessfullyComponent,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule,
+    RecentOrdersComponent
   ],
   providers: [
     {
