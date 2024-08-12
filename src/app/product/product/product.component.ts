@@ -203,7 +203,7 @@ export class ProductComponent implements OnInit {
     };
     let productTmp = {
       "back_urls": environment.back_urls,
-      "items": item,
+      "items": [item],
       "fee": 0
     };
     this.paymentService.createPayment(productTmp).then((res: any) => {

@@ -72,7 +72,8 @@ export class CollectionViewComponent implements OnInit {
               "precio": element.precioOriginal,
               "imagen": element.images[0],
               "description": element.descripcion,
-              "cantidad": element.disponibilidad["cantidad"]
+              "cantidad": element.disponibilidad["cantidad"],
+              "idPublisher": element.idPublisher
             }
           );
         });

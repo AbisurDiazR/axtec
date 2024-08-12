@@ -11,11 +11,11 @@ export class PurchaseService {
 
   constructor(private _db: AngularFirestore) { }
 
-  setTemporalPurchase(clientId: string, item: Item){
-    return this._db.collection('temporalPurchase').add({clientId: clientId, ...item});
+  setTemporalPurchase(clientId: string, item: Item) {
+    return this._db.collection('temporalPurchase').add({ clientId: clientId, ...item });
   }
 
-  getTemporalPurchase(clientId: string){
+  getTemporalPurchase(clientId: string) {
     return this._db.collection('temporalPurchase', ref => ref.where('clientId', '==', clientId)).get().pipe(
       map((products: any) => {
         const product = products.docs.map((value: any) => {
@@ -28,14 +28,14 @@ export class PurchaseService {
     );
   }
 
-  createSale(sale: Sale){
+  createSale(sale: Sale) {
     return this._db.collection('sales').add(sale);
   }
 
   async deleteTemporalPurchase(clientId: string): Promise<void> {
     try {
-      const querySnapshot:any = await this._db.collection('temporalPurchase', ref => ref.where('clientId', '==', clientId)).get().toPromise();
-      
+      const querySnapshot: any = await this._db.collection('temporalPurchase', ref => ref.where('clientId', '==', clientId)).get().toPromise();
+
       const batch = this._db.firestore.batch();
       querySnapshot.forEach((doc: any) => {
         batch.delete(doc.ref);
@@ -48,8 +48,21 @@ export class PurchaseService {
     }
   }
 
-  getUserSales(userId: string): Observable<any>{
-    return this._db.collection('sales', ref => ref.where('clientId', '==', userId)).get().pipe(
+  getUserSales(userId: string): Observable<any> {
+    return this._db.collection('sales', ref => ref
+      .where('clientId', '==', userId)
+      .orderBy('dateSale', 'desc') // Ordena por fecha de creación en orden descendente
+      .limit(3) // Limita los resultados a los 3 más recientes
+    ).get().pipe(
+      map((sales: any) => {
+        return sales.docs.map((value: any) => {
+          const data = value.data();
+          const id = value.id;
+          return { id: id, ...data };
+        });
+      })
+    );
+    /*return this._db.collection('sales', ref => ref.where('clientId', '==', userId)).get().pipe(
       map((sales: any) => {
         const sale = sales.docs.map((value: any) => {
           const data = value.data();
@@ -58,6 +71,45 @@ export class PurchaseService {
         });
         return sale;
       })
+    );*/
+  }
+
+  getUserSalesFirstPage(userId: string): Observable<any> {
+    return this._db.collection('sales', ref => ref
+      .where('clientId', '==', userId)
+      .orderBy('dateSale', 'desc')
+      .limit(3)
+    ).get().pipe(
+      map((sales: any) => {
+        const lastVisible = sales.docs[sales.docs.length - 1]; // Último documento en la página actual
+        const sale = sales.docs.map((value: any) => {
+          const data = value.data();
+          const id = value.id;
+          return { id: id, ...data };
+        });
+        return { sale, lastVisible };
+      })
     );
   }
+
+  getUserSalesNextPage(userId: string, lastVisible: any): Observable<any> {
+    return this._db.collection('sales', ref => ref
+      .where('clientId', '==', userId)
+      .orderBy('dateSale', 'desc')
+      .startAfter(lastVisible) // Empieza después del último documento de la página anterior
+      .limit(3)
+    ).get().pipe(
+      map((sales: any) => {
+        const lastVisible = sales.docs[sales.docs.length - 1]; // Actualiza el último documento
+        const sale = sales.docs.map((value: any) => {
+          const data = value.data();
+          const id = value.id;
+          return { id: id, ...data };
+        });
+        return { sale, lastVisible };
+      })
+    );
+}
+
+
 }

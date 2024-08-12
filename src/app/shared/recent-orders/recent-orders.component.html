@@ -3,7 +3,7 @@
     <p class="main-card-profile-orders-text">{{'ADDRESS.empty' | translate}}</p>
 </div>
 <div *ngIf="orders.length != 0" class="list-orders-container">
-    <p>Lista de ordenes</p>
+    <p class="list-orders-title">Lista de ordenes</p>
     <mat-card class="card-order" *ngFor="let order of orders">
         <div class="card-order-top-container">
             <div class="card-order-details">

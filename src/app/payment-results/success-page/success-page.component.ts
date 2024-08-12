@@ -157,11 +157,15 @@ export class SuccessPageComponent implements OnInit {
       contact: this.contactForm.value,
       site_id: this.queryParamsJson.site_id,
       status: this.queryParamsJson.status,
-      total: this.orderTotal      
+      total: this.orderTotal
     };
     this.purchaseService.createSale(newSale).then(() => {
       this.purchaseService.deleteTemporalPurchase(this.currentUserId).then(() => {
-        this.router.navigate(['profile/new-orders']);
+        this.usersService.deleteCartItems(this.currentUserId).then(() => {
+          this.router.navigate(['profile/new-orders']);
+        }).catch(() => {
+          this.router.navigate(['profile/new-orders']);
+        })
       })
     });
   }

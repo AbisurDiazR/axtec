@@ -1,1 +1,36 @@
-<p>shopping-cart works!</p>
+<mat-card class="shopping-cart-card-container">
+    <p class="shopping-cart-card-title">Carrito de compras</p>
+    <div *ngIf="cartItems.length">
+        <form class="shopping-cart-card-form" [formGroup]="cartItemsForm">
+            <div class="shopping-cart-card-items-container" formArrayName="items">
+                <div class="shopping-cart-card-item" *ngFor="let item of itemsFormArray.controls; let i = index"
+                    [formGroupName]="i">
+                    <img class="shopping-cart-card-item-image" src="{{cartItems[i].imagen}}"
+                        alt="{{cartItems[i].titulo}}">
+                    <p class="shopping-cart-card-item-title">{{cartItems[i].titulo}}</p>
+                    <mat-icon (click)="removeItemsNumber(cartItems[i].id, i)">remove</mat-icon>
+                    <mat-form-field class="shopping-cart-card-item-quantity" appearance="outline">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput inputmode="numeric" pattern="[0-9]*" formControlName="quantity" type="number"
+                            readonly="true">
+                    </mat-form-field>
+                    <mat-icon (click)="addItemsNumber(cartItems[i].id, i)">add</mat-icon>
+                    <p class="shopping-cart-card-item-price">Precio: <span>{{cartItems[i].precio |
+                            currency:'MXN':'symbol':'1.2-2' }}</span></p>
+                    <p class="shopping-cart-card-item-price">Total:
+                        <span>{{getTotal(cartItems[i].precio,cartItems[i].quantity) | currency:'MXN':'symbol':'1.2-2'
+                            }}</span>
+                    </p>
+                    <mat-icon (click)="deleteItem(cartItems[i].id)">delete</mat-icon>
+                </div>
+            </div>
+        </form>
+        <div class="shopping-cart-card-button">
+            <button (click)="startPurchase()" mat-raised-button color="primary">Comprar</button>
+        </div>
+    </div>
+    <div class="empty-container" *ngIf="cartItems.length == 0">
+        <mat-icon class="empty-icon">remove_shopping_cart</mat-icon>
+        <p class="empty-alert">No hay elementos en el carrito de compras</p>
+    </div>
+</mat-card>

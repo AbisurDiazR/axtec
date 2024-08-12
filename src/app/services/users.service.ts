@@ -38,7 +38,7 @@ export class UsersService {
       if (!cartDoc.exists) {
         transaction.set(cartRef.ref, { createdAt: new Date() });
       }
-      
+
       if (productDoc.exists) {
         const newQuantity = productDoc.data()?.['quantity'] + 1;
         transaction.update(productRef.ref, { quantity: newQuantity });
@@ -48,25 +48,47 @@ export class UsersService {
     });
   }
 
-  // Verificar la existencia de un documento en la colección shopping-cart
-  documentExistsInShoppingCart(cartId: string): Observable<any> {
-    return this._db.collection('shopping-cart', ref => ref.where('cartId', '==', cartId)).get().pipe(
-      map((carts: any) => {
-        const cart = carts.docs.map((value: any) => {
+  updateShoppingCartItems(cartId: string, productId: string, productQty: number) {
+    return this._db.collection('shopping-carts').doc(cartId).collection('products').doc(productId).update({ quantity: productQty });
+  }
+
+  getShoppingCartById(userId: string): Observable<any> {
+    return this._db.collection('shopping-carts').doc(userId).collection('products').get().pipe(
+      map((items: any) => {
+        const item = items.docs.map((value: any) => {
           const data = value.data();
           const id = value.id;
           return { id: id, ...data }
         });
+        return item;
       })
     );
   }
 
-  // Verificar la existencia de un documento en la subcolección products
-  async documentExistsInProducts(cartId: string, productId: string) {
-    const docRef = this._db.collection('shopping-cart').doc(cartId)
-      .collection('products').doc(productId).ref;
-    const docSnapshot = await docRef.get();
-    return docSnapshot.exists;
+  deleteCartItem(cartId: string, productId: string): Promise<void> {
+    return this._db.collection('shopping-carts').doc(cartId).collection('products').doc(productId).delete();
+  }
+
+  async deleteCartItems(cartId: string): Promise<void> {
+    const cartRef = this._db.collection('shopping-carts').doc(cartId);
+    const productsRef = cartRef.collection('products');
+
+    // Obtener todos los documentos en la subcolección 'products'
+    const productsSnapshot = await productsRef.get().toPromise();
+
+    if (productsSnapshot) {
+      // Borrar todos los documentos en la subcolección 'products'
+      const batch = this._db.firestore.batch();
+      productsSnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      // Ejecutar la eliminación en batch
+      await batch.commit();
+    }
+
+    // Finalmente, borrar el documento en 'shopping-carts'
+    await cartRef.delete();
   }
 
 }

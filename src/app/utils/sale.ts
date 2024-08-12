@@ -18,4 +18,5 @@ export interface Sale {
     processing_mode: string;
     site_id: string;
     status: string;
+    createdAt?: Date;
 }

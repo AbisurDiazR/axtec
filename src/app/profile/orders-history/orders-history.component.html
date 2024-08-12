@@ -1,1 +1,66 @@
-<p>orders-history works!</p>
+<div *ngIf="orders.length == 0" class="main-card-profile-orders-empty">
+    <mat-icon class="main-card-profile-orders-icon" svgIcon="ic-empty"></mat-icon>
+    <p class="main-card-profile-orders-text">{{'ADDRESS.empty' | translate}}</p>
+</div>
+<div *ngIf="orders.length != 0" class="list-orders-container">
+    <p class="list-orders-title">Lista de ordenes</p>
+    <mat-card class="card-order" *ngFor="let order of orders">
+        <div class="card-order-top-container">
+            <div class="card-order-details">
+                <p class="card-order-details-text">Id de orden: {{ order.collection_id}}</p>
+                <p class="card-order-details-text">Fecha de orden: {{ order.dateSale | date }} </p>
+            </div>
+            <div class="card-order-options">
+                <button mat-flat-button color="warn" type="button">
+                    Cancelar ordén
+                </button>
+                <button mat-flat-button color="primary" type="button">
+                    Rastrear ordén
+                </button>
+            </div>
+        </div>
+        <div class="card-order-grid">
+            <div class="card-order-cell contact">
+                <p>Contacto</p>
+                <p>{{ order.contact.fullName }}</p>
+                <p>Phone: <span>{{ order.contact.phone }}</span></p>
+                <p>Email: <span>{{ order.contact.email }}</span></p>
+            </div>
+            <div class="card-order-cell address">
+                <p>Dirección de envió</p>
+                <p>{{ order.shippingAddress }}</p>
+            </div>
+            <div class="card-order-cell payment">
+                <p>Pago</p>
+                <p>Tipo de pago: <span>{{ getPaymentType(order.payment_type) }}</span></p>
+                <p>Pago total: <span>{{ order.total | currency:'MXN':'symbol':'1.2-2' }}</span></p>
+            </div>
+        </div>
+        <div class="card-order-products">
+            <div class="card-order-product" *ngFor="let product of order.products">
+                <img src="{{ product.imagen }}" alt="" class="card-order-product-image">
+                <div class="card-order-product-container">
+                    <p class="card-order-product-title card-order-product-text">{{ product.titulo }}</p>
+                    <p class="card-order-product-text">{{ product.cantidad }} x {{ product.precio |
+                        currency:'MXN':'symbol':'1.2-2' }}</p>
+                </div>
+            </div>
+        </div>
+
+    </mat-card>
+    <!-- Paginación -->
+    <div class="pagination-container">
+        <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 1">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+
+        <button *ngFor="let page of totalPagesArray" mat-button (click)="goToPage(page)"
+            [class.active]="currentPage === page">
+            {{ page }}
+        </button>
+
+        <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+</div>
