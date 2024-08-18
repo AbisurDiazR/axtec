@@ -4,7 +4,7 @@
 </div>
 <div *ngIf="orders.length != 0" class="list-orders-container">
     <p class="list-orders-title">Lista de ordenes</p>
-    <mat-card class="card-order" *ngFor="let order of orders">
+    <mat-card class="card-order" *ngFor="let order of orders | slice: (currentPage * pageSize) - pageSize :currentPage * pageSize">
         <div class="card-order-top-container">
             <div class="card-order-details">
                 <p class="card-order-details-text">Id de orden: {{ order.collection_id}}</p>
@@ -50,16 +50,11 @@
     </mat-card>
     <!-- Paginación -->
     <div class="pagination-container">
-        <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 1">
+        <button [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1" mat-icon-button>
             <mat-icon>chevron_left</mat-icon>
         </button>
-
-        <button *ngFor="let page of totalPagesArray" mat-button (click)="goToPage(page)"
-            [class.active]="currentPage === page">
-            {{ page }}
-        </button>
-
-        <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        <span>Pagina {{currentPage}} de {{numberOfPages()}}</span>
+        <button [disabled]="currentPage >= orders.length/pageSize" (click)="currentPage = currentPage + 1" mat-icon-button>
             <mat-icon>chevron_right</mat-icon>
         </button>
     </div>

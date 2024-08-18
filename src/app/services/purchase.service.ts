@@ -74,42 +74,17 @@ export class PurchaseService {
     );*/
   }
 
-  getUserSalesFirstPage(userId: string): Observable<any> {
-    return this._db.collection('sales', ref => ref
-      .where('clientId', '==', userId)
-      .orderBy('dateSale', 'desc')
-      .limit(3)
-    ).get().pipe(
+  getAllUserSales(userId: string): Observable<any>{
+    return this._db.collection('sales', ref => ref.where('clientId', '==', userId).orderBy('dateSale', 'desc')).get().pipe(
       map((sales: any) => {
-        const lastVisible = sales.docs[sales.docs.length - 1]; // Último documento en la página actual
-        const sale = sales.docs.map((value: any) => {
+        return sales.docs.map((value: any) => {
           const data = value.data();
           const id = value.id;
           return { id: id, ...data };
         });
-        return { sale, lastVisible };
       })
     );
   }
-
-  getUserSalesNextPage(userId: string, lastVisible: any): Observable<any> {
-    return this._db.collection('sales', ref => ref
-      .where('clientId', '==', userId)
-      .orderBy('dateSale', 'desc')
-      .startAfter(lastVisible) // Empieza después del último documento de la página anterior
-      .limit(3)
-    ).get().pipe(
-      map((sales: any) => {
-        const lastVisible = sales.docs[sales.docs.length - 1]; // Actualiza el último documento
-        const sale = sales.docs.map((value: any) => {
-          const data = value.data();
-          const id = value.id;
-          return { id: id, ...data };
-        });
-        return { sale, lastVisible };
-      })
-    );
-}
 
 
 }

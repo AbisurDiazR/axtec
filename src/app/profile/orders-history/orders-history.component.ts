@@ -13,12 +13,8 @@ export class OrdersHistoryComponent implements OnInit {
   orders: Sale[] = [];
   currentUserId: string = "";
   paginatedOrders:any[] = [];
-  itemsPerPage = 3;
-  currentPage = 1;
-  totalPages = 0;
-  totalPagesArray:any[] = [];
-  lastVisible: any;
-  isFirstPage: boolean = true;
+  currentPage: number = 0;
+  pageSize: number = 0;
 
   constructor(
     private authService: AuthService,
@@ -27,62 +23,25 @@ export class OrdersHistoryComponent implements OnInit {
   
   ngOnInit(){
     this.setUserId();
-    this.calculateTotalPages();
-    this.updatePaginatedOrders();
   }
   
   setUserId() {
     this.authService.observerCurrentUser.subscribe((res) => {
       res ? this.currentUserId = res.uid : this.currentUserId = '';
-      this.getFirstPage();
+      this.getSales(this.currentUserId);
+    });    
+  }
+  
+  getSales(currentUserId: string) {
+    this.saleServices.getAllUserSales(currentUserId).subscribe((res) => {
+      this.orders = res;
     });
+    this.currentPage = 1;
+    this.pageSize = 3;
   }
 
-  getFirstPage() {
-    this.saleServices.getUserSalesFirstPage(this.currentUserId).subscribe((data:any) => {
-      this.orders = data.sale;
-      this.lastVisible = data.lastVisible;
-      this.isFirstPage = false;
-    });
-  }
-
-  getNextPage() {
-    if (!this.isFirstPage) {
-      this.saleServices.getUserSalesNextPage(this.currentUserId, this.lastVisible).subscribe(data => {
-        this.orders = [...this.orders, ...data.sale];
-        this.lastVisible = data.lastVisible;
-      });
-    }
-  }
-
-  calculateTotalPages() {
-    this.totalPages = Math.ceil(this.orders.length / this.itemsPerPage);
-    this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
-
-  updatePaginatedOrders() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedOrders = this.orders.slice(startIndex, endIndex);
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePaginatedOrders();
-    }
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePaginatedOrders();
-    }
-  }
-
-  goToPage(page: number) {
-    this.currentPage = page;
-    this.updatePaginatedOrders();
+  numberOfPages(){
+    return Math.ceil(this.orders.length / this.pageSize);
   }
 
   viewOrder(sale: Sale): void {
