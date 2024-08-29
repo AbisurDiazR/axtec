@@ -38,6 +38,15 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
 
+        .main-card-header {
+            padding: 0;
+            display: flex;
+            justify-content: end;
+            mat-icon{
+                cursor: pointer;
+            }
+        }
+
         .main-card-profile-adrress-card {
             padding: 10px;
             box-shadow: none;
@@ -50,7 +59,7 @@
             display: flex;
             flex-direction: column;
         }
-    }  
+    }
 
     .main-card-profile-divider {
         height: 1px;

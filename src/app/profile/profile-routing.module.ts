@@ -4,8 +4,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewOrdersComponent } from './new-orders/new-orders.component';
 import { MainComponent } from './main/main.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 //import { AuthGuard } from '../guards/auth.guard';
@@ -36,14 +34,6 @@ const routes: Routes = [
       {
         path: 'orders-history',
         component: OrdersHistoryComponent
-      },
-      {
-        path: 'wish-list',
-        component: WishlistComponent
-      },
-      {
-        path: 'transactions',
-        component: TransactionsComponent
       },
       {
         path: 'settings',

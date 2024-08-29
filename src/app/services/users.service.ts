@@ -4,6 +4,7 @@ import { Address } from '../utils/address';
 import { Observable, map } from 'rxjs';
 import { Product } from '../home/constants/product';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -89,6 +90,10 @@ export class UsersService {
 
     // Finalmente, borrar el documento en 'shopping-carts'
     await cartRef.delete();
+  }
+
+  deleteAddressById(addressId: string): Promise<void>{
+    return this._db.collection('addresses').doc(addressId).delete();
   }
 
 }

@@ -34,6 +34,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { PaymentSuccessfullyComponent } from './payment-successfully/payment-successfully.component';
 import {MatTableModule} from '@angular/material/table';
 import { RecentOrdersComponent } from './recent-orders/recent-orders.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 //player lottie
 export function playerFactory() {
@@ -59,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient){
     LoginOptionsComponent,
     AddressDialogComponent,
     PaymentSuccessfullyComponent,
-    RecentOrdersComponent
+    RecentOrdersComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,

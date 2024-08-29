@@ -8,8 +8,6 @@ import { RouterModule } from '@angular/router';
 import { NewOrdersComponent } from './new-orders/new-orders.component';
 import { MainComponent } from './main/main.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
@@ -20,8 +18,6 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     NewOrdersComponent,
     MainComponent,
     OrdersHistoryComponent,
-    WishlistComponent,
-    TransactionsComponent,
     SettingsComponent,
     ShoppingCartComponent
   ],

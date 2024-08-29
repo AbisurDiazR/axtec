@@ -14,13 +14,6 @@
                 mat-list-item>
                 <span>{{'PROFILE.orders-history' | translate}}</span>
             </a>
-            <a (click)="goTo('wish-list')" [ngClass]="{'profile-left-item-active': wishList, 'profile-left-item-unactive': !wishList}" mat-list-item>
-                <span>{{'PROFILE.wishlist' | translate}}</span>
-            </a>
-            <a (click)="goTo('transactions')" [ngClass]="{'profile-left-item-active': transactions, 'profile-left-item-unactive': !transactions}"
-                mat-list-item>
-                <span>{{'PROFILE.transactions' | translate}}</span>
-            </a>
             <a (click)="goTo('settings')" [ngClass]="{'profile-left-item-active': settings, 'profile-left-item-unactive': !settings}" mat-list-item>
                 <span>{{'PROFILE.settings' | translate}}</span>
             </a>

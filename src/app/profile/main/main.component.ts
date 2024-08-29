@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AddressDialogComponent } from 'src/app/shared/address-dialog/address-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { DEFAULT_PROFILE_PIC } from 'src/app/shared/data';
 import { Address } from 'src/app/utils/address';
 import { Order } from 'src/app/utils/order';
 import { User } from 'src/app/utils/user';
@@ -55,7 +57,7 @@ export class MainComponent implements OnInit {
           password: '',
           id: res.uid,
           phone: res.phoneNumber != undefined ? res.phoneNumber : '',
-          photoURL: res.photoURL != undefined ? res.photoURL : 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI='
+          photoURL: res.photoURL != undefined ? res.photoURL : DEFAULT_PROFILE_PIC
         };
       }
       this.getAddresses(this.currentUserId);
@@ -71,6 +73,26 @@ export class MainComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.getAddresses(this.currentUserId);
+    });
+  }
+
+  deleteAddress(address: any){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirmar',
+        message: '¿Esta seguro que desea borrar la dirección?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Lógica para eliminar la dirección
+        this.usersServices.deleteAddressById(address.id).then(() => {
+          this.setUserId();
+        });
+      } else {
+      }
     });
   }
 

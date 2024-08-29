@@ -1,1 +1,42 @@
-<p>settings works!</p>
+<div class="profile-update-container">
+    <mat-card class="profile-photo-container">
+        <div class="profile-photo-left">
+            <img (click)="fileInput.click()" class="profile-photo" [src]="url ? url : userData.photoUrl" alt="">
+            <div class="profile-user-data">
+                <p class="profile-user-name">{{userData.displayName}}</p>
+                <label class="profile-photo-label" for="file">Cambiar foto de perfil</label>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+            </div>
+        </div>
+        <button (click)="changePhotoProfile()" [disabled]="url == ''" class="upload-photo" mat-raised-button
+            color="accent">
+            <mat-icon>upload</mat-icon>
+            Subir Foto
+        </button>
+    </mat-card>
+    <mat-card class="data-user-container">
+        <form [formGroup]="profileForm" class="profile-form">
+            <mat-form-field class="profile-form-field" appearance="outline">
+                <mat-label>Nombre completo</mat-label>
+                <input matInput type="text" formControlName="fullName" placeholder="Ingrese el nombre completo" (keyup)="checkChanges()">
+                <mat-error *ngIf="profileForm.get('fullName').hasError('required')">
+                    Nombre completo es obligatorio
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="profile-form-field" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput type="tel" formControlName="phone" placeholder="Ingresa el numero de telefono" (keyup)="checkChanges()">
+                <mat-error *ngIf="profileForm.get('phone').hasError('required')">
+                    El telefono es obligatorio
+                </mat-error>
+                <mat-error *ngIf="profileForm.get('phone').hasError('pattern')">
+                    Ingrese un número de telefono válido
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <div class="button-container">
+            <button (click)="saveChanges()" [disabled]="!fieldsUpdated || !profileForm.valid" mat-flat-button color="primary"
+                type="button">Guardar</button>
+        </div>
+    </mat-card>
+</div>

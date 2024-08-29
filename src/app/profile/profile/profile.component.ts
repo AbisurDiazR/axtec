@@ -15,8 +15,6 @@ export class ProfileComponent {
   main: boolean = false;
   newOrders: boolean = false;
   ordersHistory: boolean = false;
-  wishList: boolean = false;
-  transactions: boolean = false;
   settings: boolean = false;
   logout: boolean = false;
   shoppingCart: boolean = false;
@@ -32,8 +30,6 @@ export class ProfileComponent {
         this.shoppingCart = location.path().includes('shopping-cart');
         this.newOrders = location.path().includes('new-orders');
         this.ordersHistory = location.path().includes('orders-history');
-        this.wishList = location.path().includes('wish-list');
-        this.transactions = location.path().includes('transactions');
         this.settings = location.path().includes('settings');
         this.logout = location.path().includes('logout');
       })
