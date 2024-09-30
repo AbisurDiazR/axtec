@@ -35,6 +35,9 @@ import { PaymentSuccessfullyComponent } from './payment-successfully/payment-suc
 import {MatTableModule} from '@angular/material/table';
 import { RecentOrdersComponent } from './recent-orders/recent-orders.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from './loader/loader.component';
+import { PaymentPendingComponent } from './payment-pending/payment-pending.component';
 
 //player lottie
 export function playerFactory() {
@@ -61,7 +64,9 @@ export function HttpLoaderFactory(http: HttpClient){
     AddressDialogComponent,
     PaymentSuccessfullyComponent,
     RecentOrdersComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LoaderComponent,
+    PaymentPendingComponent
   ],
   imports: [
     CommonModule,
@@ -85,7 +90,8 @@ export function HttpLoaderFactory(http: HttpClient){
     ReactiveFormsModule,
     NgxGpAutocompleteModule,
     MatStepperModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     HeaderComponent,
@@ -114,7 +120,10 @@ export function HttpLoaderFactory(http: HttpClient){
     PaymentSuccessfullyComponent,
     MatStepperModule,
     MatTableModule,
-    RecentOrdersComponent
+    RecentOrdersComponent,
+    MatProgressSpinnerModule,
+    LoaderComponent,
+    PaymentPendingComponent
   ],
   providers: [
     {

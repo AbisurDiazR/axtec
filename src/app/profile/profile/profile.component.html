@@ -17,6 +17,9 @@
             <a (click)="goTo('settings')" [ngClass]="{'profile-left-item-active': settings, 'profile-left-item-unactive': !settings}" mat-list-item>
                 <span>{{'PROFILE.settings' | translate}}</span>
             </a>
+            <a (click)="goTo('payments')" [ngClass]="{'profile-left-item-active': payments, 'profile-left-item-unactive': !payments}" mat-list-item>
+                <span>{{'PROFILE.payments' | translate}}</span>
+            </a>
             <a (click)="singout()" [ngClass]="{'profile-left-item-active': logout, 'profile-left-item-unactive': !logout}" mat-list-item>
                 <span>{{'PROFILE.logout' | translate}}</span>
             </a>

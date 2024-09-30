@@ -91,7 +91,6 @@ export class MainComponent implements OnInit {
         this.usersServices.deleteAddressById(address.id).then(() => {
           this.setUserId();
         });
-      } else {
       }
     });
   }

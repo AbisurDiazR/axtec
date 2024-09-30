@@ -6,7 +6,7 @@
                 <h5 class="home-banner-deals">Mejores tratos</h5>
                 <h2 class="home-banner-discounts">Gran venta 30% de descuento</h2>
                 <p class="home-banner-cto">No pierdas la oportunidad de conseguir gadgets a buen precio.</p>
-                <button (click)="goToCollection('laptops')" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
+                <button (click)="goToCollection('Laptops')" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
             </div>
         </div>
     </section>
@@ -92,7 +92,7 @@
                 <div class="home-catalogs-text">
                     <p class="home-catalogs-title">27-inch model</p>
                     <h3 class="home-catalogs-subtitle">New iMac</h3>
-                    <button mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                    <button (click)="goToAppleCatalog()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
                 </div>
             </div>
             <div class="home-catalogs-right">
@@ -116,7 +116,7 @@
                         <mat-card-title-group class="home-catalogs-title-group">
                             <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
                             <div class="home-catalogs-titles">
-                                <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
+                                <p class="home-catalogs-title-nombre">{{item.titulo}}</p>
                                 <p class="home-catalogs-title-precio">{{item.precio | currency:'MXN':'symbol':'1.2-2'}}</p>
                             </div>
                         </mat-card-title-group>

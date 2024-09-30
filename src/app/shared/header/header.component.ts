@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
               tipoUsuario: res.tipo,
               password: ''
             };
+            if(this.currentUser.id) localStorage.setItem('uid',this.currentUser.id);
           });
         }else{
           this.userLogged = false;

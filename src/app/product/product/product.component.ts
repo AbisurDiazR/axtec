@@ -12,6 +12,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-product',
@@ -60,7 +61,7 @@ export class ProductComponent implements OnInit {
   currentImage: any;
   imageLoaded: boolean = false;
   productId: string = "";
-  devMode: boolean = false;
+  //devMode: boolean = false;
   userLogged: boolean = false;
   clientId: string = '';
 
@@ -72,7 +73,8 @@ export class ProductComponent implements OnInit {
     private providerService: ProviderService,
     private paymentService: PaymentService,
     private authService: AuthService,
-    private purchaseService: PurchaseService
+    private purchaseService: PurchaseService,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
@@ -86,12 +88,13 @@ export class ProductComponent implements OnInit {
       } else {
         this.userLogged = false;
       }
-    })
+    });
     this.setProduct();
   }
 
   setProduct() {
-    this.devMode = isDevMode();
+    //this.devMode = isDevMode();
+    this.loaderService.changeLoader(true);
     this.productService.getProductById(this.productId).subscribe((res) => {
       var productImages: any[] = []
       var currentProduct = res;
@@ -116,6 +119,9 @@ export class ProductComponent implements OnInit {
       this.setCategory(currentProduct.categoria);
       this.setProvider(currentProduct.marca);
       this.setSubcategories(currentProduct.categoria);
+      this.loaderService.changeLoader(false);
+    }, (err: any) => {
+      this.loaderService.changeLoader(false);
     });
   }
 
@@ -196,6 +202,7 @@ export class ProductComponent implements OnInit {
   }
 
   purchase() {
+    this.loaderService.changeLoader(true);
     let item: Item = {
       title: this.product.titulo,
       unit_price: this.product.precio != undefined ? this.product.precio : 0.0,
@@ -212,11 +219,14 @@ export class ProductComponent implements OnInit {
         this.purchaseService.setTemporalPurchase(this.clientId, { productId: this.productId, productImage: this.currentImage, publisher: this.product.idPublisher, quantity: this.productQuantity, unit_price: this.product.precio, title: this.product.titulo });
         localStorage.setItem('idSell', `${this.productId}`);
         window.location.href = response.init_point;
+        this.loaderService.changeLoader(false);
       } else {
         console.error('Error: init_point not found in response', response);
+        this.loaderService.changeLoader(false);
       }
     }).catch((error: any) => {
       console.error('Error creating payment:', error);
+      this.loaderService.changeLoader(false);
     });
   }
 

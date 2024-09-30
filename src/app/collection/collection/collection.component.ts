@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/collection/constants/category';
 import { CategoryService } from 'src/app/services/category.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-collection',
@@ -14,7 +15,8 @@ export class CollectionComponent implements OnInit{
   
   constructor(
     private router: Router,
-    private categoryServices: CategoryService
+    private categoryServices: CategoryService,
+    private loaderService: LoaderService
   ){}
   
   ngOnInit(): void {
@@ -22,8 +24,12 @@ export class CollectionComponent implements OnInit{
   }
   
   setCategories() {
+    this.loaderService.changeLoader(true);
     this.categoryServices.getAllCategories().subscribe((res) => {
       this.items = res;
+      this.loaderService.changeLoader(false);
+    }, (err: any) => {
+      this.loaderService.changeLoader(false);
     });
   }
   

@@ -6,6 +6,8 @@ import { User } from 'src/app/utils/user';
 import { ToastrService } from 'ngx-toastr';
 import { Email } from 'src/app/utils/email';
 import { MatDialogRef } from '@angular/material/dialog';
+import { LoaderService } from 'src/app/services/loader.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-login-options',
@@ -17,13 +19,22 @@ export class LoginOptionsComponent implements OnInit {
   loginForm: any;
   registerForm: any;
   successMessage!: string;
+  public loaderActive: boolean = false;
+  private _subs = new SubSink();
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private dialogRef: MatDialogRef<LoginOptionsComponent>
-  ) { }
+    private dialogRef: MatDialogRef<LoginOptionsComponent>,
+    private loaderService: LoaderService
+  ) {
+    this._subs.add(this.loaderService.loader.subscribe((param: any) => {
+      setTimeout(() => {
+        this.loaderActive = param;
+      });
+    }));
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -51,11 +62,12 @@ export class LoginOptionsComponent implements OnInit {
       email: this.loginForm.controls['email'].value,
       password: this.loginForm.controls['password'].value
     };
+    this.loaderService.changeLoader(true);
     this.authService.loginWithEmail(user).then((result: any) => {
-      if(result.user != undefined){
-        if(result.user.email){
+      if (result.user != undefined) {
+        if (result.user.email) {
           this.authService.getUserByEmail(result.user.email).subscribe((res) => {
-            let responseUser:User = {
+            let responseUser: User = {
               id: res[0].id,
               email: res[0].email,
               displayName: res[0].displayName,
@@ -66,23 +78,26 @@ export class LoginOptionsComponent implements OnInit {
             if (responseUser.tipoUsuario == "Cliente") {
               this.authService.setTokenWithEmail(responseUser).then((response) => {
                 this.dialogRef.close();
-                localStorage.setItem('access_token',response.token);
+                localStorage.setItem('access_token', response.token);
+                this.loaderService.changeLoader(false);
               });
-            }else{
+            } else {
               this.dialogRef.close();
               this.authService.logout();
+              this.loaderService.changeLoader(false);
             }
           });
         }
       }
     }).catch((err) => {
+      this.loaderService.changeLoader(false);
       let errorObject = err;
       if (errorObject.code == 'auth/invalid-credential') {
         this.toastrService.error("Las credenciales son invalidas", "¡Error al ingresar!", {
           timeOut: 10000,
           positionClass: 'toast-top-right'
         });
-      }else if(errorObject.code == 'auth/too-many-requests'){
+      } else if (errorObject.code == 'auth/too-many-requests') {
         this.toastrService.error("Muchos intentos fallidos de inicio de sesión. Restaura tu contraseña e intentalo más tarde.", "¡Usuario bloqueado!", {
           timeOut: 10000,
           positionClass: 'toast-top-right'
@@ -99,6 +114,7 @@ export class LoginOptionsComponent implements OnInit {
       "displayName": this.registerForm.controls['displayName'].value,
       "tipoUsuario": "Cliente"
     }
+    this.loaderService.changeLoader(true);
     this.authService.registerWithEmail(userData).then((res) => {
       let responseObject = res;
       this.successMessage = responseObject.message;
@@ -113,6 +129,7 @@ export class LoginOptionsComponent implements OnInit {
         this.registerForm.controls['phoneRegister'].setValue('');
         this.registerForm.controls['passwordRegister'].setValue('');
         this.registerForm.controls['displayName'].setValue('');
+        this.loaderService.changeLoader(false);
         this.dialogRef.close();
       });
     }).catch((err) => {
@@ -121,6 +138,7 @@ export class LoginOptionsComponent implements OnInit {
       this.registerForm.controls['passwordRegister'].setValue('');
       this.registerForm.controls['displayName'].setValue('');
       let errorObject = err.error.body;
+      this.loaderService.changeLoader(false);
       if (errorObject.code == 'auth/email-already-exists') {
         this.toastrService.error("El correo ya existe", "¡Error al registrar!", {
           timeOut: 10000,
@@ -130,7 +148,7 @@ export class LoginOptionsComponent implements OnInit {
     });
   }
 
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
   }
 

@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Brand } from '../constants/brand';
-import { Product } from 'src/app/home/constants/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-import { ProductService } from 'src/app/services/product.service';
-import { Category } from 'src/app/collection/constants/category';
-import { BrandsService } from 'src/app/services/brands.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { UsersService } from 'src/app/services/users.service';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/collection/constants/brand';
+import { Category } from 'src/app/home/constants/category';
+import { Product } from 'src/app/home/constants/product';
+import { AuthService } from 'src/app/services/auth.service';
+import { BrandsService } from 'src/app/services/brands.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ProductService } from 'src/app/services/product.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
-  selector: 'app-collection-view',
-  templateUrl: './collection-view.component.html',
-  styleUrls: ['./collection-view.component.scss']
+  selector: 'app-catalog-product',
+  templateUrl: './catalog-product.component.html',
+  styleUrls: ['./catalog-product.component.scss']
 })
-export class CollectionViewComponent implements OnInit {
+export class CatalogProductComponent implements OnInit {
   gridSelected: boolean = true;
   listSelected: boolean = false;
 
@@ -54,41 +54,32 @@ export class CollectionViewComponent implements OnInit {
       }
     });
     this.activatedRoute.params.subscribe(((res: any) => {
-      let collectionId = res['collection-id'];
-      this.getProductsCategory(collectionId);
+      let collectionId = res['id'];
+      this.getProductsBrand(collectionId);
     }));
   }
 
-  getProductsCategory(collectionId: any) {
+  getProductsBrand(brandId: string) {
     this.loaderService.changeLoader(true);
-    try {
-      this.categoryService.getCategoryByName(collectionId).subscribe((res) => {
-        let category = res[0];
-        this.collectionName = category.categoryName;
-        this.bannerImage = category.categoryImage;
-        this.productService.productsByCategoryId(category.id).subscribe((res) => {
-          var productsAux: Product[] = [];
-          res.forEach((element: any) => {
-            productsAux.push(
-              {
-                "id": element.id,
-                "titulo": element.titulo,
-                "precio": element.precioOriginal,
-                "imagen": element.images[0],
-                "description": element.descripcion,
-                "cantidad": element.disponibilidad["cantidad"],
-                "idPublisher": element.idPublisher
-              }
-            );
-          });
-          this.products = productsAux;
-          this.loaderService.changeLoader(false);
-        });
+    this.productService.getProductByBrand(brandId).subscribe((res) => {
+      var productsAux: Product[] = [];
+      res.forEach((element: any) => {
+        productsAux.push(
+          {
+            "id": element.id,
+            "titulo": element.titulo,
+            "precio": element.precioOriginal,
+            "imagen": element.images[0],
+            "description": element.descripcion,
+            "cantidad": element.disponibilidad["cantidad"],
+            "idPublisher": element.idPublisher
+          }
+        );
       });
-    } catch (err) {
-      console.log(err);
+      this.products = productsAux;
+      console.log(this.products);
       this.loaderService.changeLoader(false);
-    }
+    });
     this.categoryService.getAllCategories().subscribe((res) => {
       this.categories = res;
     });

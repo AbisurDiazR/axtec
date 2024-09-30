@@ -7,6 +7,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { DEFAULT_LANGUAGE } from './shared/data';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,15 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   private _subs = new SubSink();
   @ViewChild('drawer') drawer!: MatDrawer;
+  public loaderActive: boolean = false;
   
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private sideNavService: SidenavService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ){
     translate.setDefaultLang(DEFAULT_LANGUAGE);
     this.iconRegistry.addSvgIcon('ic-computadoras', this.sanitizer.bypassSecurityTrustResourceUrl('assets/iconos/ordenador-portatil.svg'))
@@ -55,6 +58,11 @@ export class AppComponent implements OnInit{
       if(this.drawer != undefined){
         param ? this.drawer.open() : this.drawer.close();
       }
+      this._subs.add(this.loaderService.loader.subscribe((param: any) => {
+        setTimeout(() => {
+          this.loaderActive = param;
+        });
+      }));
     }));
   }  
   

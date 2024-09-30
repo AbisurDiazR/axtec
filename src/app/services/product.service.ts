@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
-
+  
   apiUrl: String = environment.api_url;
 
   constructor(private _db: AngularFirestore) { }
@@ -31,8 +31,33 @@ export class ProductService {
   }
 
   getLastProducts(): Observable<any> {
-    //return this._db.collection('products', ref => ref.orderBy('createdAt', 'desc').limit(6)).valueChanges();
     return this._db.collection('products', ref => ref.orderBy('createdAt', 'desc').limit(6)).get().pipe(
+      map((products: any) => {
+        const product = products.docs.map((value: any) => {
+          const data = value.data();
+          const id = value.id;
+          return { id: id, ...data };
+        });
+        return product;
+      })
+    );
+  }
+
+  getLastThreeProducts(): Observable<any> {
+    return this._db.collection('products', ref => ref.orderBy('createdAt', 'desc').limit(3)).get().pipe(
+      map((products: any) => {
+        const product = products.docs.map((value: any) => {
+          const data = value.data();
+          const id = value.id;
+          return { id: id, ...data };
+        });
+        return product;
+      })
+    );
+  }
+
+  getProductByBrand(brandId: any) {
+    return this._db.collection('products', ref => ref.where('marca', '==', brandId)).get().pipe(
       map((products: any) => {
         const product = products.docs.map((value: any) => {
           const data = value.data();

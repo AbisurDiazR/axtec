@@ -54,6 +54,7 @@ export class SuccessPageComponent implements OnInit {
         phone: res?.phoneNumber ? res.phoneNumber : '',
         displayName: res?.displayName ? res.displayName : ''
       };
+      console.log(this.contactUser);
       this.populateContactForm(this.contactUser);
     });
     this.route.queryParams.subscribe(params => {

@@ -43,7 +43,11 @@
         "types": "Tipos de producto",
         "sort": "Ordenar por:",
         "items-label": "Elementos",
-        "add-car": "Añadir al carro"
+        "add-car": "Añadir al carro",
+        "empty-collection": "Aun no hay productos disponibles"
+    },
+    "CATALOG": {
+        "title": "Principales marcas"
     },
     "PRODUCT": {
         "description": "Descripción",
@@ -125,7 +129,7 @@
     "SEARCH-BAR": {
         "search-input": "Buscar..."
     },
-    "FAILURE":{
+    "FAILURE": {
         "title": "Error de pago",
         "description": "Por favor, revise la información de su tarjeta e intente nuevamente.",
         "return": "Reintentar"
@@ -144,13 +148,14 @@
         "phone": "Introduzca un número telefónico",
         "name": "Introduzca su nombre completo"
     },
-    "PROFILE":{
+    "PROFILE": {
         "main-account": "Cuenta principal",
         "new-orders": "Ordenes recientes",
         "orders-history": "Historial de ordenes",
         "wishlist": "Lista de deseos",
         "transactions": "Transacciones",
         "settings": "Configuración",
+        "payments": "Pagos",
         "logout": "Cerrar sesión",
         "add-location": "Agregar dirección",
         "address": "Dirección",
@@ -171,5 +176,10 @@
     },
     "SUCCESS": {
         "title": "¡Pago exitoso!"
+    },
+    "PENDING": {
+        "title": "Pago pendiente",
+        "description": "Por favor, realice su pago lo mas pronto posible.",
+        "accept": "Aceptar"
     }
 }

@@ -10,6 +10,7 @@ import { MainComponent } from './main/main.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     MainComponent,
     OrdersHistoryComponent,
     SettingsComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    PaymentsComponent
   ],
   imports: [
     CommonModule,

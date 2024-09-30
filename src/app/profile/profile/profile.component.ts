@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -18,12 +19,14 @@ export class ProfileComponent {
   settings: boolean = false;
   logout: boolean = false;
   shoppingCart: boolean = false;
-  
+  payments: boolean = false;
+
   constructor(
     private router: Router,
     private location: Location,
-    private authService: AuthService
-  ){
+    private authService: AuthService,
+    private loaderService: LoaderService
+  ) {
     this.subs.add(
       this.router.events.subscribe(() => {
         this.main = location.path().includes('main');
@@ -31,17 +34,21 @@ export class ProfileComponent {
         this.newOrders = location.path().includes('new-orders');
         this.ordersHistory = location.path().includes('orders-history');
         this.settings = location.path().includes('settings');
+        this.payments = location.path().includes('payments');
         this.logout = location.path().includes('logout');
       })
     );
   }
 
-  goTo(route: string){
-    this.router.navigate([`profile/${route}`])    
+  goTo(route: string) {
+    this.router.navigate([`profile/${route}`])
   }
 
-  singout(){
-    this.authService.logout();
+  singout() {
+    this.loaderService.changeLoader(true);
+    this.authService.logout().then(() => {
+      this.loaderService.changeLoader(false);
+    });
     this.router.navigate(['home']);
   }
 }

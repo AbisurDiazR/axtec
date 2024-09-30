@@ -1,0 +1,10 @@
+<div class="pending-page-container">
+    <div class="pending-page-content">
+        <div class="pending-page-text">
+            <p class="pending-page-title">{{ 'PENDING.title' | translate }}</p>
+            <p class="pending-page-description">{{ 'PENDING.description' | translate }}</p>
+            <button (click)="savePendingPayment()" mat-button color="primary">{{'PENDING.accept' | translate}}</button>
+        </div>
+        <app-payment-pending></app-payment-pending>
+    </div>
+</div>

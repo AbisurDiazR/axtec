@@ -22,6 +22,8 @@
                 .product-details-images {
                     .product-details-main-image-container {
                         position: relative;
+                        display: flex;
+                        justify-content: center;
 
                         .product-details-main-image {
                             //width: 100%;

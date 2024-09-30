@@ -51,8 +51,8 @@ export class PurchaseService {
   getUserSales(userId: string): Observable<any> {
     return this._db.collection('sales', ref => ref
       .where('clientId', '==', userId)
-      .orderBy('dateSale', 'desc') // Ordena por fecha de creación en orden descendente
-      .limit(3) // Limita los resultados a los 3 más recientes
+      .orderBy('dateSale', 'desc')
+      .limit(3)
     ).get().pipe(
       map((sales: any) => {
         return sales.docs.map((value: any) => {
@@ -62,16 +62,6 @@ export class PurchaseService {
         });
       })
     );
-    /*return this._db.collection('sales', ref => ref.where('clientId', '==', userId)).get().pipe(
-      map((sales: any) => {
-        const sale = sales.docs.map((value: any) => {
-          const data = value.data();
-          const id = value.id;
-          return { id: id, ...data };
-        });
-        return sale;
-      })
-    );*/
   }
 
   getAllUserSales(userId: string): Observable<any>{

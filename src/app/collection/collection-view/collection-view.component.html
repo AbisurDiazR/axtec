@@ -77,7 +77,11 @@
                         svgIcon="{{ listSelected ? 'ic-list-on' : 'ic-list-off'}}"></mat-icon>
                 </div>
             </div>
-            <div *ngIf="gridSelected" class="collection-view-main-items">
+            <div class="empty-products" *ngIf="products.length == 0">
+                <mat-icon class="empty-icon" svgIcon="ic-empty"></mat-icon>
+                <p class="empty-title">{{ 'COLLECTION.empty-collection' | translate }}</p>
+            </div>
+            <div *ngIf="gridSelected && products.length != 0" class="collection-view-main-items">                
                 <mat-card *ngFor="let product of products" class="collection-view-main-product-card">
                     <div class="collection-view-main-product-card-image-container"
                         (click)="navigateToProduct(product.id)">
@@ -97,7 +101,7 @@
                     </mat-card-content>
                 </mat-card>
             </div>
-            <div *ngIf="listSelected" class="collection-view-product-card-horizontal-container">
+            <div *ngIf="listSelected && products.length != 0" class="collection-view-product-card-horizontal-container">
                 <mat-card class="collection-view-product-card-horizontal" *ngFor="let product of products">
                     <img class="collection-view-product-card-horizontal-image" mat-card-lg-image
                         src="{{product.imagen}}" (click)="navigateToProduct(product.id)">

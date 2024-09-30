@@ -12,6 +12,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { PromotionsService } from 'src/app/services/promotions.service';
 import { Promotion } from '../constants/promotion';
 import { ProductService } from 'src/app/services/product.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -19,7 +20,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  
+
   products: Product[] = [];
 
   bestSellers: any = [
@@ -58,30 +59,7 @@ export class HomePageComponent implements OnInit {
     }
   ];
 
-  onSale: any = [
-    {
-      nombre: "Apple Time Capsule - 1 TB",
-      precio: 60.00,
-      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_time_capsule_-_1_tb_1_100x100_crop_center.png?v=1396975064",
-      nuevo: true,
-      rebajado: false
-    },
-    {
-      nombre: "Apple TV",
-      precio: 78.00,
-      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/apple_tv_1_100x100_crop_center.png?v=1396975069",
-      nuevo: true,
-      rebajado: true,
-      precioOriginal: 100.0
-    },
-    {
-      nombre: "Apple TV 3.0 con Blu-ray y HD tuner",
-      precio: 399.00,
-      imagen: "https://tm-shopify031-computers.myshopify.com/cdn/shop/products/img_08_100x100_crop_center.png?v=1663333027",
-      nuevo: false,
-      rebajado: false
-    }
-  ]
+  onSale: Product[] = [];
 
   articles: Article[] = [
     {
@@ -129,18 +107,49 @@ export class HomePageComponent implements OnInit {
     private discountService: DiscountsService,
     private categoryService: CategoryService,
     private promotionService: PromotionsService,
-    private productService: ProductService
+    private productService: ProductService,
+    private loaderService: LoaderService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.setDiscounts();
     this.setPromotions();
     this.getLastProducts();
+    this.getLastThreeProducts();
   }
-  
+
+  showLoader() {
+    let timeLeft: number = 5;
+
+    const timer = setInterval(() => {
+      if (timeLeft > 0) {
+        this.loaderService.changeLoader(true);
+        timeLeft--;
+      } else {
+        this.loaderService.changeLoader(false);
+        clearInterval(timer);
+      }
+    }, 500);
+  }
+
+  getLastThreeProducts() {
+    this.productService.getLastThreeProducts().subscribe((res) => {
+      res.forEach((element: any) => {
+        this.onSale.push(
+          {
+            id: element.id,
+            imagen: element.images[0],
+            titulo: element.titulo,
+            precio: element.precioOriginal,
+            cantidad: element.disponibilidad["cantidad"]
+          }
+        );
+      });
+    });
+  }
+
   getLastProducts() {
     this.productService.getLastProducts().subscribe((res) => {
-      console.log(res);
       res.forEach((element: any) => {
         this.products.push(
           {
@@ -163,6 +172,7 @@ export class HomePageComponent implements OnInit {
 
   //Inicializar descuentos
   setDiscounts() {
+    this.showLoader();
     this.discountService.getDiscounts().subscribe((res) => {
       this.discounts = res;
     });
@@ -181,6 +191,7 @@ export class HomePageComponent implements OnInit {
   goToCollection(categoryName: string | undefined) {
     if (categoryName) {
       this.categoryService.getCategoryIdByName(categoryName).subscribe((res) => {
+        console.log(res);
         if (res != null) {
           this.router.navigate([`collection/${categoryName}`], { queryParams: { page: 1 } });
         }
@@ -189,6 +200,7 @@ export class HomePageComponent implements OnInit {
   }
 
   goToCategoryList(idCategory: string | undefined) {
+    console.log(idCategory);
     if (idCategory != undefined) {
       this.categoryService.getCategoryById(idCategory).subscribe((res) => {
         this.router.navigate([`collection/${res.categoryName}`], { queryParams: { page: 1 } });
@@ -204,6 +216,10 @@ export class HomePageComponent implements OnInit {
     if (product) {
       this.router.navigate([`product/${product.id}`]);
     }
+  }
+
+  goToAppleCatalog(){
+    this.router.navigate([`catalog/brand/eolsjGsEp2TUy54oxZ8A`]);
   }
 
 }

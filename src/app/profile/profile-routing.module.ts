@@ -6,6 +6,7 @@ import { MainComponent } from './main/main.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PaymentsComponent } from './payments/payments.component';
 //import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'orders-history',
         component: OrdersHistoryComponent
+      },
+      {
+        path: 'payments',
+        component: PaymentsComponent
       },
       {
         path: 'settings',
