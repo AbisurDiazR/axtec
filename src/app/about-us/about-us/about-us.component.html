@@ -1,0 +1,62 @@
+<div class="about-us-container">
+    <section class="about-us-banner">
+        <img class="about-us-banner-background" src="assets/banners/laptop.webp"
+            alt="Laptop con teclado retroiluminado">
+        <div class="about-us-banner-text-overlay">
+            <div class="about-us-banner-text">
+                <h5 class="about-us-banner-deals">{{ 'ABOUT-US.experience-description' | translate }}</h5>
+                <h2 class="about-us-banner-discounts">{{ 'ABOUT-US.quality-innovation' | translate }}</h2>
+                <p class="about-us-banner-cto">{{ 'ABOUT-US.experience-description' | translate }}</p>
+                <button class="about-us-banner-button" mat-flat-button color="primary">{{ 'ABOUT-US.go' | translate
+                    }}</button>
+                <!--<a href="/collections/accessories" class="btn btn_lg">Comprar ahora</a>-->
+            </div>
+        </div>
+    </section>
+    <div class="about-us-cards-container">
+        <div class="about-us-cards-card" *ngFor="let discount of discounts" [ngClass]="discount.className">
+            <div class="about-us-cards-text">
+                <p class="about-us-cards-title">{{discount.title}}</p>
+                <p class="about-us-cards-content">{{discount.content}}</p>
+            </div>
+            <button (click)="goTo(discount.redirectPath)" *ngIf="discount.title != 'Ofertas'" class="about-us-cards-button" mat-flat-button color="primary">{{
+                'ABOUT-US.go' | translate }}</button>
+            <button (click)="goTo(discount.redirectPath)" *ngIf="discount.title == 'Ofertas'" class="about-us-cards-button" mat-flat-button color="primary">{{
+                'HOME.shop-now' | translate }}</button>
+            <div class="about-us-cards-image-container">
+                <img class="about-us-cards-image" src="{{discount.imagePath}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="about-us-quality-container">
+        <div class="about-us-quality-content">
+            <div class="about-us-quality-left">
+                <h1 class="about-us-quality-left-title">{{ 'ABOUT-US.highest-quality' | translate }}</h1>
+                <p class="about-us-quality-left-description">{{ 'ABOUT-US.highest-quality-description' | translate }}
+                </p>
+            </div>
+            <div class="about-us-quality-rigth">
+                <img src="assets/discounts/1.webp" alt="" class="about-us-quality-rigth-image">
+            </div>
+        </div>
+    </div>
+    <div class="about-us-testimonials-container">
+        <div class="about-us-testimonials-content">
+            <h2>{{ 'ABOUT-US.testimonials' | translate }}</h2>
+            <p>{{ 'ABOUT-US.reviews-from' | translate}}</p>
+        </div>
+        <div class="about-us-reviews-content">
+            <mat-icon (click)="previousReview()"
+                class="about-us-reviews-direction">keyboard_arrow_left</mat-icon>
+                <div class="about-us-reviews">
+                    <div class="about-us-rewiews-icons">
+                        <mat-icon *ngFor="let _  of getStarArray(currentReview.rating)">star</mat-icon>
+                    </div>
+                    <p class="about-us-review-text">{{ currentReview.content }}</p>
+                    <p class="about-us-review-author">{{ currentReview.author }}</p>
+                </div>
+            <mat-icon (click)="nextReview()"
+                class="about-us-reviews-direction">keyboard_arrow_right</mat-icon>
+        </div>
+    </div>
+</div>

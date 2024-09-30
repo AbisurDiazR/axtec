@@ -1,0 +1,52 @@
+.button-container{
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+
+    .login-container-title {
+        margin: 0;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+
+    .register-container-title {
+        margin: 0;
+    }
+
+    .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .success-text {
+            width: 150px;
+            margin: 0;
+            font-size: 12px;
+            text-align: center;
+            color: blue;
+            font-weight: bold;
+        }
+
+    }
+}

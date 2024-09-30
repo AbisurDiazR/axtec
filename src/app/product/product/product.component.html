@@ -1,0 +1,132 @@
+<div class="product-container">
+    <div class="product-content">
+        <div class="product-details-container">
+            <div class="product-details-top">
+                <div class="product-details-images">
+                    <div class="product-details-main-image-container">
+                        <img class="product-details-main-image" src="{{currentImage}}" alt="" (load)="onImageLoad()"
+                            [class.image-loaded]="imageLoaded">
+                        <div class="product-details-main-images-controls">
+                            <mat-icon (click)="previousImage()"
+                                class="product-details-main-images-direction">keyboard_arrow_left</mat-icon>
+                            <mat-icon (click)="nextImage()"
+                                class="product-details-main-images-direction">keyboard_arrow_right</mat-icon>
+                        </div>
+                    </div>
+                    <div class="product-details-list-images"
+                        *ngIf="product && product.images && product.images.length > 0">
+                        <img class="product-details-list-image" *ngFor="let image of product.images" [src]="image.url"
+                            (click)="updateCurrentImage(image.url)">
+                    </div>
+                </div>
+                <div class="product-details-text">
+                    <div>
+                        <b>{{ 'PRODUCT.sku' | translate }}</b>
+                        <span>{{product.sku}}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.avalaibility' | translate}}</b>
+                        <span>{{product.cantidad}}</span>
+                    </div>
+                    <span>
+                        <b>{{ 'PRODUCT.score' | translate }}</b>
+                        <mat-icon *ngFor="let _  of [1, 2, 3, 4, 5]">star</mat-icon>
+                    </span>
+                    <div>
+                        <span>{{ product.titulo }}</span>
+                    </div>
+                    <div>
+                        <span>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</span>
+                    </div>
+                    <div>
+                        <span>{{ product.description }}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.provider' | translate }}</b>
+                        <span>{{ product.vendedor }}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.category' | translate }}</b>
+                        <span>{{ product.categoria }}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.barcode' | translate }}</b>
+                        <span>{{ 'PRODUCT.no-barcode' | translate }}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.weigth' | translate }}</b>
+                        <span>{{ product.peso }}</span>
+                    </div>
+                    <div>
+                        <b>{{ 'PRODUCT.subcategorys' | translate }}</b>
+                        <span>{{ product.subcategorias }}</span>
+                    </div>
+                    <div *ngIf="userLogged" class="product-details-quantity">
+                        <div class="product-details-quantity-text">
+                            <b class="product-details-quantity-title">{{ 'PRODUCT.quantity' | translate }}</b>
+                            <mat-form-field class="product-details-quantity-input" appearance="outline">
+                                <input [(ngModel)]="productQuantity" matInput type="number" inputmode="numeric"
+                                    pattern="[0-9]*" min="1" max="{{product.cantidad}}" (ngModelChange)="onQuantityChange($event)">
+                            </mat-form-field>
+                        </div>
+                        <button (click)="purchase()" class="product-details-quantity-button" mat-fab color="primary"
+                            aria-label="Example icon button with a home icon">
+                            <mat-icon>payment</mat-icon>
+                        </button>
+                        <button class="product-details-quantity-button" mat-fab color="primary"
+                            aria-label="Example icon button with a home icon">
+                            <mat-icon>shopping_cart</mat-icon>
+                        </button>
+                    </div>
+                    <div class="product-details-policy">
+                        <mat-icon class="product-details-policy-icon" svgIcon="ic-free-shipment"></mat-icon>
+                        <b (click)="openPolicy('delivery')" class="product-details-policy-text">{{ 'PRODUCT.delivery-policy' | translate }}</b>
+                    </div>
+                    <div class="product-details-policy">
+                        <mat-icon class="product-details-policy-icon" svgIcon="ic-return-money"></mat-icon>
+                        <b (click)="openPolicy('return')" class="product-details-policy-text">{{ 'PRODUCT.return-policy' | translate }}</b>
+                    </div>
+                    <div class="product-details-policy">
+                        <mat-icon class="product-details-policy-icon" svgIcon="ic-secure-payment"></mat-icon>
+                        <b (click)="openPolicy('security')" class="product-details-policy-text">{{ 'PRODUCT.security-policy' | translate }}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="product-details-sections">
+                <mat-chip-option (click)="selectDescription()" [selected]="description">{{'PRODUCT.description' |
+                    translate}}</mat-chip-option>
+                <mat-chip-option (click)="selectDelivery()" [selected]="delivery">{{'PRODUCT.delivery' |
+                    translate}}</mat-chip-option>
+                <mat-chip-option (click)="selectReview()" [selected]="review">{{'PRODUCT.review' |
+                    translate}}</mat-chip-option>
+            </div>
+            <div class="product-details-divider"></div>
+            <div *ngIf="description" class="product-details-description">
+                <p class="product-details-description-text">{{product.description}}</p>
+            </div>
+            <div *ngIf="delivery" class="product-details-delivery">
+                <app-purchase></app-purchase>
+                <p class="product-details-delivery-text">{{'PRODUCT.product-delivery' | translate}}</p>
+            </div>
+            <div *ngIf="review" class="product-details-review">
+                <div *ngIf="reviews.length == 0" class="product-details-review-empty">
+                    <mat-icon class="product-details-review-empty-icon" svgIcon="ic-no-review"></mat-icon>
+                    <p class="product-details-review-empty-text">{{'PRODUCT.no-review' | translate}}</p>
+                </div>
+                <mat-card *ngFor="let review of reviews">
+                    <mat-card-header>
+                        <mat-card-title>{{review.author}}</mat-card-title>
+                        <mat-card-subtitle>
+                            <div class="star-rating">
+                                <mat-icon *ngFor="let _  of [1, 2, 3, 4, 5]">star</mat-icon>
+                            </div>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{review.content}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

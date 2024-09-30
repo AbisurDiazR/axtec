@@ -1,0 +1,15 @@
+<div class="blog-container">
+    <div class="blog-articles">
+        <mat-card class="blog-article-card" *ngFor="let article of articles">
+            <img class="blog-article-card" mat-card-image src="{{article.imagen}}" alt="Photo of a Shiba Inu">
+            <mat-card-content class="blog-article-content">
+                <p class="blog-article-date">{{article.fecha}}</p>
+                <p class="blog-article-title">{{article.titulo}}</p>
+                <p class="blog-article-extact">{{article.extracto}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="goToBlog(article.id)" mat-button color="primary">{{ 'BLOG.read-more' | translate }}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

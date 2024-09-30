@@ -1,0 +1,34 @@
+<div class="policy-dialog-close-container">
+    <mat-icon mat-dialog-close class="policy-dialog-close-icon">close</mat-icon>
+</div>
+<div class="policy-dialog-container" *ngIf="data.policyName === 'delivery'">
+    <h2 mat-dialog-title>{{ 'PRODUCT.delivery-policy' | translate }}</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>{{ 'PRODUCT.delivery-paraph-one' | translate }}</p>
+        <p>{{ 'PRODUCT.delivery-paraph-two' | translate }}</p>
+        <p>{{ 'PRODUCT.delivery-paraph-three' | translate }}</p>
+        <p>{{ 'PRODUCT.delivery-paraph-four' | translate }}</p>
+    </mat-dialog-content>
+</div>
+
+<div class="policy-dialog-container" *ngIf="data.policyName === 'return'">
+    <h2 mat-dialog-title>{{ 'PRODUCT.return-policy' | translate }}</h2>
+    <mat-dialog-content class="mat-typography">
+        <p>{{ 'PRODUCT.return-paraph-one' | translate }}</p>
+        <p>{{ 'PRODUCT.return-paraph-two' | translate }}</p>
+        <p>{{ 'PRODUCT.return-paraph-three' | translate }}</p>
+        <p>{{ 'PRODUCT.return-paraph-four' | translate }}</p>
+    </mat-dialog-content>
+</div>
+
+<div class="policy-dialog-container" *ngIf="data.policyName === 'security'">
+    <h2>{{ 'PRODUCT.security-policy' | translate }}</h2>
+    <!-- Contenido de la política de seguridad -->
+    <mat-dialog-content class="mat-typography">
+        <p>{{ 'PRODUCT.security-paraph-one' | translate }}</p>
+        <p>{{ 'PRODUCT.security-paraph-two' | translate }}</p>
+        <p>{{ 'PRODUCT.security-paraph-three' | translate }}</p>
+        <p>{{ 'PRODUCT.security-paraph-four' | translate }}</p>
+        <p>{{ 'PRODUCT.security-paraph-five' | translate }}</p>
+    </mat-dialog-content>
+</div>

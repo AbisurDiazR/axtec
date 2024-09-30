@@ -1,0 +1,168 @@
+<div class="home-container">
+    <section class="home-banner">
+        <img class="home-banner-background" src="assets/banners/laptop.webp" alt="Laptop con teclado retroiluminado">
+        <div class="home-banner-text-overlay">
+            <div class="home-banner-text">
+                <h5 class="home-banner-deals">Mejores tratos</h5>
+                <h2 class="home-banner-discounts">Gran venta 30% de descuento</h2>
+                <p class="home-banner-cto">No pierdas la oportunidad de conseguir gadgets a buen precio.</p>
+                <button (click)="goToCollection('Laptops')" class="home-banner-button" mat-flat-button color="primary">{{ 'HOME.shop-now' | translate }}</button>
+            </div>
+        </div>
+    </section>
+    <div class="home-cards-container">
+        <div class="home-cards-card" *ngFor="let discount of discounts" [ngClass]="discount.className">
+            <div class="home-cards-text">
+                <p class="home-cards-title">{{discount.title}}</p>
+                <p class="home-cards-content">{{discount.content}}</p>                
+            </div>            
+            <button (click)="goToCategoryList(discount.category)" class="home-cards-button" mat-flat-button color="primary">{{ 'HOME.shop-now'  | translate }}</button>
+            <div class="home-cards-image-container">
+                <img class="home-cards-image" src="{{discount.imagePath}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-categories-container">
+        <div class="home-categories-sections">
+            <div class="home-categories-left">
+                <div (click)="goToCollection(category.categoryName)" class="home-categories-category" (mouseenter)="changeIcon(true, i)"
+                    (mouseleave)="changeIcon(false, i)" *ngFor="let category of categories; let i = index;">
+                    <mat-icon class="home-categories-icon" *ngIf="!category.hover" svgIcon="{{category.iconDark}}"
+                        class="home-categories-icon"></mat-icon>
+                    <mat-icon class="home-categories-icon" *ngIf="category.hover" svgIcon="{{category.iconLight}}"
+                        class="home-categories-icon"></mat-icon>
+                    <p class="home-categories-text">{{category.categoryName}}</p>
+                </div>
+            </div>
+            <div class="home-categories-right">
+                <div class="home-categories-text">
+                    <p class="home-categories-title">13-INCH MODEL</p>
+                    <h3 class="home-categories-subtitle">Macbook Pro</h3>
+                    <button (click)="goToCatalog()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                </div>
+                <img class="home-categories-images" src="assets/banners/macbook-pro.webp" alt="Macbook proo">
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-products-container">
+        <div class="home-products-sections">
+            <div class="home-products-header">
+                <h2 class="home-products-header-left">{{ 'HOME.our-products' | translate }}</h2>
+                <div class="home-products-header-right">
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.recent-shop' | translate }}</span>
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.most-seller' | translate }}</span>
+                    <span class="home-products-header-right-text underline-hover">{{ 'HOME.featured' | translate }}</span>
+                </div>
+            </div>
+            <owl-carousel-o [options]="options">
+                <ng-container *ngFor="let product of products">
+                    <ng-template class="slide" carouselSlide>
+                        <mat-card (click)="goToProduct(product)" class="product-card">
+                            <img class="product-card-image" mat-card-image src="{{product.imagen}}"
+                                alt="{{product.titulo}}">
+                            <mat-card-content class="product-card-content">
+                                <h3 class="product-card-title">{{ product.titulo }}</h3>
+                                <p>{{ product.precio | currency:'MXN':'symbol':'1.2-2' }}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-discounts-container">
+        <div class="home-discounts-sections">
+            <div *ngFor="let promotion of promotions" class="home-discounts-card">
+                <img class="home-discounts-image" src="{{promotion.imagePath}}" alt="">
+                <div class="home-discounts-text">
+                    <p>{{promotion.content}}</p>
+                    <button (click)="goToCategoryList(promotion.category)" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-catalogs-container">
+        <div class="home-catalogs-sections">
+            <div class="home-catalogs-left">
+                <img class="home-catalogs-image" src="assets/banners/banner_center.webp" alt="">
+                <div class="home-catalogs-text">
+                    <p class="home-catalogs-title">27-inch model</p>
+                    <h3 class="home-catalogs-subtitle">New iMac</h3>
+                    <button (click)="goToAppleCatalog()" mat-flat-button color="primary">{{ 'HOME.shop-now'| translate }}</button>
+                </div>
+            </div>
+            <div class="home-catalogs-right">
+                <p class="home-catalogs-title">{{ 'HOME.most-seller' | translate }}</p>
+                <mat-card (click)="goToProduct(item)" class="home-catalogs-card" *ngFor="let item of bestSellers">
+                    <mat-card-header class="home-catalogs-header">
+                        <mat-card-title-group class="home-catalogs-title-group">
+                            <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
+                            <div class="home-catalogs-titles">
+                                <p class="home-catalogs-title-nombre">{{item.nombre}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio | currency:'MXN':'symbol':'1.2-2'}}</p>
+                            </div>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+            <div class="home-catalogs-right">
+                <p class="home-catalogs-title">{{ 'HOME.on-sale' | translate }}</p>
+                <mat-card (click)="goToProduct(item)" class="home-catalogs-card" *ngFor="let item of onSale">
+                    <mat-card-header class="home-catalogs-header">
+                        <mat-card-title-group class="home-catalogs-title-group">
+                            <img class="home-catalogs-image" mat-card-sm-image src="{{item.imagen}}">
+                            <div class="home-catalogs-titles">
+                                <p class="home-catalogs-title-nombre">{{item.titulo}}</p>
+                                <p class="home-catalogs-title-precio">{{item.precio | currency:'MXN':'symbol':'1.2-2'}}</p>
+                            </div>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-blogs-container">
+        <div class="home-blogs-articles">
+            <mat-card class="home-blogs-card" *ngFor="let article of articles">
+                <img class="home-blogs-card" mat-card-image src="{{article.imagen}}" alt="Photo of a Shiba Inu">
+                <mat-card-content class="home-blogs-content">
+                    <p class="home-blogs-date">{{article.fecha}}</p>
+                    <p class="home-blogs-title">{{article.titulo}}</p>
+                    <p class="home-blogs-extact">{{article.extracto}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button (click)="goToBlog(article.id)" mat-button color="primary">{{'BLOG.read-more' | translate}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div class="home-ads"></div>
+    <div class="home-features-container">
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-free-shipment"></mat-icon>
+            <p class="home-feature-title">{{ 'HOME.free-delivery' | translate }}</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">{{ 'HOME.free-delivery-info' | translate }}</p>
+            </div>
+        </div>
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-return-money"></mat-icon>
+            <p class="home-feature-title">{{ 'HOME.return' | translate }}</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">{{ 'HOME.return-cto' | translate }}</p>
+            </div>
+        </div>
+        <div class="home-feature">
+            <mat-icon class="home-feature-icon" svgIcon="ic-secure-payment"></mat-icon>
+            <p class="home-feature-title">{{ 'HOME.secure-payment' | translate }}</p>
+            <div class="home-feature-text-container">
+                <p class="home-feature-text">{{ 'HOME.secure-payment-cto' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>

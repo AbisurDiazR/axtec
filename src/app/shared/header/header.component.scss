@@ -1,0 +1,78 @@
+@import '/src/assets/scss/colors';
+
+.header-container {
+    transition: 0.5s;
+    top: 0px;
+    background: $header-background;
+    border: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    
+    .header-topbar{
+        .header-account{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            .header-icons-container{
+                display: flex;
+                justify-content: space-between;
+                .header-icons-item{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1500px) {
+        .header-topbar{
+            width: 1480px;
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .header-topbar{
+            width: 1380px;
+        }
+    }
+    @media (max-width: 1230px) {
+        .header-topbar{
+            width: 1120px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .header-topbar{
+            width: 1000px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .header-topbar{
+            width: 750px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .header-topbar{
+            width: 550px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .header-topbar{
+            width: 400px;
+        }
+    }
+
+    /* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+    @media (max-width: 320px) {
+        .header-topbar{
+            width: 300px;
+        }
+    }
+}

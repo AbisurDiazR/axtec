@@ -1,0 +1,95 @@
+@import '/src/assets/scss/colors';
+
+.main-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+
+    .main-card-profile-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .main-card-profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .main-card-profile-resume {
+            .main-card-profile-name {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 0;
+                color: $primary-blue;
+            }
+
+            .main-card-profile-email-phone {
+                font-size: 12px;
+                margin: 0;
+                color: $gray-subtitle;
+            }
+        }
+    }
+
+    .main-card-profile-adrress-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        .main-card-header {
+            padding: 0;
+            display: flex;
+            justify-content: end;
+            mat-icon{
+                cursor: pointer;
+            }
+        }
+
+        .main-card-profile-adrress-card {
+            padding: 10px;
+            box-shadow: none;
+            border: 1px solid $card-border-color;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-card-profile-adrress-container {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .main-card-profile-divider {
+        height: 1px;
+        width: 100%;
+        background-color: $gray-title;
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 1230px) {
+    .main-card-container {
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-card-container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-card-container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-card-container {
+        max-width: 540px;
+        flex-direction: column;
+    }
+}

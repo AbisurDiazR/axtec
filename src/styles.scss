@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+html,
+body {
+    height: 100%;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-text-field-wrapper {
+    height: 100% !important;
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding: 10px !important;
+}
+
+.mat-mdc-standard-chip {
+    --mdc-chip-container-shape-radius: 5px !important;
+}
+.mat-mdc-standard-chip .mdc-evolution-chip__text-label{
+    font-size: 11px !important;
+}
+.axtec-dialog-border{
+    .mat-mdc-tab-body-content{
+        overflow: hidden !important;
+    }
+}

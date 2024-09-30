@@ -1,0 +1,85 @@
+@import '/src/assets/scss/colors';
+
+.success-page-container {
+    display: flex;
+    justify-content: center;
+
+    .success-page-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 150px 0;
+
+        .success-page-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: $primary-blue;
+        }
+    }
+}
+
+.address-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+
+    .address-container-empty {
+        img {
+            width: 250px;
+        }
+    }
+
+    .main-card-profile-adrress-card {
+        width: 250px;
+        cursor: pointer;
+        padding: 10px;
+        box-shadow: none;
+        border: 1px solid $card-border-color;
+        margin: 0 5px;
+    }
+    .main-card-profile-adrress-card-blue{
+        width: 250px;
+        cursor: pointer;
+        padding: 10px;
+        box-shadow: none;
+        border: 1px solid $card-border-color;
+        margin: 0 5px;
+        color: $white-title;
+        background-color: $primary-blue;
+    }
+}
+.button-container{
+    display: flex;
+    justify-content: start;
+    gap: 5px;    
+}
+.contact-form-container{
+    .contact-form{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .contact-form-field{
+            width: 250px;
+        }
+    }
+}
+.purchase-note {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .purchase-avatar {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  mat-divider {
+    margin: 10px 0;
+  }
+  

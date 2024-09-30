@@ -1,0 +1,165 @@
+@import '/src/assets/scss/colors';
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    .search-bar-options {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+
+        .search-bar-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            .search-bar-option-text {
+                margin: 0;
+                color: $menu-color;
+                font-weight: 500;
+                font-size: inherit;
+                position: relative; // Añade posición relativa para el subrayado
+
+                // Estilos del subrayado
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%; // Anchura máxima del subrayado
+                    height: 2px; // Altura del subrayado
+                    background-color: $primary-blue; // Color del subrayado
+                    transition: width 0.5s ease-in-out; // Transición de la animación del subrayado
+                    transform: scaleX(0); // Inicialmente, el subrayado no está visible
+                    transform-origin: bottom left; // Origen de la transformación
+                }
+            }
+
+            // Efecto de subrayado al pasar el mouse
+            &:hover .search-bar-option-text::after {
+                width: 100%; // Anchura del subrayado al pasar el mouse
+                left: 0%; // Posición izquierda del subrayado al pasar el mouse
+                transform: scaleX(1); // Hace visible el subrayado al pasar el mouse
+            }
+        }
+    }
+
+    .search-bar-input-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+
+        .search-bar-input {
+            height: 45px;
+        }
+    }
+
+    .search-bar-menu-container {
+        display: none;
+
+        .search-bar-menu {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+@media (min-width: 1500px) {
+    .search-bar {
+        width: 1480px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .search-bar {
+        width: 1320px;
+    }
+}
+
+@media (max-width: 1230px) {
+    .search-bar {
+        width: 1120px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .search-bar {
+        width: 1000px;
+    }
+}
+
+@media (max-width: 900px) {
+    .search-bar {
+        width: 750px;
+
+        .search-bar-options {
+            display: none;
+        }
+
+        .search-bar-menu-container {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .search-bar {
+        width: 550px;
+
+        .search-bar-options {
+            display: none;
+        }
+
+        .search-bar-menu-container {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .search-bar {
+        width: 400px;
+        padding: 0 10px;
+
+        .search-bar-options {
+            display: none;
+        }
+
+        .search-bar-menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar-input-container {
+            padding: 20px 25px;
+        }
+    }
+}
+
+/* Añade una regla de medios para pantallas pequeñas (por debajo de 320px) */
+@media (max-width: 320px) {
+    .search-bar {
+        width: 300px;
+        padding: 0;
+
+        .search-bar-options {
+            display: none;
+        }
+
+        .search-bar-menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar-input-container {
+            padding: 20px 10px;
+        }
+    }
+}

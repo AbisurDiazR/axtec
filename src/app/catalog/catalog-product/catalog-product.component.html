@@ -1,0 +1,127 @@
+<div class="catalog-product-container">
+    <div class="catalog-product-content">
+        <div class="catalog-product-options">
+            <p class="catalog-product-options-title">{{ 'HEADER.collection' | translate }}</p>
+            <ul class="catalog-product-options-container">
+                <li class="catalog-product-options-name">
+                    <a class="catalog-product-options-ref" href="">
+                        {{ 'HEADER.home' | translate}}
+                    </a>
+                </li>
+                <li class="catalog-product-options-name">
+                    <a class="catalog-product-options-ref" href="">
+                        {{ 'HEADER.catalog' | translate}}
+                    </a>
+                </li>
+                <li class="catalog-product-options-name">
+                    <a class="catalog-product-options-ref" href="">
+                        {{ 'HEADER.blog' | translate}}
+                    </a>
+                </li>
+                <li class="catalog-product-options-name">
+                    <a class="catalog-product-options-ref" href="">
+                        {{ 'HEADER.about-us' | translate}}
+                    </a>
+                </li>
+                <li class="catalog-product-options-name">
+                    <a class="catalog-product-options-ref" href="">
+                        {{ 'HEADER.contact-us' | translate}}
+                    </a>
+                </li>
+            </ul>
+            <p class="catalog-product-options-title">{{ 'COLLECTION.brands' | translate }}</p>
+            <ul class="catalog-product-options-container">
+                <li class="catalog-product-options-name" *ngFor="let brand of brands">
+                    <a class="catalog-product-options-ref" href="">{{brand.brandName}}</a>
+                </li>
+            </ul>
+            <p class="catalog-product-options-title">{{ 'COLLECTION.types' | translate }}</p>
+            <ul class="catalog-product-options-container">
+                <li class="catalog-product-options-name" *ngFor="let category of categories">
+                    <a class="catalog-product-options-ref" href="">{{category.categoryName}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="catalog-product-main">
+            <div class="catalog-product-main-banner">
+                <img class="catalog-product-main-image" src="{{bannerImage}}" alt="">
+                <div class="catalog-product-main-title-container">
+                    <p class="catalog-product-main-title">{{collectionName}}</p>
+                </div>
+            </div>
+            <div class="catalog-product-main-tags">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option>Todo</mat-chip-option>
+                </mat-chip-listbox>
+            </div>
+            <!--Menu collection-->
+            <div class="catalog-product-main-menu">
+                <div class="catalog-product-main-sort-container">
+                    <p class="catalog-product-main-sort-text">
+                        {{ 'COLLECTION.sort' | translate }}
+                    </p>
+                    <mat-form-field class="catalog-product-main-sort-input" appearance="outline">
+                        <mat-select>
+                            <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                            <mat-option value="option3">Option 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <p class="catalog-product-main-quantity-items">{{products.length}} {{ 'COLLECTION.items-label' |
+                    translate}}</p>
+                <div class="catalog-product-main-options-list">
+                    <mat-icon class="catalog-product-main-option" (click)="selectGrid()"
+                        svgIcon="{{ gridSelected ? 'ic-grid-on' : 'ic-grid-off'}}"></mat-icon>
+                    <mat-icon class="catalog-product-main-option" (click)="selectList()"
+                        svgIcon="{{ listSelected ? 'ic-list-on' : 'ic-list-off'}}"></mat-icon>
+                </div>
+            </div>
+            <div class="empty-products" *ngIf="products.length == 0">
+                <mat-icon class="empty-icon" svgIcon="ic-empty"></mat-icon>
+                <p class="empty-title">{{ 'COLLECTION.empty-collection' | translate }}</p>
+            </div>
+            <div *ngIf="gridSelected && products.length != 0" class="catalog-product-main-items">                
+                <mat-card *ngFor="let product of products" class="catalog-product-main-product-card">
+                    <div class="catalog-product-main-product-card-image-container"
+                        (click)="navigateToProduct(product.id)">
+                        <img class="catalog-product-main-product-card-image" mat-card-md-image src="{{product.imagen}}"
+                            alt="{{product.titulo}}">
+                    </div>
+                    <mat-card-content class="catalog-product-main-product-card-content">
+                        <p class="catalog-product-main-product-card-title">{{ product.titulo }}</p>
+                        <p class="catalog-product-main-product-card-price">{{ product.precio |
+                            currency:'MXN':'symbol':'1.2-2' }}</p>
+                        <div *ngIf="userLogged" class="catalog-product-main-product-card-buttons-container">
+                            <button (click)="addCart(product)" class="catalog-product-product-card-button" mat-fab extended color="primary">
+                                <mat-icon>shopping_cart</mat-icon>
+                                {{'COLLECTION.add-car' | translate}}
+                            </button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div *ngIf="listSelected && products.length != 0" class="catalog-product-product-card-horizontal-container">
+                <mat-card class="catalog-product-product-card-horizontal" *ngFor="let product of products">
+                    <img class="catalog-product-product-card-horizontal-image" mat-card-lg-image
+                        src="{{product.imagen}}" (click)="navigateToProduct(product.id)">
+                    <div class="catalog-product-product-card-horizontal-titles">
+                        <p class="catalog-product-product-card-horizontal-title-nombre">{{product.titulo}}
+                        </p>
+                        <p class="catalog-product-product-card-horizontal-title-precio">{{product.precio |
+                            currency:'MXN':'symbol':'1.2-2'}}
+                        </p>
+                        <p class="catalog-product-product-card-horizontal-title-description">{{product.description}}</p>
+                        <div *ngIf="userLogged" class="catalog-product-product-card-horizontal-title-button-container">
+                            <button class="catalog-product-product-card-horizontal-title-button" mat-fab extended
+                                color="primary">
+                                <mat-icon>shopping_cart</mat-icon>
+                                {{'COLLECTION.add-car' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

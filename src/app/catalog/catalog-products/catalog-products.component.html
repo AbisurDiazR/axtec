@@ -1,0 +1,12 @@
+<div class="catalog-products-container">
+    <div class="catalog-products-content">        
+        <div class="catalog-products-items-container">
+            <p class="catalog-products-item-title">{{ 'CATALOG.title' | translate }}</p>         
+            <div class="catalog-products-items">
+                <div *ngFor="let brand of brands" class="catalog-products-item" (click)="navigateTo(brand)">
+                    <img class="catalog-products-item-image" src="{{brand.brandImage}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

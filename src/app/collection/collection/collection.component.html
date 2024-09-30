@@ -1,0 +1,15 @@
+<div class="collection-container">
+    <div class="collection-content">        
+        <div class="collection-items-container">
+            <p class="collection-item-title">{{ 'COLLECTION.title' | translate }}</p>         
+            <div class="collection-items">
+                <div *ngFor="let item of items" class="collection-item" (click)="navigateTo(item.categoryName)">
+                    <img class="collection-item-image" src="{{item.categoryImage}}" alt="">
+                    <div class="collection-item-container-name">
+                        <p class="collection-item-name">{{item.categoryName}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,10 @@
+<div class="failure-page-container">
+    <div class="failure-page-content">
+        <div class="failure-page-text">
+            <p class="failure-page-title">{{ 'FAILURE.title' | translate }}</p>
+            <p class="failure-page-description">{{ 'FAILURE.description' | translate }}</p>
+            <button (click)="tryAgain()" mat-button color="primary">{{'FAILURE.return' | translate}}</button>
+        </div>
+        <app-payment-error></app-payment-error>
+    </div>
+</div>

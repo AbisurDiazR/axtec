@@ -1,0 +1,18 @@
+export interface Product {
+    id?: string;
+    imagen?: string;
+    titulo: string;
+    precio: number;
+    nuevo?: boolean;
+    rebajado?: boolean;
+    precioOriginal?: number;
+    description?: string;
+    images?: any[];
+    cantidad: number;
+    vendedor?: string;
+    categoria?: string;
+    peso?: string;
+    subcategorias?: string[];
+    sku?: string;
+    idPublisher?: string;
+}

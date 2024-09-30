@@ -1,0 +1,91 @@
+<div class="blog-article-container">
+    <div class="blog-article-content">
+        <div class="blog-article-left">
+            <div class="blog-article-left-section">
+                <p class="blog-article-left-section-title">{{ 'BLOG.categories' | translate }}</p>
+                <div class="blog-article-left-tags-container">
+                    <mat-chip class="blog-article-left-tag" *ngFor="let category of blogCategories">{{ category.name
+                        }}</mat-chip>
+                </div>
+            </div>
+            <div class="blog-article-left-section">
+                <p class="blog-article-left-section-title">{{ 'BLOG.recent-post' | translate }}</p>
+                <div class="blog-article-left-recent-post-container">
+                    <span *ngFor="let recent of recentArticles">
+                        <b (click)="goToBlog(recent.id)"
+                            class="blog-article-left-recent-post-title">{{recent.titulo}}</b>
+                        <p class="blog-article-left-recent-post-author">{{ 'BLOG.redacted-by' | translate }}
+                            {{recent.autor.nombre}}</p>
+                    </span>
+                </div>
+            </div>
+            <div class="blog-article-left-section">
+                <p class="blog-article-left-section-title">{{ 'BLOG.blog-tags' | translate }}</p>
+                <div class="blog-article-left-tags-container">
+                    <mat-chip class="blog-article-left-tag" *ngFor="let tag of blogArticle.tags">{{ tag.name
+                        }}</mat-chip>
+                </div>
+            </div>
+        </div>
+        <div class="blog-article-rigth">
+            <div class="blog-article-rigth-header">
+                <b class="blog-article-rigth-post-title">{{blogArticle.titulo}}</b>
+                <p class="blog-article-rigth-post-author">{{ 'BLOG.redacted-by' | translate }}
+                    {{blogArticle.autor.nombre}}, {{ blogArticle.fecha | date:'dd MMMM yyyy' }}</p>
+            </div>
+            <div class="blog-article-rigth-image-container">
+                <img src="{{blogArticle.imagen}}" alt="" class="blog-article-rigth-image">
+            </div>
+            <div class="blog-article-rigth-content-container">
+                <b>{{blogArticle.extracto}}</b>
+                <p>{{blogArticle.contenido}}</p>
+            </div>
+            <div class="blog-article-rigth-paginator">
+                <button mat-button color="primary">
+                    {{'BLOG.before-post' | translate}}
+                </button>
+                <button mat-button color="primary">
+                    {{'BLOG.next-post' | translate}}
+                </button>
+            </div>
+            <div class="blog-article-rigth-comments-container">
+                <b class="blog-article-rigth-comment">{{ blogArticle.comentarios.length }} {{ 'BLOG.blog-comments' |
+                    translate }}</b>
+            </div>
+            <div class="blog-article-rigth-comment-header">
+                <b class="blog-article-rigth-comment-title">{{ 'BLOG.leave-comment' | translate }}</b>
+            </div>
+            <div class="blog-article-comments-container">
+                <h2 class="blog-article-comments-heading">{{ 'BLOG.blog-comments' | translate }}</h2>
+                <mat-list class="blog-article-comments-list">
+                    <div class="blog-article-comments-item" *ngFor="let comment of blogArticle.comentarios">
+                        <div class="blog-article-comment-info">
+                            <span class="blog-article-comment-author">{{ comment.usuario }}</span>
+                            <span class="blog-article-comment-date">{{ comment.fecha | date }}</span>
+                        </div>
+                        <div class="blog-article-comment-body">
+                            <p class="blog-article-comment-text">{{ comment.contenido }}</p>
+                        </div>
+                    </div>
+                </mat-list>
+            </div>
+
+            <form class="blog-article-comment-form">
+                <mat-form-field appearance="outline" class="blog-article-full-width">
+                    <mat-label>{{ 'BLOG.name' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.name' | translate }}" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="blog-article-full-width">
+                    <mat-label>{{ 'BLOG.email' | translate }}</mat-label>
+                    <input matInput placeholder="{{ 'BLOG.email' | translate }}" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="blog-article-full-width">
+                    <mat-label>{{ 'BLOG.coment' | translate }}</mat-label>
+                    <textarea matInput placeholder="{{ 'BLOG.coment' | translate }}" required></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">{{ 'BLOG.post-comment' | translate }}</button>
+            </form>
+
+        </div>
+    </div>
+</div>

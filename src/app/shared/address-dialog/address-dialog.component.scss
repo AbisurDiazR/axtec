@@ -1,0 +1,18 @@
+@import '/src/assets/scss/colors';
+.address-container {
+    margin: 20px;
+
+    .address-form {
+        .address-form-field {
+            width: 100%;
+        }
+    }
+    .address-buttons-container{
+        display: grid;
+        gap: 1rem;
+        .address-button-cancel{
+            background-color: $cancel-background;
+            color: $white-title;
+        }
+    }
+}

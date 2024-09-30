@@ -1,0 +1,57 @@
+@import '/src/assets/scss/colors';
+
+.profile-container {
+    margin: 140px 0;
+    display: flex;
+    justify-content: center;
+
+    .profile-content {
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        gap: 1rem;
+
+        .profile-left-menu {
+            .profile-left-item-active {
+                width: 200px;
+                border: 1px solid;
+                border-radius: 10px;
+                margin: 5px;
+            }
+
+            .profile-left-item-unactive {
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+        .profile-rigth-menu {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 1230px) {
+        .profile-content {
+            max-width: 1200px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .profile-content {
+            max-width: 960px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .profile-content {
+            max-width: 720px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .profile-content {
+            max-width: 540px;
+            flex-direction: column;
+        }
+    }
+}
